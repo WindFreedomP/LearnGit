@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://c.biancheng.net/view/vip_7681.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./11.4文本打开方式和二进制打开方式的区别是什么？_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<!-- 启用Chromium高速渲染模式 -->
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<!-- 禁止百度转码 -->
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!-- 禁止识别电话号码 -->
+<meta name="format-detection" content="telephone=no">
+
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.72">
+<link href="./11.4文本打开方式和二进制打开方式的区别是什么？_files/common.css" rel="stylesheet">
+<title>文本打开方式和二进制打开方式的区别是什么？</title>
+<meta name="description" content="在学习了 C++ 文件流对象使用 open() 打开文件后，我们知道它的第二个参数是一个字符串，用来表示文件打开方式，即如果使用 ios::binary，则表示以二进制方式打开文件；反之，则以文本">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+	<ul id="product-type" class="left">
+		<li>
+			<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+		</li>
+		<li class="active">
+			<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+		</li>
+		<li>
+			<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+		</li>
+	</ul>
+</div>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="http://c.biancheng.net/">
+		<img height="26" src="./11.4文本打开方式和二进制打开方式的区别是什么？_files/logo.png" alt="C语言中文网">
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+		<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+		<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+		<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+		<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+		<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+		<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/cplus/">C++</a></dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href="http://c.biancheng.net/cplus/c2cpp/">从C到C++</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href="http://c.biancheng.net/cplus/class/">类和对象</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href="http://c.biancheng.net/cplus/25/">C++引用</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href="http://c.biancheng.net/cplus/polymorphism/">C++多态与虚函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href="http://c.biancheng.net/cplus/operator/">运算符重载</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href="http://c.biancheng.net/cplus/70/">模板</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href="http://c.biancheng.net/cplus/exception/">C++异常</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href="http://c.biancheng.net/cplus/50/">输入输出流</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">11</span> <a href="http://c.biancheng.net/cplus/60/">文件操作</a> </dd><dl class="dl-sub"><dd>11.1 <a href="http://c.biancheng.net/view/283.html">文件到底是什么？</a></dd><dd>11.2 <a href="http://c.biancheng.net/view/7591.html">C++文件类（文件流类）及用法详解</a></dd><dd>11.3 <a href="http://c.biancheng.net/view/294.html">C++文件的打开</a></dd><dd class="active">11.4 <a href="http://c.biancheng.net/view/vip_7681.html">文本打开方式和二进制打开方式的区别是什么？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.5 <a href="http://c.biancheng.net/view/7595.html">C++ close()关闭文件方法详解</a></dd><dd>11.6 <a href="http://c.biancheng.net/view/vip_7682.html">C++打开的文件一定要用close()方法关闭！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>11.7 <a href="http://c.biancheng.net/view/7596.html">C++文本文件读写操作详解</a></dd><dd>11.8 <a href="http://c.biancheng.net/view/7603.html">C++ read()和write()读写二进制文件</a></dd><dd>11.9 <a href="http://c.biancheng.net/view/7606.html">C++ get()和put()读写文件详解</a></dd><dd>11.10 <a href="http://c.biancheng.net/view/7609.html">C++ getline()：从文件中读取一行字符串</a></dd><dd>11.11 <a href="http://c.biancheng.net/view/309.html">C++移动或获取文件读写指针</a></dd></dl>
+			<dd>
+				<span class="channel-num">12</span>
+				<a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div class="arc-info">
+	<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/cplus/">C++</a> &gt; <a href="http://c.biancheng.net/cplus/60/">文件操作</a></span>
+	<span class="read-num">阅读：6,608</span>
+</div>
+
+<div id="ad-position-bottom"></div>
+			<h1>文本打开方式和二进制打开方式的区别是什么？</h1>
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/294.html">C++文件的打开</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/7595.html">C++ close()关闭文件方法详解</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="default"><a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank" style="color:#D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+			<div id="arc-body">在学习了 C++ 文件流对象使用 open() 打开文件后，我们知道它的第二个参数是一个字符串，用来表示文件打开方式，即如果使用 ios::binary，则表示以二进制方式打开文件；反之，则以文本文件的方式打开文件。<br>
+<h2>
+	文本文件和二进制文件的区别</h2>
+根据我们以往的经验，文本文件通常用来保存肉眼可见的字符，比如 .txt文件、.c文件、.dat文件等，用文本编辑器打开这些文件，我们能够顺利看懂文件的内容。<br>
+<br>
+二进制文件通常用来保存视频、图片、程序等不可阅读的内容，用文本编辑器打开这些文件，会看到一堆乱码，根本看不懂。<br>
+<br>
+但是从物理上讲，二进制文件和字符文件并没有什么区别，它们都是以二进制的形式保存在磁盘上的数据。<br>
+<br>
+我们之所以能看懂文本文件的内容，是因为文本文件中采用的是 ASCII、UTF-8、GBK 等字符编码，文本编辑器可以识别出这些编码格式，并将编码值转换成字符展示出来。<br>
+<br>
+而二进制文件使用的是 mp4、gif、exe 等特殊编码格式，文本编辑器并不认识这些编码格式，只能按照字符编码格式胡乱解析，所以就成了一堆乱七八糟的字符，有的甚至都没见过。<br>
+<br>
+如果我们新建一个 mp4 文件，给它写入一串字符，然后再用文本编辑器打开，你一样可以读得懂，有兴趣的读者可以自己试试。<br>
+<br>
+总的来说，不同类型的文件有不同的编码格式，必须使用对应的程序（软件）才能正确解析，否则就是一堆乱码，或者无法使用。
+<h2>
+	两种打开方式的区别</h2>
+<span style="color:#b22222;">文本方式和二进制方式并没有本质上的区别，只是对于换行符的处理不同。</span><br>
+<br>
+在 UNIX/Linux 平台中，用文本方式或二进制方式打开文件没有任何区别，因为文本文件以 \n（ASCII 码为 0x0a）作为换行符号。<br>
+<br>
+但在 Windows 平台上，文本文件以连在一起的 \r\n 作为换行符号。如果以文本方式打开文件，当读取文件时，程序会将文件中所有的 \r\n 转换成一个字符 \n。也就是说，如果文本文件中有连续的两个字符是 \r\n，则程序会丢弃前面的 \r，只读入 \n。<br>
+<br>
+同样当写入文件时，程序会将 \n 转换成 \r\n 写入。也就是说，如果要写入的内容中有字符 \n，则在写入该字符前，程序会自动先写入一个 \r。<br>
+<br>
+因此在 Windows 平台上，如果用文本方式打开二进制文件进行读写，读写的内容就可能和文件的内容有出入。<br>
+<br>
+<span style="color:#b22222;">总的来说，Linux 平台使用哪种打开方式都行；Windows 平台上最好用&nbsp;"ios::in | ios::out" 等打开文本文件，用 "ios::binary" 打开二进制文件。但无论哪种平台，用二进制方式打开文件总是最保险的。</span><br>
+</div>
+			<div id="arc-append">
+	<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+	<p style="margin-top:12px; text-align:center;">
+		<img width="180" src="./11.4文本打开方式和二进制打开方式的区别是什么？_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+		<span class="col-green">微信扫描二维码关注公众号</span>
+	</p>
+</div>
+<!-- <p>关注微信公众号「魏雪原」，跟着<a class="col-link" href="/view/8092.html" target="_blank">站长</a>一起学习，拒绝躺平，跳出内卷，用知识完成阶级跃升：</p>
+	<ul>
+		<li>每日更新，坚持原创，敢说真话，凡事有态度。</li>
+		<li>编程+求职+创业+营销，既有硬知识，也有软技能。</li>
+		<li>手机端阅读教程，随时随地都能学习。</li>
+		<li>即将绑定网站部分功能，包括注册登录、找回密码、获取下载链接等。</li>
+	</ul> -->
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/294.html">C++文件的打开</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/7595.html">C++ close()关闭文件方法详解</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-bottom"></div>
+
+<!-- <div id="ad-bottom-weixin" class="clearfix">
+	<div class="left" style="width: 535px;">
+		<p><span class="col-red">编程帮</span>，一个分享编程知识的公众号。跟着<a class="col-link" href="/cpp/about/author/" target="_blank">站长</a>一起学习，每天都有进步。</p>
+		<p>通俗易懂，深入浅出，一篇文章只讲一个知识点。</p>
+		<p>文章不深奥，不需要钻研，在公交、在地铁、在厕所都可以阅读，随时随地涨姿势。</p>
+		<p>文章不涉及代码，不烧脑细胞，人人都可以学习。</p>
+		<p>当你决定关注「编程帮」，你已然超越了90%的程序员！</p>
+	</div>
+	<div class="right" style="width: 150px;">
+		<img width="150" src="/templets/new/images/erweima_biancheng.gif?v=1.6.72" alt="编程帮二维码" /><br />
+		<span class="col-green">微信扫描二维码关注</span>
+	</div>
+</div> -->
+
+<div id="nice-arcs" class="box-bottom">
+	<h4>优秀文章</h4>
+	<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/643.html" title="C++ normal_distribution高斯正态分布函数用法详解">C++ normal_distribution高斯正态分布函数用法详解</a></li>
+<li><a href="http://c.biancheng.net/view/vip_1794.html" title="C语言在屏幕的任意位置输出字符，开发小游戏的第一步">C语言在屏幕的任意位置输出字符，开发小游戏的第一步</a></li>
+<li><a href="http://c.biancheng.net/view/4506.html" title="Redis基本安装和使用">Redis基本安装和使用</a></li>
+<li><a href="http://c.biancheng.net/view/4958.html" title="JSP Response.getServletContext()方法：返回session所属的ServletContext对象">JSP Response.getServletContext()方法：返回session所属的ServletContext对象</a></li>
+<li><a href="http://c.biancheng.net/view/5753.html" title="Python __import__()函数引入模块名">Python __import__()函数引入模块名</a></li>
+<li><a href="http://c.biancheng.net/view/6533.html" title="HBase WAL机制">HBase WAL机制</a></li>
+<li><a href="http://c.biancheng.net/view/6664.html" title="MATLAB文件操作的概念">MATLAB文件操作的概念</a></li>
+<li><a href="http://c.biancheng.net/view/6735.html" title="Go语言事件系统实现事件的晌应和处理">Go语言事件系统实现事件的晌应和处理</a></li>
+<li><a href="http://c.biancheng.net/view/7096.html" title="Makefile变量的定义和使用">Makefile变量的定义和使用</a></li>
+<li><a href="http://c.biancheng.net/css3/shadow.html" title="CSS阴影效果（2种方法）">CSS阴影效果（2种方法）</a></li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 7681;
+window.arcId = "dbeb7ovqAH2kYt07JXJIVZK+vC0PI/SeiH1IZzrOXewipXxpi0TBfl67cLk";
+window.typeidChain = "46|19";
+</script>
+<div id="footer" class="clearfix">
+	<div class="info left">
+	<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+	<p>
+		<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+		<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+	</p>
+	<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+	</div>
+	<img class="right" src="./11.4文本打开方式和二进制打开方式的区别是什么？_files/logo_bottom.gif" alt="底部Logo">
+	<span id="return-top"><b>↑</b></span>
+</div>
+
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.72";
+</script>
+
+<script src="./11.4文本打开方式和二进制打开方式的区别是什么？_files/jquery1.12.4.min.js.下载"></script>
+<script src="./11.4文本打开方式和二进制打开方式的区别是什么？_files/common.js.下载"></script>
+<span style="display:none;"><script src="./11.4文本打开方式和二进制打开方式的区别是什么？_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>

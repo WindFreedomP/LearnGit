@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://c.biancheng.net/view/vip_2278.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./4.9C++多继承时的对象内存模型_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<!-- 启用Chromium高速渲染模式 -->
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<!-- 禁止百度转码 -->
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!-- 禁止识别电话号码 -->
+<meta name="format-detection" content="telephone=no">
+
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.72">
+<link href="./4.9C++多继承时的对象内存模型_files/common.css" rel="stylesheet">
+<title>C++多继承时的对象内存模型</title>
+<meta name="description" content="在《 C++继承时的对象模型 》一节中我们讲解了单继承时对象的内存模型，这节我们来分析一下多继承时对象的内存模型。请读者先看下面的例子： #include cstdiousing namespace std;//基类Acl">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+	<ul id="product-type" class="left">
+		<li>
+			<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+		</li>
+		<li class="active">
+			<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+		</li>
+		<li>
+			<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+		</li>
+	</ul>
+</div>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="http://c.biancheng.net/">
+		<img height="26" src="./4.9C++多继承时的对象内存模型_files/logo.png" alt="C语言中文网">
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+		<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+		<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+		<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+		<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+		<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+		<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/cplus/">C++</a></dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href="http://c.biancheng.net/cplus/c2cpp/">从C到C++</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href="http://c.biancheng.net/cplus/class/">类和对象</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href="http://c.biancheng.net/cplus/25/">C++引用</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a> </dd><dl class="dl-sub"><dd>4.1 <a href="http://c.biancheng.net/view/2264.html">C++继承和派生简明教程</a></dd><dd>4.2 <a href="http://c.biancheng.net/view/2269.html">C++三种继承方式</a></dd><dd>4.3 <a href="http://c.biancheng.net/view/2271.html">C++继承时的名字遮蔽问题</a></dd><dd>4.4 <a href="http://c.biancheng.net/view/vip_2272.html">C++类继承时的作用域嵌套，破解C++继承的一切秘密！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.5 <a href="http://c.biancheng.net/view/vip_2273.html">C++继承时的对象内存模型</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.6 <a href="http://c.biancheng.net/view/2275.html">C++基类和派生类的构造函数</a></dd><dd>4.7 <a href="http://c.biancheng.net/view/2276.html">C++基类和派生类的析构函数</a></dd><dd>4.8 <a href="http://c.biancheng.net/view/2277.html">C++多继承（多重继承）</a></dd><dd class="active">4.9 <a href="http://c.biancheng.net/view/vip_2278.html">C++多继承时的对象内存模型</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.10 <a href="http://c.biancheng.net/view/vip_2279.html">借助指针突破访问权限的限制，访问private、protected属性的成员变量</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.11 <a href="http://c.biancheng.net/view/2280.html">C++虚继承和虚基类详解</a></dd><dd>4.12 <a href="http://c.biancheng.net/view/2281.html">C++虚继承时的构造函数</a></dd><dd>4.13 <a href="http://c.biancheng.net/view/vip_2282.html">C++虚继承下的内存模型</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.14 <a href="http://c.biancheng.net/view/2284.html">C++向上转型</a></dd><dd>4.15 <a href="http://c.biancheng.net/view/2285.html">将派生类指针赋值给基类指针时到底发生了什么？</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">5</span>
+				<a href="http://c.biancheng.net/cplus/polymorphism/">C++多态与虚函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href="http://c.biancheng.net/cplus/operator/">运算符重载</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href="http://c.biancheng.net/cplus/70/">模板</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href="http://c.biancheng.net/cplus/exception/">C++异常</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href="http://c.biancheng.net/cplus/50/">输入输出流</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href="http://c.biancheng.net/cplus/60/">文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div class="arc-info">
+	<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/cplus/">C++</a> &gt; <a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a></span>
+	<span class="read-num">阅读：13,631</span>
+</div>
+
+<div id="ad-position-bottom"></div>
+			<h1>C++多继承时的对象内存模型</h1>
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2277.html">C++多继承（多重继承）</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_2279.html">借助指针突破访问权限的限制，访问private、protected属性的成员变量</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="default"><a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank" style="color:#D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+			<div id="arc-body">在《<a href="http://c.biancheng.net/view/vip_2273.html" target="_blank">C++继承时的对象模型</a>》一节中我们讲解了单继承时对象的内存模型，这节我们来分析一下多继承时对象的内存模型。请读者先看下面的例子：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style=""><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2278.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2278.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2278.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;cstdio&gt;</span></li><li><span class="sh_keyword">using</span> <span class="sh_keyword">namespace</span> std<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//基类A</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">A</span><span class="sh_cbracket">{</span></li><li><span class="sh_keyword">public</span><span class="sh_symbol">:</span></li><li>    <span class="sh_function">A</span><span class="sh_symbol">(</span><span class="sh_type">int</span> a<span class="sh_symbol">,</span> <span class="sh_type">int</span> b<span class="sh_symbol">);</span></li><li><span class="sh_keyword">protected</span><span class="sh_symbol">:</span></li><li>    <span class="sh_type">int</span> m_a<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> m_b<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li>A<span class="sh_symbol">::</span><span class="sh_function">A</span><span class="sh_symbol">(</span><span class="sh_type">int</span> a<span class="sh_symbol">,</span> <span class="sh_type">int</span> b<span class="sh_symbol">):</span> <span class="sh_function">m_a</span><span class="sh_symbol">(</span>a<span class="sh_symbol">),</span> <span class="sh_function">m_b</span><span class="sh_symbol">(</span>b<span class="sh_symbol">)</span><span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//基类B</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">B</span><span class="sh_cbracket">{</span></li><li><span class="sh_keyword">public</span><span class="sh_symbol">:</span></li><li>    <span class="sh_function">B</span><span class="sh_symbol">(</span><span class="sh_type">int</span> b<span class="sh_symbol">,</span> <span class="sh_type">int</span> c<span class="sh_symbol">);</span></li><li><span class="sh_keyword">protected</span><span class="sh_symbol">:</span></li><li>    <span class="sh_type">int</span> m_b<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> m_c<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li>B<span class="sh_symbol">::</span><span class="sh_function">B</span><span class="sh_symbol">(</span><span class="sh_type">int</span> b<span class="sh_symbol">,</span> <span class="sh_type">int</span> c<span class="sh_symbol">):</span> <span class="sh_function">m_b</span><span class="sh_symbol">(</span>b<span class="sh_symbol">),</span> <span class="sh_function">m_c</span><span class="sh_symbol">(</span>c<span class="sh_symbol">)</span><span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//派生类C</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">C</span><span class="sh_symbol">:</span> <span class="sh_keyword">public</span> A<span class="sh_symbol">,</span> <span class="sh_keyword">public</span> B<span class="sh_cbracket">{</span></li><li><span class="sh_keyword">public</span><span class="sh_symbol">:</span></li><li>    <span class="sh_function">C</span><span class="sh_symbol">(</span><span class="sh_type">int</span> a<span class="sh_symbol">,</span> <span class="sh_type">int</span> b<span class="sh_symbol">,</span> <span class="sh_type">int</span> c<span class="sh_symbol">,</span> <span class="sh_type">int</span> d<span class="sh_symbol">);</span></li><li><span class="sh_keyword">public</span><span class="sh_symbol">:</span></li><li>    <span class="sh_type">void</span> <span class="sh_function">display</span><span class="sh_symbol">();</span></li><li><span class="sh_keyword">private</span><span class="sh_symbol">:</span></li><li>    <span class="sh_type">int</span> m_a<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> m_c<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> m_d<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li>C<span class="sh_symbol">::</span><span class="sh_function">C</span><span class="sh_symbol">(</span><span class="sh_type">int</span> a<span class="sh_symbol">,</span> <span class="sh_type">int</span> b<span class="sh_symbol">,</span> <span class="sh_type">int</span> c<span class="sh_symbol">,</span> <span class="sh_type">int</span> d<span class="sh_symbol">):</span> <span class="sh_function">A</span><span class="sh_symbol">(</span>a<span class="sh_symbol">,</span> b<span class="sh_symbol">),</span> <span class="sh_function">B</span><span class="sh_symbol">(</span>b<span class="sh_symbol">,</span> c<span class="sh_symbol">),</span> <span class="sh_function">m_a</span><span class="sh_symbol">(</span>a<span class="sh_symbol">),</span> <span class="sh_function">m_c</span><span class="sh_symbol">(</span>c<span class="sh_symbol">),</span> <span class="sh_function">m_d</span><span class="sh_symbol">(</span>d<span class="sh_symbol">)</span><span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span></li><li><span class="sh_type">void</span> C<span class="sh_symbol">::</span><span class="sh_function">display</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"A::m_a=%d, A::m_b=%d</span><span class="sh_specialchar">\n</span><span class="sh_string">"</span><span class="sh_symbol">,</span> A<span class="sh_symbol">::</span>m_a<span class="sh_symbol">,</span> A<span class="sh_symbol">::</span>m_b<span class="sh_symbol">);</span></li><li>    <span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"B::m_b=%d, B::m_c=%d</span><span class="sh_specialchar">\n</span><span class="sh_string">"</span><span class="sh_symbol">,</span> B<span class="sh_symbol">::</span>m_b<span class="sh_symbol">,</span> B<span class="sh_symbol">::</span>m_c<span class="sh_symbol">);</span></li><li>    <span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"C::m_a=%d, C::m_c=%d, C::m_d=%d</span><span class="sh_specialchar">\n</span><span class="sh_string">"</span><span class="sh_symbol">,</span> C<span class="sh_symbol">::</span>m_a<span class="sh_symbol">,</span> C<span class="sh_symbol">::</span>m_c<span class="sh_symbol">,</span> m_d<span class="sh_symbol">);</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">C</span><span class="sh_normal"> </span><span class="sh_function">obj_c</span><span class="sh_symbol">(</span><span class="sh_number">10</span><span class="sh_symbol">,</span> <span class="sh_number">20</span><span class="sh_symbol">,</span> <span class="sh_number">30</span><span class="sh_symbol">,</span> <span class="sh_number">40</span><span class="sh_symbol">);</span></li><li>    obj_c<span class="sh_symbol">.</span><span class="sh_function">display</span><span class="sh_symbol">();</span></li><li><span style="display:none;">&nbsp;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">#include &lt;cstdio&gt;
+using namespace std;
+
+//基类A
+class A{
+public:
+    A(int a, int b);
+protected:
+    int m_a;
+    int m_b;
+};
+A::A(int a, int b): m_a(a), m_b(b){ }
+
+//基类B
+class B{
+public:
+    B(int b, int c);
+protected:
+    int m_b;
+    int m_c;
+};
+B::B(int b, int c): m_b(b), m_c(c){ }
+
+//派生类C
+class C: public A, public B{
+public:
+    C(int a, int b, int c, int d);
+public:
+    void display();
+private:
+    int m_a;
+    int m_c;
+    int m_d;
+};
+C::C(int a, int b, int c, int d): A(a, b), B(b, c), m_a(a), m_c(c), m_d(d){ }
+void C::display(){
+    printf("A::m_a=%d, A::m_b=%d\n", A::m_a, A::m_b);
+    printf("B::m_b=%d, B::m_c=%d\n", B::m_b, B::m_c);
+    printf("C::m_a=%d, C::m_c=%d, C::m_d=%d\n", C::m_a, C::m_c, m_d);
+}
+
+int main(){
+    C obj_c(10, 20, 30, 40);
+    obj_c.display();
+
+    return 0;
+}</pre></div></div>
+运行结果：<br>
+A::m_a=10, A::m_b=20<br>
+B::m_b=20, B::m_c=30<br>
+C::m_a=10, C::m_c=30, C::m_d=40<br>
+<br>
+A、B 是基类，C 是派生类，假设 obj_c 的起始地址是 0X1000，那么 obj_c 的内存分布如下图所示：<br>
+<br>
+<div style="text-align: center;">
+	<img alt="C++多继承时的对象内存模型" src="./4.9C++多继承时的对象内存模型_files/1-1Z61013103M49.gif"></div>
+<br>
+基类对象的排列顺序和继承时声明的顺序相同。</div>
+			<div id="arc-append">
+	<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+	<p style="margin-top:12px; text-align:center;">
+		<img width="180" src="./4.9C++多继承时的对象内存模型_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+		<span class="col-green">微信扫描二维码关注公众号</span>
+	</p>
+</div>
+<!-- <p>关注微信公众号「魏雪原」，跟着<a class="col-link" href="/view/8092.html" target="_blank">站长</a>一起学习，拒绝躺平，跳出内卷，用知识完成阶级跃升：</p>
+	<ul>
+		<li>每日更新，坚持原创，敢说真话，凡事有态度。</li>
+		<li>编程+求职+创业+营销，既有硬知识，也有软技能。</li>
+		<li>手机端阅读教程，随时随地都能学习。</li>
+		<li>即将绑定网站部分功能，包括注册登录、找回密码、获取下载链接等。</li>
+	</ul> -->
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2277.html">C++多继承（多重继承）</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_2279.html">借助指针突破访问权限的限制，访问private、protected属性的成员变量</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-bottom"></div>
+
+<!-- <div id="ad-bottom-weixin" class="clearfix">
+	<div class="left" style="width: 535px;">
+		<p><span class="col-red">编程帮</span>，一个分享编程知识的公众号。跟着<a class="col-link" href="/cpp/about/author/" target="_blank">站长</a>一起学习，每天都有进步。</p>
+		<p>通俗易懂，深入浅出，一篇文章只讲一个知识点。</p>
+		<p>文章不深奥，不需要钻研，在公交、在地铁、在厕所都可以阅读，随时随地涨姿势。</p>
+		<p>文章不涉及代码，不烧脑细胞，人人都可以学习。</p>
+		<p>当你决定关注「编程帮」，你已然超越了90%的程序员！</p>
+	</div>
+	<div class="right" style="width: 150px;">
+		<img width="150" src="/templets/new/images/erweima_biancheng.gif?v=1.6.72" alt="编程帮二维码" /><br />
+		<span class="col-green">微信扫描二维码关注</span>
+	</div>
+</div> -->
+
+<div id="nice-arcs" class="box-bottom">
+	<h4>优秀文章</h4>
+	<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/185.html" title="数组之间的赋值，C语言数组之间赋值详解">数组之间的赋值，C语言数组之间赋值详解</a></li>
+<li><a href="http://c.biancheng.net/view/317.html" title="C++函数或函数模板的匹配顺序">C++函数或函数模板的匹配顺序</a></li>
+<li><a href="http://c.biancheng.net/view/1138.html" title="Shell alias：给命令创建别名">Shell alias：给命令创建别名</a></li>
+<li><a href="http://c.biancheng.net/c/pow.html" title="C语言pow()函数：求x的y次方的值">C语言pow()函数：求x的y次方的值</a></li>
+<li><a href="http://c.biancheng.net/view/4535.html" title="Redis集合数据结构和常用命令">Redis集合数据结构和常用命令</a></li>
+<li><a href="http://c.biancheng.net/view/4763.html" title="Java Connection.createStatement()方法：创建一个Statement对象">Java Connection.createStatement()方法：创建一个Statement对象</a></li>
+<li><a href="http://c.biancheng.net/view/4915.html" title="JSP Request.getProtocol()方法：获取客户端向服务器传送的协议名称">JSP Request.getProtocol()方法：获取客户端向服务器传送的协议名称</a></li>
+<li><a href="http://c.biancheng.net/view/5798.html" title="JS实现倒计时功能">JS实现倒计时功能</a></li>
+<li><a href="http://c.biancheng.net/spring/inject-bean.html" title="Spring注入内部Bean">Spring注入内部Bean</a></li>
+<li><a href="http://c.biancheng.net/ml_alg/sklearn-knn.html" title="sklearn实现KNN分类算法">sklearn实现KNN分类算法</a></li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 2278;
+window.arcId = "540b3dhEWOp8dfEMR6EmHpXznp40k5cdl6YIuo+CRUi6yFpcbGOjTo0MyI0";
+window.typeidChain = "36|19";
+</script>
+<div id="footer" class="clearfix">
+	<div class="info left">
+	<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+	<p>
+		<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+		<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+	</p>
+	<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+	</div>
+	<img class="right" src="./4.9C++多继承时的对象内存模型_files/logo_bottom.gif" alt="底部Logo">
+	<span id="return-top"><b>↑</b></span>
+</div>
+
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.72";
+</script>
+
+<script src="./4.9C++多继承时的对象内存模型_files/jquery1.12.4.min.js.下载"></script>
+<script src="./4.9C++多继承时的对象内存模型_files/common.js.下载"></script>
+<span style="display:none;"><script src="./4.9C++多继承时的对象内存模型_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>

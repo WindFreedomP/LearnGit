@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://c.biancheng.net/view/vip_2282.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./4.13C++虚继承下的内存模型_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<!-- 启用Chromium高速渲染模式 -->
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<!-- 禁止百度转码 -->
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!-- 禁止识别电话号码 -->
+<meta name="format-detection" content="telephone=no">
+
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.72">
+<link href="./4.13C++虚继承下的内存模型_files/common.css" rel="stylesheet">
+<title>C++虚继承下的内存模型</title>
+<meta name="description" content="简单的面向对象，只有单继承或多继承的情况下，内存模型很好理解，编译器实现起来也容易，C++ 的效率和 C 的效率不相上下。一旦和 virtual 关键字扯上关系，使用到虚继承或虚函数，">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+	<ul id="product-type" class="left">
+		<li>
+			<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+		</li>
+		<li class="active">
+			<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+		</li>
+		<li>
+			<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+		</li>
+	</ul>
+</div>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="http://c.biancheng.net/">
+		<img height="26" src="./4.13C++虚继承下的内存模型_files/logo.png" alt="C语言中文网">
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+		<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+		<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+		<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+		<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+		<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+		<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/cplus/">C++</a></dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href="http://c.biancheng.net/cplus/c2cpp/">从C到C++</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href="http://c.biancheng.net/cplus/class/">类和对象</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href="http://c.biancheng.net/cplus/25/">C++引用</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">4</span> <a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a> </dd><dl class="dl-sub"><dd>4.1 <a href="http://c.biancheng.net/view/2264.html">C++继承和派生简明教程</a></dd><dd>4.2 <a href="http://c.biancheng.net/view/2269.html">C++三种继承方式</a></dd><dd>4.3 <a href="http://c.biancheng.net/view/2271.html">C++继承时的名字遮蔽问题</a></dd><dd>4.4 <a href="http://c.biancheng.net/view/vip_2272.html">C++类继承时的作用域嵌套，破解C++继承的一切秘密！</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.5 <a href="http://c.biancheng.net/view/vip_2273.html">C++继承时的对象内存模型</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.6 <a href="http://c.biancheng.net/view/2275.html">C++基类和派生类的构造函数</a></dd><dd>4.7 <a href="http://c.biancheng.net/view/2276.html">C++基类和派生类的析构函数</a></dd><dd>4.8 <a href="http://c.biancheng.net/view/2277.html">C++多继承（多重继承）</a></dd><dd>4.9 <a href="http://c.biancheng.net/view/vip_2278.html">C++多继承时的对象内存模型</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.10 <a href="http://c.biancheng.net/view/vip_2279.html">借助指针突破访问权限的限制，访问private、protected属性的成员变量</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.11 <a href="http://c.biancheng.net/view/2280.html">C++虚继承和虚基类详解</a></dd><dd>4.12 <a href="http://c.biancheng.net/view/2281.html">C++虚继承时的构造函数</a></dd><dd class="active">4.13 <a href="http://c.biancheng.net/view/vip_2282.html">C++虚继承下的内存模型</a><span class="glyphicon glyphicon-usd"></span></dd><dd>4.14 <a href="http://c.biancheng.net/view/2284.html">C++向上转型</a></dd><dd>4.15 <a href="http://c.biancheng.net/view/2285.html">将派生类指针赋值给基类指针时到底发生了什么？</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">5</span>
+				<a href="http://c.biancheng.net/cplus/polymorphism/">C++多态与虚函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href="http://c.biancheng.net/cplus/operator/">运算符重载</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href="http://c.biancheng.net/cplus/70/">模板</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href="http://c.biancheng.net/cplus/exception/">C++异常</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href="http://c.biancheng.net/cplus/50/">输入输出流</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href="http://c.biancheng.net/cplus/60/">文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div class="arc-info">
+	<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/cplus/">C++</a> &gt; <a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a></span>
+	<span class="read-num">阅读：12,136</span>
+</div>
+
+<div id="ad-position-bottom"></div>
+			<h1>C++虚继承下的内存模型</h1>
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2281.html">C++虚继承时的构造函数</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/2284.html">C++向上转型</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="default"><a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank" style="color:#D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+			<div id="arc-body">简单的面向对象，只有单继承或多继承的情况下，内存模型很好理解，编译器实现起来也容易，C++ 的效率和 C 的效率不相上下。一旦和 virtual 关键字扯上关系，使用到虚继承或虚函数，内存模型就变得混乱起来，各种编译器的实现也不一致，让人抓狂。<br>
+<br>
+这是因为 C++ 标准仅对 C++ 的实现做了框架性的概述，并没有规定细节如何实现，所以不同厂商的编译器在具体实现方案上会有所差异。<br>
+<br>
+本节我们只关注虚继承时的内存模式，有关虚函数的内容将在《<a href="http://c.biancheng.net/cpp/biancheng/view/2988.html" target="_blank">C++虚函数详解</a>》一节中讲解。<br>
+<br>
+对于普通继承，基类子对象始终位于派生类对象的前面（也即基类成员变量始终在派生类成员变量的前面），而且不管继承层次有多深，它相对于派生类对象顶部的偏移量是固定的。请看下面的例子：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2282.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2282.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2282.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">A</span><span class="sh_cbracket">{</span></li><li><span class="sh_keyword">protected</span><span class="sh_symbol">:</span></li><li>    <span class="sh_type">int</span> m_a1<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> m_a2<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">B</span><span class="sh_symbol">:</span> <span class="sh_keyword">public</span> A<span class="sh_cbracket">{</span></li><li><span class="sh_keyword">protected</span><span class="sh_symbol">:</span></li><li>    <span class="sh_type">int</span> b1<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> b2<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">C</span><span class="sh_symbol">:</span> <span class="sh_keyword">public</span> B<span class="sh_cbracket">{</span></li><li><span class="sh_keyword">protected</span><span class="sh_symbol">:</span></li><li>    <span class="sh_type">int</span> c1<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> c2<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">D</span><span class="sh_symbol">:</span> <span class="sh_keyword">public</span> C<span class="sh_cbracket">{</span></li><li><span class="sh_keyword">protected</span><span class="sh_symbol">:</span></li><li>    <span class="sh_type">int</span> d1<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> d2<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">A</span><span class="sh_normal"> </span>obj_a<span class="sh_symbol">;</span></li><li>    <span class="sh_usertype">B</span><span class="sh_normal"> </span>obj_b<span class="sh_symbol">;</span></li><li>    <span class="sh_usertype">C</span><span class="sh_normal"> </span>obj_c<span class="sh_symbol">;</span></li><li>    <span class="sh_usertype">D</span><span class="sh_normal"> </span>obj_d<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">class A{
+protected:
+    int m_a1;
+    int m_a2;
+};
+
+class B: public A{
+protected:
+    int b1;
+    int b2;
+};
+
+class C: public B{
+protected:
+    int c1;
+    int c2;
+};
+
+class D: public C{
+protected:
+    int d1;
+    int d2;
+};
+
+int main(){
+    A obj_a;
+    B obj_b;
+    C obj_c;
+    D obj_d;
+
+    return 0;
+}</pre></div></div>
+obj_a、obj_b、obj_c、obj_d 的内存模型如下所示：
+<div style="text-align: center">
+	<img alt="" src="./4.13C++虚继承下的内存模型_files/1G2251R9-0.jpg" style="height: 305px; width: 720px"></div>
+<br>
+A 是最顶层的基类，在派生类 B、C、D 的对象中，A 类子对象始终位于最前面，偏移量是固定的，为 0。b1、b2 是派生类 B 的新增成员变量，它们的偏移量也是固定的，分别为 8 和 12。c1、c2、d1、d2 也是同样的道理。<br>
+<br>
+前面我们说过，编译器在知道对象首地址的情况下，通过计算偏移来存取成员变量。对于普通继承，基类成员变量的偏移是固定的，不会随着继承层级的增加而改变，存取起来非常方便。<br>
+<br>
+而对于虚继承，恰恰和普通继承相反，大部分编译器会把基类成员变量放在派生类成员变量的后面，这样随着继承层级的增加，基类成员变量的偏移就会改变，就得通过其他方案来计算偏移量。<br>
+<br>
+下面我们来一步一步地分析虚继承时的对象内存模型。<br>
+<br>
+1) 修改上面的代码，使得 A 是 B 的虚基类：
+<p class="info-box">
+	class B: virtual public A</p>
+此时 obj_b、obj_c、obj_d 的内存模型就会发生变化，如下图所示：
+<div style="text-align: center">
+	<img alt="" src="./4.13C++虚继承下的内存模型_files/1G2255391-1.jpg" style="height: 304px; width: 504px"></div>
+<br>
+不管是虚基类的直接派生类还是间接派生类，虚基类的子对象始终位于派生类对象的最后面。<br>
+<br>
+2) 再假设 A 是 B 的虚基类，B 又是 C 的虚基类，那么各个对象的内存模型如下图所示：
+<div style="text-align: center">
+	<img alt="" src="./4.13C++虚继承下的内存模型_files/1G225C60-2.jpg" style="height: 305px; width: 595px"></div>
+<br>
+从上面的两张图中可以发现，虚继承时的派生类对象被分成了两部分：
+<ul>
+	<li>
+		不带阴影的一部分偏移量固定，不会随着继承层次的增加而改变，称为<span style="color: #b22222">固定部分</span>；</li>
+	<li>
+		带有阴影的一部分是虚基类的子对象，偏移量会随着继承层次的增加而改变，称为<span style="color: #b22222">共享部分</span>。</li>
+</ul>
+<br>
+当要访问对象的成员变量时，需要知道对象的首地址和变量的偏移，对象的首地址很好获得，关键是变量的偏移。对于固定部分，偏移是不变的，很好计算；而对于共享部分，偏移会随着继承层次的增加而改变，这就需要设计一种方案，在偏移不断变化的过程中准确地计算偏移。各个编译器正是在设计这一方案时出现了分歧，不同的编译器设计了不同的方案来计算共享部分的偏移。
+<blockquote>
+	对于虚继承，将派生类分为固定部分和共享部分，并把共享部分放在最后，几乎所有的编译器都在这一点上达成了共识。主要的分歧就是如何计算共享部分的偏移，可谓是百花齐放，没有统一标准。</blockquote>
+<h2>
+	cfront解决方案</h2>
+早期的 cfront 编译器会在派生类对象中安插一些指针，每个指针指向一个虚基类的子对象，要存取继承来的成员变量，可以使用指针间接完成。<br>
+<br>
+1) 如果 A 是 B 的虚基类，那么各个对象的实际内存模型如下所示：
+<div style="text-align: center">
+	<img alt="" src="./4.13C++虚继承下的内存模型_files/1G225G18-3.jpg" style="height: 344px; width: 425px"></div>
+<br>
+编译器会在直接派生类的对象 obj_b 中安插一个指针，指向虚基类 A 的起始位置，并且这个指针的偏移是固定的，不会随着继承层次的增加而改变。当要访问 a1、a2 时，要先通过对象指针找到 pa，再通过 pa 找到 a1、a2，这样一来就比没有虚继承时多了一层间接。<br>
+<br>
+假设 p 是obj_d 的指针，现在要访问成员变量 a2：
+<p class="info-box">
+	int member_a2 = p -&gt; a2;</p>
+那么编译器内部会进行类似下面的转换：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2282.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2282.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2282.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">A</span><span class="sh_normal"> </span><span class="sh_symbol">*</span>pa <span class="sh_symbol">=</span> <span class="sh_symbol">(</span>A<span class="sh_symbol">*)(</span> <span class="sh_symbol">*(</span><span class="sh_type">int</span><span class="sh_symbol">*)(</span> <span class="sh_symbol">(</span><span class="sh_type">int</span><span class="sh_symbol">)</span>p <span class="sh_symbol">+</span> <span class="sh_keyword">sizeof</span><span class="sh_symbol">(</span><span class="sh_type">int</span><span class="sh_symbol">)*</span><span class="sh_number">2</span> <span class="sh_symbol">)</span> <span class="sh_symbol">);</span></li><li><span class="sh_type">int</span> member_a2 <span class="sh_symbol">=</span> <span class="sh_symbol">*(</span><span class="sh_type">int</span><span class="sh_symbol">*)(</span> <span class="sh_symbol">(</span><span class="sh_type">int</span><span class="sh_symbol">)</span>pa <span class="sh_symbol">+</span> <span class="sh_keyword">sizeof</span><span class="sh_symbol">(</span><span class="sh_type">int</span><span class="sh_symbol">)</span> <span class="sh_symbol">);</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">A *pa = (A*)( *(int*)( (int)p + sizeof(int)*2 ) );
+int member_a2 = *(int*)( (int)pa + sizeof(int) );</pre></div></div>
+<br>
+2) 如果 A 是 B 的虚基类，同时 B 也是 C 的虚基类，那么各个对象的实际内存模型如下所示：
+<div style="text-align: center">
+	<img alt="" src="./4.13C++虚继承下的内存模型_files/1G2253452-4.jpg" style="height: 380px; width: 425px"></div>
+<br>
+当要访问 a1、a2 时，要先通过对象指针找到 pb，再通过 pb 找到 pa，最后才能通过 pa 找到 a1、a2，这样一来就比没有虚继承时多了两层间接。<br>
+<br>
+<span style="color: #b22222">通过上面的分析可以发现，这种方案的一个缺点就是，随着虚继承层次的增加，访问顶层基类需要的间接转换会越来越多，效率越来越低。</span><br>
+<br>
+<span style="color: #b22222">这种方案另外的一个缺点是：当有多个虚基类时，派生类要为每个虚基类都安插一个指针，会增加对象的体积。</span>例如，假设 A、B、C、D 类的继承关系为：
+<div style="text-align: center">
+	<img alt="" src="./4.13C++虚继承下的内存模型_files/1G2252c3-5.jpg" style="height: 153px; width: 212px"></div>
+<br>
+obj_d 的内存模型如下图所示：
+<div style="text-align: center">
+	<img alt="" src="./4.13C++虚继承下的内存模型_files/1G2254127-6.jpg" style="height: 405px; width: 122px"></div>
+<br>
+D 有三个虚基类，所以 obj_d 对象要额外背负三个指针 pa、pab、pc。
+<h2>
+	VC解决方案</h2>
+cfront 的后来者 VC 尝试对上面的方案进行了改进，一定程度上弥补了它的不足。<br>
+<br>
+VC 引入了虚基类表，如果某个派生类有一个或多个虚基类，编译器就会在派生类对象中安插一个指针，指向虚基类表。虚基类表其实就是一个数组，数组中的元素存放的是各个虚基类的偏移。<br>
+<br>
+假设 A 是 B 的虚基类，那么各对象的内存模型如下图所示：
+<div style="text-align: center">
+	<img alt="" src="./4.13C++虚继承下的内存模型_files/1G2252606-7.jpg" style="height: 336px; width: 713px"></div>
+<br>
+假设 A 是 B 的虚基类，同时 B 又是 C 的虚基类，那么各对象的内存模型如下图所示：
+<div style="text-align: center">
+	<img alt="" src="./4.13C++虚继承下的内存模型_files/1G2253H6-8.jpg" style="height: 379px; width: 715px"></div>
+<br>
+虚继承表中保存的是所有虚基类（包括直接继承和间接继承到的）相对于当前对象的偏移，这样通过派生类指针访问虚基类的成员变量时，不管继承层次都多深，只需要一次间接转换就可以。<br>
+<br>
+另外，这种方案还可以避免有多个虚基类时让派生类对象额外背负过多的指针。例如，假设 A、B、C、D 类的继承关系为：
+<div style="text-align: center">
+	<img alt="" src="./4.13C++虚继承下的内存模型_files/1G2252c3-5.jpg" style="height: 153px; width: 212px"></div>
+<br>
+那么 obj_d 的内存模型如下图所示：
+<div style="text-align: center">
+	<img alt="" src="./4.13C++虚继承下的内存模型_files/1G2255133-10.jpg" style="height: 342px; width: 263px"></div>
+<br>
+如此一来，D 类虽然有三个虚基类，但它的对象 obj_d 只需要额外背负一个指针。<br>
+</div>
+			<div id="arc-append">
+	<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+	<p style="margin-top:12px; text-align:center;">
+		<img width="180" src="./4.13C++虚继承下的内存模型_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+		<span class="col-green">微信扫描二维码关注公众号</span>
+	</p>
+</div>
+<!-- <p>关注微信公众号「魏雪原」，跟着<a class="col-link" href="/view/8092.html" target="_blank">站长</a>一起学习，拒绝躺平，跳出内卷，用知识完成阶级跃升：</p>
+	<ul>
+		<li>每日更新，坚持原创，敢说真话，凡事有态度。</li>
+		<li>编程+求职+创业+营销，既有硬知识，也有软技能。</li>
+		<li>手机端阅读教程，随时随地都能学习。</li>
+		<li>即将绑定网站部分功能，包括注册登录、找回密码、获取下载链接等。</li>
+	</ul> -->
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2281.html">C++虚继承时的构造函数</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/2284.html">C++向上转型</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-bottom"></div>
+
+<!-- <div id="ad-bottom-weixin" class="clearfix">
+	<div class="left" style="width: 535px;">
+		<p><span class="col-red">编程帮</span>，一个分享编程知识的公众号。跟着<a class="col-link" href="/cpp/about/author/" target="_blank">站长</a>一起学习，每天都有进步。</p>
+		<p>通俗易懂，深入浅出，一篇文章只讲一个知识点。</p>
+		<p>文章不深奥，不需要钻研，在公交、在地铁、在厕所都可以阅读，随时随地涨姿势。</p>
+		<p>文章不涉及代码，不烧脑细胞，人人都可以学习。</p>
+		<p>当你决定关注「编程帮」，你已然超越了90%的程序员！</p>
+	</div>
+	<div class="right" style="width: 150px;">
+		<img width="150" src="/templets/new/images/erweima_biancheng.gif?v=1.6.72" alt="编程帮二维码" /><br />
+		<span class="col-green">微信扫描二维码关注</span>
+	</div>
+</div> -->
+
+<div id="nice-arcs" class="box-bottom">
+	<h4>优秀文章</h4>
+	<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/1202.html" title="什么是进程控制块，进程控制块的作用">什么是进程控制块，进程控制块的作用</a></li>
+<li><a href="http://c.biancheng.net/view/1878.html" title="C语言预处理命令是什么？">C语言预处理命令是什么？</a></li>
+<li><a href="http://c.biancheng.net/view/2806.html" title="C#类的定义（class）">C#类的定义（class）</a></li>
+<li><a href="http://c.biancheng.net/view/3072.html" title="Android Service生命周期和使用方法">Android Service生命周期和使用方法</a></li>
+<li><a href="http://c.biancheng.net/view/3161.html" title="Android Socket编程（附带实例）">Android Socket编程（附带实例）</a></li>
+<li><a href="http://c.biancheng.net/view/3681.html" title="汇编语言CMPSB、CMPSW和CMPSD指令：比较两个操作数">汇编语言CMPSB、CMPSW和CMPSD指令：比较两个操作数</a></li>
+<li><a href="http://c.biancheng.net/view/5034.html" title="Struts2 ActionContext.getSession()法：获取session">Struts2 ActionContext.getSession()法：获取session</a></li>
+<li><a href="http://c.biancheng.net/view/7403.html" title="C++ vector swap()去除多余容量（详解版）">C++ vector swap()去除多余容量（详解版）</a></li>
+<li><a href="http://c.biancheng.net/view/8228.html" title="JS获取元素的偏移位置">JS获取元素的偏移位置</a></li>
+<li><a href="http://c.biancheng.net/view/vip_8317.html" title="学MySQL前，需要了解这些数据库专业术语">学MySQL前，需要了解这些数据库专业术语</a></li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 2282;
+window.arcId = "4391Oj3id6dTjcGUIooOHI5331lKO/V4JlNVadg6wC4CkM1FMFnBePkLqX4";
+window.typeidChain = "36|19";
+</script>
+<div id="footer" class="clearfix">
+	<div class="info left">
+	<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+	<p>
+		<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+		<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+	</p>
+	<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+	</div>
+	<img class="right" src="./4.13C++虚继承下的内存模型_files/logo_bottom.gif" alt="底部Logo">
+	<span id="return-top"><b>↑</b></span>
+</div>
+
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.72";
+</script>
+
+<script src="./4.13C++虚继承下的内存模型_files/jquery1.12.4.min.js.下载"></script>
+<script src="./4.13C++虚继承下的内存模型_files/common.js.下载"></script>
+<span style="display:none;"><script src="./4.13C++虚继承下的内存模型_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>

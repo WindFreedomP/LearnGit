@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://c.biancheng.net/view/vip_2321.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./7.5C++函数模板的实参推断_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<!-- 启用Chromium高速渲染模式 -->
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<!-- 禁止百度转码 -->
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!-- 禁止识别电话号码 -->
+<meta name="format-detection" content="telephone=no">
+
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.72">
+<link href="./7.5C++函数模板的实参推断_files/common.css" rel="stylesheet">
+<title>C++函数模板的实参推断</title>
+<meta name="description" content="在使用类模板创建对象时，程序员需要显式的指明实参（也就是具体的类型）。例如对于下面的 Point 类： templatetypename T1, typename T2 class Point; 我们可以在栈上创建对象，也可以在堆上创">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+	<ul id="product-type" class="left">
+		<li>
+			<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+		</li>
+		<li class="active">
+			<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+		</li>
+		<li>
+			<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+		</li>
+	</ul>
+</div>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="http://c.biancheng.net/">
+		<img height="26" src="./7.5C++函数模板的实参推断_files/logo.png" alt="C语言中文网">
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+		<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+		<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+		<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+		<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+		<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+		<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/cplus/">C++</a></dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href="http://c.biancheng.net/cplus/c2cpp/">从C到C++</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href="http://c.biancheng.net/cplus/class/">类和对象</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href="http://c.biancheng.net/cplus/25/">C++引用</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href="http://c.biancheng.net/cplus/polymorphism/">C++多态与虚函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href="http://c.biancheng.net/cplus/operator/">运算符重载</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="http://c.biancheng.net/cplus/70/">模板</a> </dd><dl class="dl-sub"><dd>7.1 <a href="http://c.biancheng.net/view/2317.html">C++函数模板入门教程</a></dd><dd>7.2 <a href="http://c.biancheng.net/view/2318.html">C++类模板入门教程</a></dd><dd>7.3 <a href="http://c.biancheng.net/view/2319.html">大话C++模板编程的来龙去脉</a></dd><dd>7.4 <a href="http://c.biancheng.net/view/vip_2320.html">C++函数模板的重载</a><span class="glyphicon glyphicon-usd"></span></dd><dd class="active">7.5 <a href="http://c.biancheng.net/view/vip_2321.html">C++函数模板的实参推断</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.6 <a href="http://c.biancheng.net/view/vip_2322.html">C++模板的显式具体化</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.7 <a href="http://c.biancheng.net/view/vip_2323.html">C++模板中的非类型参数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.8 <a href="http://c.biancheng.net/view/vip_2324.html">C++模板的实例化</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.9 <a href="http://c.biancheng.net/view/vip_2325.html">将C++模板应用于多文件编程</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.10 <a href="http://c.biancheng.net/view/vip_2326.html">C++模板的显式实例化</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.11 <a href="http://c.biancheng.net/view/vip_2327.html">C++类模板与继承</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.12 <a href="http://c.biancheng.net/view/vip_2328.html">C++类模板与友元</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.13 <a href="http://c.biancheng.net/view/vip_2329.html">C++类模板中的静态成员</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href="http://c.biancheng.net/cplus/exception/">C++异常</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href="http://c.biancheng.net/cplus/50/">输入输出流</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href="http://c.biancheng.net/cplus/60/">文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div class="arc-info">
+	<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/cplus/">C++</a> &gt; <a href="http://c.biancheng.net/cplus/70/">模板</a></span>
+	<span class="read-num">阅读：7,900</span>
+</div>
+
+<div id="ad-position-bottom"></div>
+			<h1>C++函数模板的实参推断</h1>
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/vip_2320.html">C++函数模板的重载</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_2322.html">C++模板的显式具体化</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="default"><a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank" style="color:#D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+			<div id="arc-body">在使用类模板创建对象时，程序员需要显式的指明实参（也就是具体的类型）。例如对于下面的 Point 类：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T1</span><span class="sh_symbol">,</span> <span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T2</span><span class="sh_symbol">&gt;</span> <span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">Point</span><span class="sh_symbol">;</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">template&lt;typename T1, typename T2&gt; class Point;</pre></div></div>
+我们可以在栈上创建对象，也可以在堆上创建对象：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">Point&lt;int, int&gt;</span><span class="sh_normal"> </span><span class="sh_function">p1</span><span class="sh_symbol">(</span><span class="sh_number">10</span><span class="sh_symbol">,</span> <span class="sh_number">20</span><span class="sh_symbol">);</span>  <span class="sh_comment">//在栈上创建对象</span></li><li><span class="sh_usertype">Point&lt;char*, char*&gt;</span><span class="sh_normal"> </span><span class="sh_symbol">*</span>p <span class="sh_symbol">=</span> <span class="sh_keyword">new</span> Point<span class="sh_symbol">&lt;</span><span class="sh_type">char</span><span class="sh_symbol">*,</span> <span class="sh_type">char</span><span class="sh_symbol">*&gt;(</span><span class="sh_string">"东京180度"</span><span class="sh_symbol">,</span> <span class="sh_string">"北纬210度"</span><span class="sh_symbol">);</span>  <span class="sh_comment">//在堆上创建对象</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">Point&lt;int, int&gt; p1(10, 20);  //在栈上创建对象
+Point&lt;char*, char*&gt; *p = new Point&lt;char*, char*&gt;("东京180度", "北纬210度");  //在堆上创建对象</pre></div></div>
+因为已经显式地指明了 T1、T2 的具体类型，所以编译器就不用再自己推断了，直接拿来使用即可。<br>
+<br>
+而对于函数模板，调用函数时可以不显式地指明实参（也就是具体的类型）。请看下面的例子：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_comment">//函数声明</span></li><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">Swap</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>a<span class="sh_symbol">,</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>b<span class="sh_symbol">);</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//函数调用</span></li><li><span class="sh_type">int</span> n1 <span class="sh_symbol">=</span> <span class="sh_number">100</span><span class="sh_symbol">,</span> n2 <span class="sh_symbol">=</span> <span class="sh_number">200</span><span class="sh_symbol">;</span></li><li><span class="sh_function">Swap</span><span class="sh_symbol">(</span>n1<span class="sh_symbol">,</span> n2<span class="sh_symbol">);</span></li><li><span class="sh_type">float</span> f1 <span class="sh_symbol">=</span> <span class="sh_number">12.5</span><span class="sh_symbol">,</span> f2 <span class="sh_symbol">=</span> <span class="sh_number">56.93</span><span class="sh_symbol">;</span></li><li><span class="sh_function">Swap</span><span class="sh_symbol">(</span>f1<span class="sh_symbol">,</span> f2<span class="sh_symbol">);</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">//函数声明
+template&lt;typename T&gt; void Swap(T &amp;a, T &amp;b);
+
+//函数调用
+int n1 = 100, n2 = 200;
+Swap(n1, n2);
+float f1 = 12.5, f2 = 56.93;
+Swap(f1, f2);</pre></div></div>
+虽然没有显式地指明 T 的具体类型，但是编译器会根据 n1 和 n2、f1 和 f2 的类型自动推断出 T 的类型。<span style="color: #b22222">这种通过函数实参来确定模板实参（也就是类型参数的具体类型）的过程称为模板实参推断。</span><br>
+<br>
+在模板实参推断过程中，编译器使用函数调用中的实参类型来寻找类型参数的具体类型。
+<h2>
+	模板实参推断过程中的类型转换</h2>
+对于普通函数（非模板函数），发生函数调用时会对实参的类型进行适当的转换，以适应形参的类型。这些转换包括：
+<ul>
+	<li>
+		算数转换：例如 int 转换为 float，char 转换为 int，double 转换为 int 等。</li>
+	<li>
+		派生类向基类的转换：也就是向上转型，请猛击《<a href="http://c.biancheng.net/view/2284.html" target="_blank">C++向上转型（将派生类赋值给基类）</a>》了解详情。</li>
+	<li>
+		const 转换：也即将非 const 类型转换为&nbsp;const 类型，例如将 char * 转换为 const char *。</li>
+	<li>
+		数组或函数指针转换：如果函数形参不是引用类型，那么数组名会转换为数组指针，函数名也会转换为函数指针。</li>
+	<li>
+		用户自定的类型转换。</li>
+</ul>
+<br>
+例如有下面两个函数原型：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_type">void</span> <span class="sh_function">func1</span><span class="sh_symbol">(</span><span class="sh_type">int</span> n<span class="sh_symbol">,</span> <span class="sh_type">float</span> f<span class="sh_symbol">);</span></li><li><span class="sh_type">void</span> <span class="sh_function">func2</span><span class="sh_symbol">(</span><span class="sh_type">int</span> <span class="sh_symbol">*</span>arr<span class="sh_symbol">,</span> <span class="sh_keyword">const</span> <span class="sh_type">char</span> <span class="sh_symbol">*</span>str<span class="sh_symbol">);</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">void func1(int n, float f);
+void func2(int *arr, const char *str);</pre></div></div>
+它们具体的调用形式为：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_type">int</span> nums<span class="sh_symbol">[</span><span class="sh_number">5</span><span class="sh_symbol">];</span></li><li><span class="sh_type">char</span> <span class="sh_symbol">*</span>url <span class="sh_symbol">=</span> <span class="sh_string">"http://c.biancheng.net"</span><span class="sh_symbol">;</span></li><li><span class="sh_function">func1</span><span class="sh_symbol">(</span><span class="sh_number">12.5</span><span class="sh_symbol">,</span> <span class="sh_number">45</span><span class="sh_symbol">);</span></li><li><span class="sh_function">func2</span><span class="sh_symbol">(</span>nums<span class="sh_symbol">,</span> url<span class="sh_symbol">);</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">int nums[5];
+char *url = "http://c.biancheng.net";
+func1(12.5, 45);
+func2(nums, url);</pre></div></div>
+对于 func1()，12.5 会从<code>double</code>转换为<code>int</code>，45 会从<code>int</code>转换为<code>float</code>；对于 func2()，nums 会从<code>int [5]</code>转换为<code>int *</code>，url 会从<code>char *</code>转换为<code>const char *</code>。<br>
+<br>
+<span style="color: #b22222">而对于函数模板，类型转换则受到了更多的限制，仅能进行「const 转换」和「数组或函数指针转换」，其他的都不能应用于函数模板。</span>例如有下面几个函数模板：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">func1</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span>a<span class="sh_symbol">,</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span>b<span class="sh_symbol">);</span></li><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">func2</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">*</span>buffer<span class="sh_symbol">);</span></li><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">func3</span><span class="sh_symbol">(</span><span class="sh_keyword">const</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>stu<span class="sh_symbol">);</span></li><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">func4</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span>a<span class="sh_symbol">);</span></li><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">func5</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>a<span class="sh_symbol">);</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">template&lt;typename T&gt; void func1(T a, T b);
+template&lt;typename T&gt; void func2(T *buffer);
+template&lt;typename T&gt; void func3(const T &amp;stu);
+template&lt;typename T&gt; void func4(T a);
+template&lt;typename T&gt; void func5(T &amp;a);</pre></div></div>
+它们具体的调用形式为：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_type">int</span> name<span class="sh_symbol">[</span><span class="sh_number">20</span><span class="sh_symbol">];</span></li><li><span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_function">stu1</span><span class="sh_symbol">(</span><span class="sh_string">"张华"</span><span class="sh_symbol">,</span> <span class="sh_number">20</span><span class="sh_symbol">,</span> <span class="sh_number">96.5</span><span class="sh_symbol">);</span>  <span class="sh_comment">//创建一个Student类型的对象</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_function">func1</span><span class="sh_symbol">(</span><span class="sh_number">12.5</span><span class="sh_symbol">,</span> <span class="sh_number">30</span><span class="sh_symbol">);</span>  <span class="sh_comment">//Error</span></li><li><span class="sh_function">func2</span><span class="sh_symbol">(</span>name<span class="sh_symbol">);</span>  <span class="sh_comment">//name的类型从 int [20] 换转换为 int *，所以 T 的真实类型为 int</span></li><li><span class="sh_function">func3</span><span class="sh_symbol">(</span>stu1<span class="sh_symbol">);</span>  <span class="sh_comment">//非const转换为const，T 的真实类型为 Student</span></li><li><span class="sh_function">func4</span><span class="sh_symbol">(</span>name<span class="sh_symbol">);</span>  <span class="sh_comment">//name的类型从 int [20] 换转换为 int *，所以 T 的真实类型为 int *</span></li><li><span class="sh_function">func5</span><span class="sh_symbol">(</span>name<span class="sh_symbol">);</span>&nbsp; <span class="sh_comment">//name的类型依然为 int [20]，不会转换为 int *，所以 T 的真实类型为 int [20]</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">int name[20];
+Student stu1("张华", 20, 96.5);  //创建一个Student类型的对象
+
+func1(12.5, 30);  //Error
+func2(name);  //name的类型从 int [20] 换转换为 int *，所以 T 的真实类型为 int
+func3(stu1);  //非const转换为const，T 的真实类型为 Student
+func4(name);  //name的类型从 int [20] 换转换为 int *，所以 T 的真实类型为 int *
+func5(name);&nbsp; //name的类型依然为 int [20]，不会转换为 int *，所以 T 的真实类型为 int [20]</pre></div></div>
+对于<code>func1(12.5, 30)</code>，12.5 的类型为 double，30 的类型为 int，编译器不知道该将 T 实例化为 double 还是 int，也不会尝试将 int 转换为 double，或者将 double 转换为 int，所以调用失败。<br>
+<br>
+请读者注意 name，它本来的类型是<code>int [20]</code>：
+<ul>
+	<li>
+		对于<code>func2(name)</code>和<code>func4(name)</code>，name 的类型会从&nbsp;int [20]&nbsp;转换为&nbsp;int *，也即将数组转换为指针，所以 T 的类型分别为&nbsp;int *&nbsp;和&nbsp;int。</li>
+	<li>
+		对于<code>func5(name)</code>，name 的类型依然为&nbsp;int [20]，不会转换为&nbsp;int *，所以 T 的类型为&nbsp;int [20]。</li>
+</ul>
+<br>
+可以发现，当函数形参是引用类型时，数组不会转换为指针。这个时候读者要注意下面这样的函数模板：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">func</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>a<span class="sh_symbol">,</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>b<span class="sh_symbol">);</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">template&lt;typename T&gt; void func(T &amp;a, T &amp;b);</pre></div></div>
+如果它的具体调用形式为：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_type">int</span> str1<span class="sh_symbol">[</span><span class="sh_number">20</span><span class="sh_symbol">];</span></li><li><span class="sh_type">int</span> str2<span class="sh_symbol">[</span><span class="sh_number">10</span><span class="sh_symbol">];</span></li><li><span class="sh_function">func</span><span class="sh_symbol">(</span>str1<span class="sh_symbol">,</span> str2<span class="sh_symbol">);</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">int str1[20];
+int str2[10];
+func(str1, str2);</pre></div></div>
+由于 str1、str2 的类型分别为 int [20] 和 int [10]，在函数调用过程中又不会转换为指针，所以编译器不知道应该将 T 实例化为 int [20] 还是 int [10]，导致调用失败。
+<h2>
+	为函数模板显式地指明实参（也就是具体的类型）</h2>
+函数模板的实参推断是指「在函数调用过程中根据实参的类型来寻找类型参数的具体类型」的过程，这在大部分情况下是奏效的，但是当类型参数的个数较多时，就会有个别的类型无法推断出来，这个时候就必须显式地指明实参。<br>
+<br>
+下面是一个实参推断失败的例子：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T1</span><span class="sh_symbol">,</span> <span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T2</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">func</span><span class="sh_symbol">(</span><span class="sh_usertype">T1</span><span class="sh_normal"> </span>a<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">T2</span><span class="sh_normal"> </span>b<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_function">func</span><span class="sh_symbol">(</span><span class="sh_number">10</span><span class="sh_symbol">);</span>  <span class="sh_comment">//函数调用</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">template&lt;typename T1, typename T2&gt; void func(T1 a){
+    T2 b;
+}
+
+func(10);  //函数调用</pre></div></div>
+func() 有两个类型参数，分别是 T1 和 T2，但是编译器只能从函数调用中推断出 T1 的类型来，不能推断出 T2 的类型来，所以这种调用是失败的，这个时候就必须显式地指明 T1、T2 的具体类型。<br>
+<br>
+「为函数模板显式地指明实参」和「为类模板显式地指明实参」的形式是类似的，就是在函数名后面添加尖括号<code>&lt; &gt;</code>，里面包含具体的类型。例如对于上面的 func()，我们要这样来指明实参：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li>func<span class="sh_symbol">&lt;</span><span class="sh_type">int</span><span class="sh_symbol">,</span> <span class="sh_type">int</span><span class="sh_symbol">&gt;(</span><span class="sh_number">10</span><span class="sh_symbol">);</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">func&lt;int, int&gt;(10);</pre></div></div>
+显式指明的模板实参会按照从左到右的顺序与对应的模板参数匹配：第一个实参与第一个模板参数匹配，第二个实参与第二个模板参数匹配，以此类推。只有尾部（最右）的类型参数的实参可以省略，而且前提是它们可以从传递给函数的实参中推断出来。<br>
+<br>
+对于上面的 func()，虽然只有 T2 的类型不能自动推断出来，但是由于它位于类型参数列表的尾部（最右），所以必须同时指明 T1 和 T2 的类型。对代码稍微做出修改：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T1</span><span class="sh_symbol">,</span> <span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T2</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">func</span><span class="sh_symbol">(</span><span class="sh_usertype">T2</span><span class="sh_normal"> </span>a<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">T1</span><span class="sh_normal"> </span>b<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//函数调用</span></li><li>func<span class="sh_symbol">&lt;</span><span class="sh_type">int</span><span class="sh_symbol">&gt;(</span><span class="sh_number">10</span><span class="sh_symbol">);</span>  <span class="sh_comment">//省略 T2 的类型</span></li><li>func<span class="sh_symbol">&lt;</span><span class="sh_type">int</span><span class="sh_symbol">,</span> <span class="sh_type">int</span><span class="sh_symbol">&gt;(</span><span class="sh_number">20</span><span class="sh_symbol">);</span>  <span class="sh_comment">//指明 T1、T2 的类型</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">template&lt;typename T1, typename T2&gt; void func(T2 a){
+    T1 b;
+}
+
+//函数调用
+func&lt;int&gt;(10);  //省略 T2 的类型
+func&lt;int, int&gt;(20);  //指明 T1、T2 的类型</pre></div></div>
+由于 T2 的类型能够自动推断出来，并且它位于参数列表的尾部（最右），所以可以省略。
+<h2>
+	显式地指明实参时可以应用正常的类型转换</h2>
+上面我们提到，函数模板仅能进行「const 转换」和「数组或函数指针转换」两种形式的类型转换，但是当我们显式地指明类型参数的实参（具体类型）时，就可以使用正常的类型转换（非模板函数可以使用的类型转换）了。<br>
+<br>
+例如对于下面的函数模板：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">func</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span>a<span class="sh_symbol">,</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span>b<span class="sh_symbol">);</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">template&lt;typename T&gt; void func(T a, T b);</pre></div></div>
+它的具体调用形式如下：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2321.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2321.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2321.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_function">func</span><span class="sh_symbol">(</span><span class="sh_number">10</span><span class="sh_symbol">,</span> <span class="sh_number">23.5</span><span class="sh_symbol">);</span>  <span class="sh_comment">//Error</span></li><li>func<span class="sh_symbol">&lt;</span><span class="sh_type">float</span><span class="sh_symbol">&gt;(</span><span class="sh_number">20</span><span class="sh_symbol">,</span> <span class="sh_number">93.7</span><span class="sh_symbol">);</span>  <span class="sh_comment">//Correct</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">func(10, 23.5);  //Error
+func&lt;float&gt;(20, 93.7);  //Correct</pre></div></div>
+在第二种调用形式中，我们已经显式地指明了 T 的类型为 float，编译器不会再为「T 的类型到底是 int 还是 double」而纠结了，所以可以从容地使用正常的类型转换了。<br>
+</div>
+			<div id="arc-append">
+	<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+	<p style="margin-top:12px; text-align:center;">
+		<img width="180" src="./7.5C++函数模板的实参推断_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+		<span class="col-green">微信扫描二维码关注公众号</span>
+	</p>
+</div>
+<!-- <p>关注微信公众号「魏雪原」，跟着<a class="col-link" href="/view/8092.html" target="_blank">站长</a>一起学习，拒绝躺平，跳出内卷，用知识完成阶级跃升：</p>
+	<ul>
+		<li>每日更新，坚持原创，敢说真话，凡事有态度。</li>
+		<li>编程+求职+创业+营销，既有硬知识，也有软技能。</li>
+		<li>手机端阅读教程，随时随地都能学习。</li>
+		<li>即将绑定网站部分功能，包括注册登录、找回密码、获取下载链接等。</li>
+	</ul> -->
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/vip_2320.html">C++函数模板的重载</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_2322.html">C++模板的显式具体化</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-bottom"></div>
+
+<!-- <div id="ad-bottom-weixin" class="clearfix">
+	<div class="left" style="width: 535px;">
+		<p><span class="col-red">编程帮</span>，一个分享编程知识的公众号。跟着<a class="col-link" href="/cpp/about/author/" target="_blank">站长</a>一起学习，每天都有进步。</p>
+		<p>通俗易懂，深入浅出，一篇文章只讲一个知识点。</p>
+		<p>文章不深奥，不需要钻研，在公交、在地铁、在厕所都可以阅读，随时随地涨姿势。</p>
+		<p>文章不涉及代码，不烧脑细胞，人人都可以学习。</p>
+		<p>当你决定关注「编程帮」，你已然超越了90%的程序员！</p>
+	</div>
+	<div class="right" style="width: 150px;">
+		<img width="150" src="/templets/new/images/erweima_biancheng.gif?v=1.6.72" alt="编程帮二维码" /><br />
+		<span class="col-green">微信扫描二维码关注</span>
+	</div>
+</div> -->
+
+<div id="nice-arcs" class="box-bottom">
+	<h4>优秀文章</h4>
+	<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/1085.html" title="Java泛型简明教程">Java泛型简明教程</a></li>
+<li><a href="http://c.biancheng.net/mysql/date_format.html" title="MySQL DATE_FORMAT函数：格式化指定的日期">MySQL DATE_FORMAT函数：格式化指定的日期</a></li>
+<li><a href="http://c.biancheng.net/view/3602.html" title="汇编语言MUL指令：无符号数乘法">汇编语言MUL指令：无符号数乘法</a></li>
+<li><a href="http://c.biancheng.net/view/4028.html" title="Linux sed命令完全攻略（超级详细）">Linux sed命令完全攻略（超级详细）</a></li>
+<li><a href="http://c.biancheng.net/c/strlen.html" title="C语言strlen()函数：求字符串的长度">C语言strlen()函数：求字符串的长度</a></li>
+<li><a href="http://c.biancheng.net/view/4839.html" title="JSP config.getInitParameter()方法：获取初始参数的值">JSP config.getInitParameter()方法：获取初始参数的值</a></li>
+<li><a href="http://c.biancheng.net/view/5166.html" title="Hibernate Query接口 setBoolean方法：绑定映射类型为boolean的参数">Hibernate Query接口 setBoolean方法：绑定映射类型为boolean的参数</a></li>
+<li><a href="http://c.biancheng.net/view/7911.html" title="MySQL物理文件（数据目录）体系结构详解">MySQL物理文件（数据目录）体系结构详解</a></li>
+<li><a href="http://c.biancheng.net/view/vip_8520.html" title="调用GDB调试器的4种方式">调用GDB调试器的4种方式</a></li>
+<li><a href="http://c.biancheng.net/jstl/fn-escapexml.html" title="fn:escapeXml()函数">fn:escapeXml()函数</a></li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 2321;
+window.arcId = "a943fw+rnEU7DwvlWTwFruUemKkuDvNE2GXwa9pEqr/t0OHC1WWcv7J3Kzc";
+window.typeidChain = "49|19";
+</script>
+<div id="footer" class="clearfix">
+	<div class="info left">
+	<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+	<p>
+		<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+		<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+	</p>
+	<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+	</div>
+	<img class="right" src="./7.5C++函数模板的实参推断_files/logo_bottom.gif" alt="底部Logo">
+	<span id="return-top"><b>↑</b></span>
+</div>
+
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.72";
+</script>
+
+<script src="./7.5C++函数模板的实参推断_files/jquery1.12.4.min.js.下载"></script>
+<script src="./7.5C++函数模板的实参推断_files/common.js.下载"></script>
+<span style="display:none;"><script src="./7.5C++函数模板的实参推断_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>

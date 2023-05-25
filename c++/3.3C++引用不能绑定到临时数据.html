@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://c.biancheng.net/view/vip_2253.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./3.3C++引用不能绑定到临时数据_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<!-- 启用Chromium高速渲染模式 -->
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<!-- 禁止百度转码 -->
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!-- 禁止识别电话号码 -->
+<meta name="format-detection" content="telephone=no">
+
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.72">
+<link href="./3.3C++引用不能绑定到临时数据_files/common.css" rel="stylesheet">
+<title>C++引用不能绑定到临时数据</title>
+<meta name="description" content="我们知道，指针就是数据或代码在内存中的地址，指针变量指向的就是内存中的数据或代码。这里有一个关键词需要强调，就是 内存 ，指针只能指向内存，不能指向寄存器或者硬盘，因">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+	<ul id="product-type" class="left">
+		<li>
+			<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+		</li>
+		<li class="active">
+			<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+		</li>
+		<li>
+			<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+		</li>
+	</ul>
+</div>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="http://c.biancheng.net/">
+		<img height="26" src="./3.3C++引用不能绑定到临时数据_files/logo.png" alt="C语言中文网">
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+		<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+		<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+		<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+		<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+		<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+		<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/cplus/">C++</a></dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href="http://c.biancheng.net/cplus/c2cpp/">从C到C++</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href="http://c.biancheng.net/cplus/class/">类和对象</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">3</span> <a href="http://c.biancheng.net/cplus/25/">C++引用</a> </dd><dl class="dl-sub"><dd>3.1 <a href="http://c.biancheng.net/view/2251.html">C++引用10分钟入门教程</a></dd><dd>3.2 <a href="http://c.biancheng.net/view/vip_2252.html">C++引用在本质上是什么，它和指针到底有什么区别？</a><span class="glyphicon glyphicon-usd"></span></dd><dd class="active">3.3 <a href="http://c.biancheng.net/view/vip_2253.html">C++引用不能绑定到临时数据</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.4 <a href="http://c.biancheng.net/view/vip_2254.html">编译器会为const引用创建临时变量</a><span class="glyphicon glyphicon-usd"></span></dd><dd>3.5 <a href="http://c.biancheng.net/view/vip_2255.html">C++ const引用与转换类型</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">4</span>
+				<a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href="http://c.biancheng.net/cplus/polymorphism/">C++多态与虚函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href="http://c.biancheng.net/cplus/operator/">运算符重载</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href="http://c.biancheng.net/cplus/70/">模板</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href="http://c.biancheng.net/cplus/exception/">C++异常</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href="http://c.biancheng.net/cplus/50/">输入输出流</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href="http://c.biancheng.net/cplus/60/">文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div class="arc-info">
+	<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/cplus/">C++</a> &gt; <a href="http://c.biancheng.net/cplus/25/">C++引用</a></span>
+	<span class="read-num">阅读：13,890</span>
+</div>
+
+<div id="ad-position-bottom"></div>
+			<h1>C++引用不能绑定到临时数据</h1>
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/vip_2252.html">C++引用在本质上是什么，它和指针到底有什么区别？</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_2254.html">编译器会为const引用创建临时变量</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="default"><a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank" style="color:#D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+			<div id="arc-body">我们知道，指针就是数据或代码在内存中的地址，指针变量指向的就是内存中的数据或代码。这里有一个关键词需要强调，就是<code>内存</code>，指针只能指向内存，不能指向寄存器或者硬盘，因为寄存器和硬盘没法寻址。<br>
+<br>
+其实 C++ 代码中的大部分内容都是放在内存中的，例如定义的变量、创建的对象、字符串常量、函数形参、函数体本身、<code>new</code>或<code>malloc()</code>分配的内存等，这些内容都可以用<code>&amp;</code>来获取地址，进而用指针指向它们。除此之外，还有一些我们平时不太留意的临时数据，例如表达式的结果、函数的返回值等，它们可能会放在内存中，也可能会放在寄存器中。一旦它们被放到了寄存器中，就没法用<code>&amp;</code>获取它们的地址了，也就没法用指针指向它们了。<br>
+<br>
+下面的代码演示了表达式所产生的临时结果：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2253.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2253.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2253.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_type">int</span> n <span class="sh_symbol">=</span> <span class="sh_number">100</span><span class="sh_symbol">,</span> m <span class="sh_symbol">=</span> <span class="sh_number">200</span><span class="sh_symbol">;</span></li><li><span class="sh_type">int</span> <span class="sh_symbol">*</span>p1 <span class="sh_symbol">=</span> <span class="sh_symbol">&amp;(</span>m <span class="sh_symbol">+</span> n<span class="sh_symbol">);</span>    <span class="sh_comment">//m + n 的结果为 300</span></li><li><span class="sh_type">int</span> <span class="sh_symbol">*</span>p2 <span class="sh_symbol">=</span> <span class="sh_symbol">&amp;(</span>n <span class="sh_symbol">+</span> <span class="sh_number">100</span><span class="sh_symbol">);</span>  <span class="sh_comment">//n + 100 的结果为 200</span></li><li><span class="sh_type">bool</span> <span class="sh_symbol">*</span>p4 <span class="sh_symbol">=</span> <span class="sh_symbol">&amp;(</span>m <span class="sh_symbol">&lt;</span> n<span class="sh_symbol">);</span>   <span class="sh_comment">//m &lt; n 的结果为 false</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">int n = 100, m = 200;
+int *p1 = &amp;(m + n);    //m + n 的结果为 300
+int *p2 = &amp;(n + 100);  //n + 100 的结果为 200
+bool *p4 = &amp;(m &lt; n);   //m &lt; n 的结果为 false</pre></div></div>
+这些表达式的结果都会被放到寄存器中，尝试用<code>&amp;</code>获取它们的地址都是错误的。<br>
+<br>
+下面的代码演示了函数返回值所产生的临时结果：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2253.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2253.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2253.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_type">int</span> <span class="sh_function">func</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_type">int</span> n <span class="sh_symbol">=</span> <span class="sh_number">100</span><span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">return</span> n<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">int</span> <span class="sh_symbol">*</span>p <span class="sh_symbol">=</span> <span class="sh_symbol">&amp;(</span><span class="sh_function">func</span><span class="sh_symbol">());</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">int func(){
+    int n = 100;
+    return n;
+}
+
+int *p = &amp;(func());</pre></div></div>
+func() 的返回值 100 也会被放到寄存器中，也没法用<code>&amp;</code>获取它的地址。
+<h2>
+	什么样的临时数据会放到寄存器中</h2>
+寄存器离 CPU 近，并且速度比内存快，将临时数据放到寄存器是为了加快程序运行。但是寄存器的数量是非常有限的，容纳不下较大的数据，所以只能将较小的临时数据放在寄存器中。int、double、bool、char 等基本类型的数据往往不超过 8 个字节，用一两个寄存器就能存储，所以这些类型的临时数据通常会放到寄存器中；而对象、结构体变量是自定义类型的数据，大小不可预测，所以这些类型的临时数据通常会放到内存中。<br>
+<br>
+下面的代码是正确的，它证明了结构体类型的临时数据会被放到内存中：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2253.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2253.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2253.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;iostream&gt;</span></li><li><span class="sh_keyword">using</span> <span class="sh_keyword">namespace</span> std<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_keyword">typedef</span> <span class="sh_keyword">struct</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_type">int</span> a<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> b<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span> S<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//这里用到了一点新知识，叫做运算符重载，我们会在《</span><a href="http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/" target="_blank" class="sh_url"><span class="sh_comment">运算符重载</span></a><span class="sh_comment">》一章中详细讲解</span></li><li><span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_keyword">operator</span><span class="sh_symbol">+(</span><span class="sh_keyword">const</span> <span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>A<span class="sh_symbol">,</span> <span class="sh_keyword">const</span> <span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>B<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span>C<span class="sh_symbol">;</span></li><li>    C<span class="sh_symbol">.</span>a <span class="sh_symbol">=</span> A<span class="sh_symbol">.</span>a <span class="sh_symbol">+</span> B<span class="sh_symbol">.</span>a<span class="sh_symbol">;</span></li><li>    C<span class="sh_symbol">.</span>b <span class="sh_symbol">=</span> A<span class="sh_symbol">.</span>b <span class="sh_symbol">+</span> B<span class="sh_symbol">.</span>b<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">return</span> C<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_function">func</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span>a<span class="sh_symbol">;</span></li><li>    a<span class="sh_symbol">.</span>a <span class="sh_symbol">=</span> <span class="sh_number">100</span><span class="sh_symbol">;</span></li><li>    a<span class="sh_symbol">.</span>b <span class="sh_symbol">=</span> <span class="sh_number">200</span><span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">return</span> a<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span>s1 <span class="sh_symbol">=</span> <span class="sh_cbracket">{</span><span class="sh_number">23</span><span class="sh_symbol">,</span> <span class="sh_number">45</span><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span>s2 <span class="sh_symbol">=</span> <span class="sh_cbracket">{</span><span class="sh_number">90</span><span class="sh_symbol">,</span> <span class="sh_number">75</span><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_symbol">*</span>p1 <span class="sh_symbol">=</span> <span class="sh_symbol">&amp;(</span>s1 <span class="sh_symbol">+</span> s2<span class="sh_symbol">);</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_symbol">*</span>p2 <span class="sh_symbol">=</span> <span class="sh_symbol">&amp;(</span><span class="sh_function">func</span><span class="sh_symbol">());</span></li><li>    cout<span class="sh_symbol">&lt;&lt;</span>p1<span class="sh_symbol">&lt;&lt;</span><span class="sh_string">", "</span><span class="sh_symbol">&lt;&lt;</span>p2<span class="sh_symbol">&lt;&lt;</span>endl<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">#include &lt;iostream&gt;
+using namespace std;
+
+typedef struct{
+    int a;
+    int b;
+} S;
+
+//这里用到了一点新知识，叫做运算符重载，我们会在《<a href="http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/" target="_blank" class="sh_url">运算符重载</a>》一章中详细讲解
+S operator+(const S &amp;A, const S &amp;B){
+    S C;
+    C.a = A.a + B.a;
+    C.b = A.b + B.b;
+    return C;
+}
+
+S func(){
+    S a;
+    a.a = 100;
+    a.b = 200;
+    return a;
+}
+
+int main(){
+    S s1 = {23, 45};
+    S s2 = {90, 75};
+    S *p1 = &amp;(s1 + s2);
+    S *p2 = &amp;(func());
+    cout&lt;&lt;p1&lt;&lt;", "&lt;&lt;p2&lt;&lt;endl;
+
+    return 0;
+}</pre></div></div>
+运行结果：<br>
+0x28ff28, 0x28ff18
+<blockquote>
+	第10行代码用到了运算符重载，我们将在《<a href="http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/" target="_blank">C++运算符重载</a>》一章中详细讲解。</blockquote>
+<h2>
+	关于常量表达式</h2>
+诸如 100、200+34、34.5*23、3+7/3 等不包含变量的表达式称为<span style="color: #008000">常量表达式（Constant expression）</span>。<br>
+<br>
+常量表达式由于不包含变量，没有不稳定因素，所以在编译阶段就能求值。编译器不会分配单独的内存来存储常量表达式的值，而是将常量表达式的值和代码合并到一起，放到虚拟地址空间中的代码区。从汇编的角度看，常量表达式的值就是一个立即数，会被“硬编码”到指令中，不能寻址。
+<blockquote>
+	关于虚拟地址空间的分区，我们已在《<a href="http://c.biancheng.net/view/vip_2097.html" target="_blank">Linux下C语言程序的内存布局</a>》一节中讲到。</blockquote>
+<span style="color: #b22222">总起来说，常量表达式的值虽然在内存中，但是没有办法寻址，所以也不能使用<code>&amp;</code>来获取它的地址，更不能用指针指向它。</span>下面的代码是错误的，它证明了不能用<code>&amp;</code>来获取常量表达式的地址：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2253.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2253.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2253.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_type">int</span> <span class="sh_symbol">*</span>p1 <span class="sh_symbol">=</span> <span class="sh_symbol">&amp;(</span><span class="sh_number">100</span><span class="sh_symbol">);</span></li><li><span class="sh_type">int</span> <span class="sh_symbol">*</span>p2 <span class="sh_symbol">=</span> <span class="sh_symbol">&amp;(</span><span class="sh_number">23</span> <span class="sh_symbol">+</span> <span class="sh_number">45</span> <span class="sh_symbol">*</span> <span class="sh_number">2</span><span class="sh_symbol">);</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">int *p1 = &amp;(100);
+int *p2 = &amp;(23 + 45 * 2);</pre></div></div>
+<h2>
+	引用也不能指代临时数据</h2>
+引用和指针在本质上是一样的，引用仅仅是对指针进行了简单的封装。引用和指针都不能绑定到无法寻址的临时数据，并且 C++ 对引用的要求更加严格，在某些编译器下甚至连放在内存中的临时数据都不能指代。<br>
+<br>
+下面的代码中，我们将引用绑定到了临时数据：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2253.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2253.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2253.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_keyword">typedef</span> <span class="sh_keyword">struct</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_type">int</span> a<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> b<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span> S<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">int</span> <span class="sh_function">func_int</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_type">int</span> n <span class="sh_symbol">=</span> <span class="sh_number">100</span><span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">return</span> n<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_function">func_s</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span>a<span class="sh_symbol">;</span></li><li>    a<span class="sh_symbol">.</span>a <span class="sh_symbol">=</span> <span class="sh_number">100</span><span class="sh_symbol">;</span></li><li>    a<span class="sh_symbol">.</span>b <span class="sh_symbol">=</span> <span class="sh_number">200</span><span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">return</span> a<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//这里用到了一点新知识，叫做运算符重载，我们会在《</span><a href="http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/" target="_blank" class="sh_url"><span class="sh_comment">运算符重载</span></a><span class="sh_comment">》一章中详细讲解</span></li><li><span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_keyword">operator</span><span class="sh_symbol">+(</span><span class="sh_keyword">const</span> <span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>A<span class="sh_symbol">,</span> <span class="sh_keyword">const</span> <span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>B<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span>C<span class="sh_symbol">;</span></li><li>    C<span class="sh_symbol">.</span>a <span class="sh_symbol">=</span> A<span class="sh_symbol">.</span>a <span class="sh_symbol">+</span> B<span class="sh_symbol">.</span>a<span class="sh_symbol">;</span></li><li>    C<span class="sh_symbol">.</span>b <span class="sh_symbol">=</span> A<span class="sh_symbol">.</span>b <span class="sh_symbol">+</span> B<span class="sh_symbol">.</span>b<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">return</span> C<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_comment">//下面的代码在GCC和Visual C++下都是错误的</span></li><li>    <span class="sh_type">int</span> m <span class="sh_symbol">=</span> <span class="sh_number">100</span><span class="sh_symbol">,</span> n <span class="sh_symbol">=</span> <span class="sh_number">36</span><span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> <span class="sh_symbol">&amp;</span>r1 <span class="sh_symbol">=</span> m <span class="sh_symbol">+</span> n<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> <span class="sh_symbol">&amp;</span>r2 <span class="sh_symbol">=</span> m <span class="sh_symbol">+</span> <span class="sh_number">28</span><span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> <span class="sh_symbol">&amp;</span>r3 <span class="sh_symbol">=</span> <span class="sh_number">12</span> <span class="sh_symbol">*</span> <span class="sh_number">3</span><span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> <span class="sh_symbol">&amp;</span>r4 <span class="sh_symbol">=</span> <span class="sh_number">50</span><span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> <span class="sh_symbol">&amp;</span>r5 <span class="sh_symbol">=</span> <span class="sh_function">func_int</span><span class="sh_symbol">();</span></li><li>   </li><li>    <span class="sh_comment">//下面的代码在GCC下是错误的，在Visual C++下是正确的</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span>s1 <span class="sh_symbol">=</span> <span class="sh_cbracket">{</span><span class="sh_number">23</span><span class="sh_symbol">,</span> <span class="sh_number">45</span><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span>s2 <span class="sh_symbol">=</span> <span class="sh_cbracket">{</span><span class="sh_number">90</span><span class="sh_symbol">,</span> <span class="sh_number">75</span><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>r6 <span class="sh_symbol">=</span> <span class="sh_function">func_s</span><span class="sh_symbol">();</span></li><li>    <span class="sh_usertype">S</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>r7 <span class="sh_symbol">=</span> s1 <span class="sh_symbol">+</span> s2<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">typedef struct{
+    int a;
+    int b;
+} S;
+
+int func_int(){
+    int n = 100;
+    return n;
+}
+
+S func_s(){
+    S a;
+    a.a = 100;
+    a.b = 200;
+    return a;
+}
+
+//这里用到了一点新知识，叫做运算符重载，我们会在《<a href="http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/" target="_blank" class="sh_url">运算符重载</a>》一章中详细讲解
+S operator+(const S &amp;A, const S &amp;B){
+    S C;
+    C.a = A.a + B.a;
+    C.b = A.b + B.b;
+    return C;
+}
+
+int main(){
+    //下面的代码在GCC和Visual C++下都是错误的
+    int m = 100, n = 36;
+    int &amp;r1 = m + n;
+    int &amp;r2 = m + 28;
+    int &amp;r3 = 12 * 3;
+    int &amp;r4 = 50;
+    int &amp;r5 = func_int();
+   
+    //下面的代码在GCC下是错误的，在Visual C++下是正确的
+    S s1 = {23, 45};
+    S s2 = {90, 75};
+    S &amp;r6 = func_s();
+    S &amp;r7 = s1 + s2;
+
+    return 0;
+}</pre></div></div>
+第 28~33 行代码在 GCC 和 Visual C++ 下都不能编译通过，第 38~39 行代码在 Visual C++ 下能够编译通过，但是在 GCC 下编译失败。这说明：
+<ul>
+	<li>
+		在 GCC 下，引用不能指代任何临时数据，不管它保存到哪里；</li>
+	<li>
+		在 Visual C++ 下，引用只能指代位于内存中（非代码区）的临时数据，不能指代寄存器中的临时数据。</li>
+</ul>
+<h2>
+	引用作为函数参数</h2>
+当引用作为函数参数时，有时候很容易给它传递临时数据。下面的 isOdd() 函数用来判断一个数是否是奇数：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2253.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2253.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2253.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_type">bool</span> <span class="sh_function">isOdd</span><span class="sh_symbol">(</span><span class="sh_type">int</span> <span class="sh_symbol">&amp;</span>n<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">if</span><span class="sh_symbol">(</span>n<span class="sh_symbol">%</span><span class="sh_number">2</span> <span class="sh_symbol">==</span> <span class="sh_number">0</span><span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>        <span class="sh_keyword">return</span> <span class="sh_keyword">false</span><span class="sh_symbol">;</span></li><li>    <span class="sh_cbracket">}</span><span class="sh_keyword">else</span><span class="sh_cbracket">{</span></li><li>        <span class="sh_keyword">return</span> <span class="sh_keyword">true</span><span class="sh_symbol">;</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_type">int</span> a <span class="sh_symbol">=</span> <span class="sh_number">100</span><span class="sh_symbol">;</span></li><li>    <span class="sh_function">isOdd</span><span class="sh_symbol">(</span>a<span class="sh_symbol">);</span>  <span class="sh_comment">//正确</span></li><li>    <span class="sh_function">isOdd</span><span class="sh_symbol">(</span>a <span class="sh_symbol">+</span> <span class="sh_number">9</span><span class="sh_symbol">);</span>  <span class="sh_comment">//错误</span></li><li>    <span class="sh_function">isOdd</span><span class="sh_symbol">(</span><span class="sh_number">27</span><span class="sh_symbol">);</span>  <span class="sh_comment">//错误</span></li><li>    <span class="sh_function">isOdd</span><span class="sh_symbol">(</span><span class="sh_number">23</span> <span class="sh_symbol">+</span> <span class="sh_number">55</span><span class="sh_symbol">);</span>  <span class="sh_comment">//错误</span></li><li><span style="display:none;">&nbsp;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">bool isOdd(int &amp;n){
+    if(n%2 == 0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+int main(){
+    int a = 100;
+    isOdd(a);  //正确
+    isOdd(a + 9);  //错误
+    isOdd(27);  //错误
+    isOdd(23 + 55);  //错误
+
+    return 0;
+}</pre></div></div>
+isOdd() 函数用来判断一个数是否为奇数，它的参数是引用类型，只能传递变量，不能传递常量或者表达式。但用来判断奇数的函数不能接受一个数字又让人感觉很奇怪，所以类似这样的函数应该坚持使用值传递，而不是引用传递。<br>
+<br>
+下面是更改后的代码：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2253.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2253.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2253.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_type">bool</span> <span class="sh_function">isOdd</span><span class="sh_symbol">(</span><span class="sh_type">int</span> n<span class="sh_symbol">)</span><span class="sh_cbracket">{</span>  <span class="sh_comment">//改为值传递</span></li><li>    <span class="sh_keyword">if</span><span class="sh_symbol">(</span>n<span class="sh_symbol">%</span><span class="sh_number">2</span> <span class="sh_symbol">==</span> <span class="sh_number">0</span><span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>        <span class="sh_keyword">return</span> <span class="sh_keyword">false</span><span class="sh_symbol">;</span></li><li>    <span class="sh_cbracket">}</span><span class="sh_keyword">else</span><span class="sh_cbracket">{</span></li><li>        <span class="sh_keyword">return</span> <span class="sh_keyword">true</span><span class="sh_symbol">;</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_type">int</span> a <span class="sh_symbol">=</span> <span class="sh_number">100</span><span class="sh_symbol">;</span></li><li>    <span class="sh_function">isOdd</span><span class="sh_symbol">(</span>a<span class="sh_symbol">);</span>  <span class="sh_comment">//正确</span></li><li>    <span class="sh_function">isOdd</span><span class="sh_symbol">(</span>a <span class="sh_symbol">+</span> <span class="sh_number">9</span><span class="sh_symbol">);</span>  <span class="sh_comment">//正确</span></li><li>    <span class="sh_function">isOdd</span><span class="sh_symbol">(</span><span class="sh_number">27</span><span class="sh_symbol">);</span>  <span class="sh_comment">//正确</span></li><li>    <span class="sh_function">isOdd</span><span class="sh_symbol">(</span><span class="sh_number">23</span> <span class="sh_symbol">+</span> <span class="sh_number">55</span><span class="sh_symbol">);</span>  <span class="sh_comment">//正确</span></li><li><span style="display:none;">&nbsp;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">bool isOdd(int n){  //改为值传递
+    if(n%2 == 0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+int main(){
+    int a = 100;
+    isOdd(a);  //正确
+    isOdd(a + 9);  //正确
+    isOdd(27);  //正确
+    isOdd(23 + 55);  //正确
+
+    return 0;
+}</pre></div></div>
+</div>
+			<div id="arc-append">
+	<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+	<p style="margin-top:12px; text-align:center;">
+		<img width="180" src="./3.3C++引用不能绑定到临时数据_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+		<span class="col-green">微信扫描二维码关注公众号</span>
+	</p>
+</div>
+<!-- <p>关注微信公众号「魏雪原」，跟着<a class="col-link" href="/view/8092.html" target="_blank">站长</a>一起学习，拒绝躺平，跳出内卷，用知识完成阶级跃升：</p>
+	<ul>
+		<li>每日更新，坚持原创，敢说真话，凡事有态度。</li>
+		<li>编程+求职+创业+营销，既有硬知识，也有软技能。</li>
+		<li>手机端阅读教程，随时随地都能学习。</li>
+		<li>即将绑定网站部分功能，包括注册登录、找回密码、获取下载链接等。</li>
+	</ul> -->
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/vip_2252.html">C++引用在本质上是什么，它和指针到底有什么区别？</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_2254.html">编译器会为const引用创建临时变量</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-bottom"></div>
+
+<!-- <div id="ad-bottom-weixin" class="clearfix">
+	<div class="left" style="width: 535px;">
+		<p><span class="col-red">编程帮</span>，一个分享编程知识的公众号。跟着<a class="col-link" href="/cpp/about/author/" target="_blank">站长</a>一起学习，每天都有进步。</p>
+		<p>通俗易懂，深入浅出，一篇文章只讲一个知识点。</p>
+		<p>文章不深奥，不需要钻研，在公交、在地铁、在厕所都可以阅读，随时随地涨姿势。</p>
+		<p>文章不涉及代码，不烧脑细胞，人人都可以学习。</p>
+		<p>当你决定关注「编程帮」，你已然超越了90%的程序员！</p>
+	</div>
+	<div class="right" style="width: 150px;">
+		<img width="150" src="/templets/new/images/erweima_biancheng.gif?v=1.6.72" alt="编程帮二维码" /><br />
+		<span class="col-green">微信扫描二维码关注</span>
+	</div>
+</div> -->
+
+<div id="nice-arcs" class="box-bottom">
+	<h4>优秀文章</h4>
+	<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/716.html" title="dd命令安装Linux">dd命令安装Linux</a></li>
+<li><a href="http://c.biancheng.net/view/1251.html" title="多处理器调度完全攻略">多处理器调度完全攻略</a></li>
+<li><a href="http://c.biancheng.net/view/2166.html" title="Python程序运行机制详解（入门必读）">Python程序运行机制详解（入门必读）</a></li>
+<li><a href="http://c.biancheng.net/view/2200.html" title="Python list()和tuple()函数用法">Python list()和tuple()函数用法</a></li>
+<li><a href="http://c.biancheng.net/view/3023.html" title="Shell组命令">Shell组命令</a></li>
+<li><a href="http://c.biancheng.net/view/3606.html" title="汇编语言DIV指令：无符号除法">汇编语言DIV指令：无符号除法</a></li>
+<li><a href="http://c.biancheng.net/view/3958.html" title="中型云计算平台的搭建以及解决方案（超详细）">中型云计算平台的搭建以及解决方案（超详细）</a></li>
+<li><a href="http://c.biancheng.net/view/4493.html" title="JSP函数标签库">JSP函数标签库</a></li>
+<li><a href="http://c.biancheng.net/view/8263.html" title="PHP实现简单的日历程序">PHP实现简单的日历程序</a></li>
+<li><a href="http://c.biancheng.net/maven2/aggregation.html" title="Maven聚合">Maven聚合</a></li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 2253;
+window.arcId = "451ca7h/KY59Day0aEvokQEhmOmxmrE3yVExHOfmUWH+DKdf0jRaZ81sAsg";
+window.typeidChain = "156|19";
+</script>
+<div id="footer" class="clearfix">
+	<div class="info left">
+	<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+	<p>
+		<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+		<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+	</p>
+	<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+	</div>
+	<img class="right" src="./3.3C++引用不能绑定到临时数据_files/logo_bottom.gif" alt="底部Logo">
+	<span id="return-top"><b>↑</b></span>
+</div>
+
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.72";
+</script>
+
+<script src="./3.3C++引用不能绑定到临时数据_files/jquery1.12.4.min.js.下载"></script>
+<script src="./3.3C++引用不能绑定到临时数据_files/common.js.下载"></script>
+<span style="display:none;"><script src="./3.3C++引用不能绑定到临时数据_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>

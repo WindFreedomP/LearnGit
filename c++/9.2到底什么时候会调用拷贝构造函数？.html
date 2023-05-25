@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://c.biancheng.net/view/vip_2335.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./9.2到底什么时候会调用拷贝构造函数？_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<!-- 启用Chromium高速渲染模式 -->
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<!-- 禁止百度转码 -->
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!-- 禁止识别电话号码 -->
+<meta name="format-detection" content="telephone=no">
+
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.72">
+<link href="./9.2到底什么时候会调用拷贝构造函数？_files/common.css" rel="stylesheet">
+<title>到底什么时候会调用拷贝构造函数？</title>
+<meta name="description" content="当以拷贝的方式初始化对象时会调用拷贝构造函数。这里有两个关键点，分别是「以拷贝的方式」和「初始化对象」。 初始化对象 初始化对象是指，为对象分配内存后第一次向内存中填">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+	<ul id="product-type" class="left">
+		<li>
+			<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+		</li>
+		<li class="active">
+			<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+		</li>
+		<li>
+			<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+		</li>
+	</ul>
+</div>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="http://c.biancheng.net/">
+		<img height="26" src="./9.2到底什么时候会调用拷贝构造函数？_files/logo.png" alt="C语言中文网">
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+		<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+		<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+		<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+		<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+		<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+		<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/cplus/">C++</a></dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href="http://c.biancheng.net/cplus/c2cpp/">从C到C++</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href="http://c.biancheng.net/cplus/class/">类和对象</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href="http://c.biancheng.net/cplus/25/">C++引用</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href="http://c.biancheng.net/cplus/polymorphism/">C++多态与虚函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href="http://c.biancheng.net/cplus/operator/">运算符重载</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href="http://c.biancheng.net/cplus/70/">模板</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href="http://c.biancheng.net/cplus/exception/">C++异常</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a> </dd><dl class="dl-sub"><dd>9.1 <a href="http://c.biancheng.net/view/2334.html">C++拷贝构造函数（复制构造函数）</a></dd><dd class="active">9.2 <a href="http://c.biancheng.net/view/vip_2335.html">到底什么时候会调用拷贝构造函数？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.3 <a href="http://c.biancheng.net/view/2336.html">C++深拷贝和浅拷贝</a></dd><dd>9.4 <a href="http://c.biancheng.net/view/2337.html">C++重载=（赋值运算符）</a></dd><dd>9.5 <a href="http://c.biancheng.net/view/vip_2338.html">C++拷贝控制操作（三/五法则）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.6 <a href="http://c.biancheng.net/view/2339.html">C++转换构造函数</a></dd><dd>9.7 <a href="http://c.biancheng.net/view/2340.html">C++类型转换函数</a></dd><dd>9.8 <a href="http://c.biancheng.net/view/vip_2341.html">再谈C++转换构造函数和类型转换函数（进阶）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.9 <a href="http://c.biancheng.net/view/vip_2342.html">C/C++类型转换的本质（经典之作）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.10 <a href="http://c.biancheng.net/view/2343.html">C++四种类型转换运算符</a></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href="http://c.biancheng.net/cplus/50/">输入输出流</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href="http://c.biancheng.net/cplus/60/">文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div class="arc-info">
+	<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/cplus/">C++</a> &gt; <a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a></span>
+	<span class="read-num">阅读：10,639</span>
+</div>
+
+<div id="ad-position-bottom"></div>
+			<h1>到底什么时候会调用拷贝构造函数？</h1>
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2334.html">C++拷贝构造函数（复制构造函数）</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/2336.html">C++深拷贝和浅拷贝</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="default"><a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank" style="color:#D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+			<div id="arc-body">当以拷贝的方式初始化对象时会调用拷贝构造函数。这里有两个关键点，分别是「以拷贝的方式」和「初始化对象」。
+<h2>
+	初始化对象</h2>
+初始化对象是指，为对象分配内存后第一次向内存中填充数据，这个过程会调用构造函数。对象被创建后必须立即被初始化，换句话说，只要创建对象，就会调用构造函数。<br>
+<h4>
+	初始化和赋值的区别</h4>
+初始化和赋值都是将数据写入内存中，并且从表面上看起来，初始化在很多时候都是以赋值的方式来实现的，所以很容易混淆。请看下面的例子：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2335.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2335.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2335.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_type">int</span> a <span class="sh_symbol">=</span> <span class="sh_number">100</span><span class="sh_symbol">;</span>  <span class="sh_comment">//以赋值的方式初始化</span></li><li>a <span class="sh_symbol">=</span> <span class="sh_number">200</span><span class="sh_symbol">;</span>  <span class="sh_comment">//赋值</span></li><li>a <span class="sh_symbol">=</span> <span class="sh_number">300</span><span class="sh_symbol">;</span>  <span class="sh_comment">//赋值</span></li><li><span class="sh_type">int</span> b<span class="sh_symbol">;</span>  <span class="sh_comment">//默认初始化</span></li><li>b <span class="sh_symbol">=</span> <span class="sh_number">29</span><span class="sh_symbol">;</span>  <span class="sh_comment">//赋值</span></li><li>b <span class="sh_symbol">=</span> <span class="sh_number">39</span><span class="sh_symbol">;</span>  <span class="sh_comment">//赋值</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">int a = 100;  //以赋值的方式初始化
+a = 200;  //赋值
+a = 300;  //赋值
+int b;  //默认初始化
+b = 29;  //赋值
+b = 39;  //赋值</pre></div></div>
+在定义的同时进行赋值叫做<span style="color: #008000">初始化（Initialization）</span>，定义完成以后再赋值（不管在定义的时候有没有赋值）就叫做<span style="color: #008000">赋值（Assignment）</span>。初始化只能有一次，赋值可以有多次。<br>
+<br>
+对于基本类型的数据，我们很少会区分「初始化」和「赋值」这两个概念，即使将它们混淆，也不会出现什么错误。但是对于类，它们的区别就非常重要了，因为初始化时会调用构造函数（以拷贝的方式初始化时会调用拷贝构造函数），而赋值时会调用重载过的赋值运算符。请看下面的例子：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2335.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2335.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2335.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;iostream&gt;</span></li><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;string&gt;</span></li><li><span class="sh_keyword">using</span> <span class="sh_keyword">namespace</span> std<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">Student</span><span class="sh_cbracket">{</span></li><li><span class="sh_keyword">public</span><span class="sh_symbol">:</span></li><li>    <span class="sh_function">Student</span><span class="sh_symbol">(</span><span class="sh_usertype">string</span><span class="sh_normal"> </span>name <span class="sh_symbol">=</span> <span class="sh_string">""</span><span class="sh_symbol">,</span> <span class="sh_type">int</span> age <span class="sh_symbol">=</span> <span class="sh_number">0</span><span class="sh_symbol">,</span> <span class="sh_type">float</span> score <span class="sh_symbol">=</span> <span class="sh_number">0</span><span class="sh_symbol">.</span>0f<span class="sh_symbol">);</span>  <span class="sh_comment">//普通构造函数</span></li><li>    <span class="sh_function">Student</span><span class="sh_symbol">(</span><span class="sh_keyword">const</span> <span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>stu<span class="sh_symbol">);</span>  <span class="sh_comment">//拷贝构造函数</span></li><li><span class="sh_keyword">public</span><span class="sh_symbol">:</span></li><li>    Student <span class="sh_symbol">&amp;</span> <span class="sh_keyword">operator</span><span class="sh_symbol">=(</span><span class="sh_keyword">const</span> <span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>stu<span class="sh_symbol">);</span>  <span class="sh_comment">//重载=运算符</span></li><li>    <span class="sh_type">void</span> <span class="sh_function">display</span><span class="sh_symbol">();</span></li><li><span class="sh_keyword">private</span><span class="sh_symbol">:</span></li><li>    <span class="sh_usertype">string</span><span class="sh_normal"> </span>m_name<span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> m_age<span class="sh_symbol">;</span></li><li>    <span class="sh_type">float</span> m_score<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li>Student<span class="sh_symbol">::</span><span class="sh_function">Student</span><span class="sh_symbol">(</span><span class="sh_usertype">string</span><span class="sh_normal"> </span>name<span class="sh_symbol">,</span> <span class="sh_type">int</span> age<span class="sh_symbol">,</span> <span class="sh_type">float</span> score<span class="sh_symbol">):</span> <span class="sh_function">m_name</span><span class="sh_symbol">(</span>name<span class="sh_symbol">),</span> <span class="sh_function">m_age</span><span class="sh_symbol">(</span>age<span class="sh_symbol">),</span> <span class="sh_function">m_score</span><span class="sh_symbol">(</span>score<span class="sh_symbol">)</span><span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//拷贝构造函数</span></li><li>Student<span class="sh_symbol">::</span><span class="sh_function">Student</span><span class="sh_symbol">(</span><span class="sh_keyword">const</span> <span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>stu<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">this</span><span class="sh_symbol">-&gt;</span>m_name <span class="sh_symbol">=</span> stu<span class="sh_symbol">.</span>m_name<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">this</span><span class="sh_symbol">-&gt;</span>m_age <span class="sh_symbol">=</span> stu<span class="sh_symbol">.</span>m_age<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">this</span><span class="sh_symbol">-&gt;</span>m_score <span class="sh_symbol">=</span> stu<span class="sh_symbol">.</span>m_score<span class="sh_symbol">;</span></li><li>    cout<span class="sh_symbol">&lt;&lt;</span><span class="sh_string">"Copy constructor was called."</span><span class="sh_symbol">&lt;&lt;</span>endl<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//重载=运算符</span></li><li>Student <span class="sh_symbol">&amp;</span> Student<span class="sh_symbol">::</span><span class="sh_keyword">operator</span><span class="sh_symbol">=(</span><span class="sh_keyword">const</span> <span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>stu<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">this</span><span class="sh_symbol">-&gt;</span>m_name <span class="sh_symbol">=</span> stu<span class="sh_symbol">.</span>m_name<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">this</span><span class="sh_symbol">-&gt;</span>m_age <span class="sh_symbol">=</span> stu<span class="sh_symbol">.</span>m_age<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">this</span><span class="sh_symbol">-&gt;</span>m_score <span class="sh_symbol">=</span> stu<span class="sh_symbol">.</span>m_score<span class="sh_symbol">;</span></li><li>    cout<span class="sh_symbol">&lt;&lt;</span><span class="sh_string">"operator=() was called."</span><span class="sh_symbol">&lt;&lt;</span>endl<span class="sh_symbol">;</span></li><li>   </li><li>    <span class="sh_keyword">return</span> <span class="sh_symbol">*</span><span class="sh_keyword">this</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">void</span> Student<span class="sh_symbol">::</span><span class="sh_function">display</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    cout<span class="sh_symbol">&lt;&lt;</span>m_name<span class="sh_symbol">&lt;&lt;</span><span class="sh_string">"的年龄是"</span><span class="sh_symbol">&lt;&lt;</span>m_age<span class="sh_symbol">&lt;&lt;</span><span class="sh_string">"，成绩是"</span><span class="sh_symbol">&lt;&lt;</span>m_score<span class="sh_symbol">&lt;&lt;</span>endl<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_comment">//stu1、stu2、stu3都会调用普通构造函数Student(string name, int age, float score)</span></li><li>    <span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_function">stu1</span><span class="sh_symbol">(</span><span class="sh_string">"小明"</span><span class="sh_symbol">,</span> <span class="sh_number">16</span><span class="sh_symbol">,</span> <span class="sh_number">90.5</span><span class="sh_symbol">);</span></li><li>    <span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_function">stu2</span><span class="sh_symbol">(</span><span class="sh_string">"王城"</span><span class="sh_symbol">,</span> <span class="sh_number">17</span><span class="sh_symbol">,</span> <span class="sh_number">89.0</span><span class="sh_symbol">);</span></li><li>    <span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_function">stu3</span><span class="sh_symbol">(</span><span class="sh_string">"陈晗"</span><span class="sh_symbol">,</span> <span class="sh_number">18</span><span class="sh_symbol">,</span> <span class="sh_number">98.0</span><span class="sh_symbol">);</span></li><li>   </li><li>    <span class="sh_usertype">Student</span><span class="sh_normal"> </span>stu4 <span class="sh_symbol">=</span> stu1<span class="sh_symbol">;</span>  <span class="sh_comment">//调用拷贝构造函数Student(const Student &amp;stu)</span></li><li>    stu4 <span class="sh_symbol">=</span> stu2<span class="sh_symbol">;</span>  <span class="sh_comment">//调用operator=()</span></li><li>    stu4 <span class="sh_symbol">=</span> stu3<span class="sh_symbol">;</span>  <span class="sh_comment">//调用operator=()</span></li><li>   </li><li>    <span class="sh_usertype">Student</span><span class="sh_normal"> </span>stu5<span class="sh_symbol">;</span>  <span class="sh_comment">//调用普通构造函数Student()</span></li><li>    stu5 <span class="sh_symbol">=</span> stu1<span class="sh_symbol">;</span>  <span class="sh_comment">//调用operator=()</span></li><li>    stu5 <span class="sh_symbol">=</span> stu2<span class="sh_symbol">;</span>  <span class="sh_comment">//调用operator=()</span></li><li>   </li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+class Student{
+public:
+    Student(string name = "", int age = 0, float score = 0.0f);  //普通构造函数
+    Student(const Student &amp;stu);  //拷贝构造函数
+public:
+    Student &amp; operator=(const Student &amp;stu);  //重载=运算符
+    void display();
+private:
+    string m_name;
+    int m_age;
+    float m_score;
+};
+
+Student::Student(string name, int age, float score): m_name(name), m_age(age), m_score(score){ }
+
+//拷贝构造函数
+Student::Student(const Student &amp;stu){
+    this-&gt;m_name = stu.m_name;
+    this-&gt;m_age = stu.m_age;
+    this-&gt;m_score = stu.m_score;
+    cout&lt;&lt;"Copy constructor was called."&lt;&lt;endl;
+}
+
+//重载=运算符
+Student &amp; Student::operator=(const Student &amp;stu){
+    this-&gt;m_name = stu.m_name;
+    this-&gt;m_age = stu.m_age;
+    this-&gt;m_score = stu.m_score;
+    cout&lt;&lt;"operator=() was called."&lt;&lt;endl;
+   
+    return *this;
+}
+
+void Student::display(){
+    cout&lt;&lt;m_name&lt;&lt;"的年龄是"&lt;&lt;m_age&lt;&lt;"，成绩是"&lt;&lt;m_score&lt;&lt;endl;
+}
+
+int main(){
+    //stu1、stu2、stu3都会调用普通构造函数Student(string name, int age, float score)
+    Student stu1("小明", 16, 90.5);
+    Student stu2("王城", 17, 89.0);
+    Student stu3("陈晗", 18, 98.0);
+   
+    Student stu4 = stu1;  //调用拷贝构造函数Student(const Student &amp;stu)
+    stu4 = stu2;  //调用operator=()
+    stu4 = stu3;  //调用operator=()
+   
+    Student stu5;  //调用普通构造函数Student()
+    stu5 = stu1;  //调用operator=()
+    stu5 = stu2;  //调用operator=()
+   
+    return 0;
+}</pre></div></div>
+运行结果：<br>
+Copy constructor was called.<br>
+operator=() was called.<br>
+operator=() was called.<br>
+operator=() was called.<br>
+operator=() was called.
+<h2>
+	以拷贝的方式初始化对象</h2>
+初始化对象时会调用构造函数，不同的初始化方式会调用不同的构造函数：
+<ul>
+	<li>
+		如果用传递进来的实参初始化对象，那么会调用普通的构造函数，我们不妨将此称为普通初始化；</li>
+	<li>
+		如果用其它对象（现有对象）的数据来初始化对象，那么会调用拷贝构造函数，这就是以拷贝的方式初始化。</li>
+</ul>
+<br>
+在实际编程中，具体有哪些情况是以拷贝的方式来初始化对象呢？
+<h4>
+	1) 将其它对象作为实参</h4>
+以上面的 Student 类为例，我们可以这样来创建一个新的对象：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2335.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2335.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2335.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_function">stu1</span><span class="sh_symbol">(</span><span class="sh_string">"小明"</span><span class="sh_symbol">,</span> <span class="sh_number">16</span><span class="sh_symbol">,</span> <span class="sh_number">90.5</span><span class="sh_symbol">);</span>  <span class="sh_comment">//普通初始化</span></li><li><span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_function">stu2</span><span class="sh_symbol">(</span>stu1<span class="sh_symbol">);</span>  <span class="sh_comment">//以拷贝的方式初始化</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">Student stu1("小明", 16, 90.5);  //普通初始化
+Student stu2(stu1);  //以拷贝的方式初始化</pre></div></div>
+即使我们不在类中显式地定义拷贝构造函数，这种初始化方式也是有效的，因为编译器会生成默认的拷贝构造函数。
+<h4>
+	2) 在创建对象的同时赋值</h4>
+接着使用 Student 类，请看下面的例子：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2335.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2335.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2335.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_function">stu1</span><span class="sh_symbol">(</span><span class="sh_string">"小明"</span><span class="sh_symbol">,</span> <span class="sh_number">16</span><span class="sh_symbol">,</span> <span class="sh_number">90.5</span><span class="sh_symbol">);</span>  <span class="sh_comment">//普通初始化</span></li><li><span class="sh_usertype">Student</span><span class="sh_normal"> </span>stu2 <span class="sh_symbol">=</span> stu1<span class="sh_symbol">;</span>  <span class="sh_comment">//以拷贝的方式初始化</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">Student stu1("小明", 16, 90.5);  //普通初始化
+Student stu2 = stu1;  //以拷贝的方式初始化</pre></div></div>
+这是最常见的一种以拷贝的方式初始化对象的情况，非常容易理解，我们也已经多次使用。
+<h4>
+	3) 函数的形参为类类型</h4>
+如果函数的形参为类类型（也就是一个对象），那么调用函数时要将另外一个对象作为实参传递进来赋值给形参，这也是以拷贝的方式初始化形参对象。请看下面的代码：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2335.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2335.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2335.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_type">void</span> <span class="sh_function">func</span><span class="sh_symbol">(</span><span class="sh_usertype">Student</span><span class="sh_normal"> </span>s<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_comment">//TODO:</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_function">stu</span><span class="sh_symbol">(</span><span class="sh_string">"小明"</span><span class="sh_symbol">,</span> <span class="sh_number">16</span><span class="sh_symbol">,</span> <span class="sh_number">90.5</span><span class="sh_symbol">);</span>  <span class="sh_comment">//普通初始化</span></li><li><span class="sh_function">func</span><span class="sh_symbol">(</span>stu<span class="sh_symbol">);</span>  <span class="sh_comment">//以拷贝的方式初始化</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">void func(Student s){
+    //TODO:
+}
+
+Student stu("小明", 16, 90.5);  //普通初始化
+func(stu);  //以拷贝的方式初始化</pre></div></div>
+func() 函数有一个 Student 类型的形参 s，将实参 stu 传递给形参 s 就是以拷贝的方式初始化的过程。<br>
+<br>
+函数是一段可以重复使用的代码，只有等到真正调用函数时才会为局部数据（形参和局部变量）在栈上分配内存。对于上面的 func()，虽然它的形参 s 是一个对象，但在定义函数时 s 对象并没有被创建，只有等到调用函数时才会真正地创建 s 对象，并在栈上为它分配内存。而创建 s 对象，就是以拷贝的方式进行的，它等价于下面的代码：
+<p class="info-box">
+	Student s = stu;</p>
+<h4>
+	4) 函数返回值为类类型</h4>
+当函数的返回值为类类型时，return 语句会返回一个对象，不过为了防止局部对象被销毁，也为了防止通过返回值修改原来的局部对象，编译器并不会直接返回这个对象，而是根据这个对象先创建出一个临时对象（匿名对象），再将这个临时对象返回。而创建临时对象的过程，就是以拷贝的方式进行的，会调用拷贝构造函数。<br>
+<br>
+下面的代码演示了返回一个对象的情形：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2335.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2335.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2335.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_function">func</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">Student</span><span class="sh_normal"> </span><span class="sh_function">s</span><span class="sh_symbol">(</span><span class="sh_string">"小明"</span><span class="sh_symbol">,</span> <span class="sh_number">16</span><span class="sh_symbol">,</span> <span class="sh_number">90.5</span><span class="sh_symbol">);</span></li><li>    <span class="sh_keyword">return</span> s<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_usertype">Student</span><span class="sh_normal"> </span>stu <span class="sh_symbol">=</span> <span class="sh_function">func</span><span class="sh_symbol">();</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">Student func(){
+    Student s("小明", 16, 90.5);
+    return s;
+}
+
+Student stu = func();</pre></div></div>
+理论上讲，运行代码后会调用两次拷贝构造函数，一次是返回 s 对象时，另外一次是创建 stu 对象时。<br>
+<br>
+在较老的编译器上，你或许真的能够看到调用两次拷贝构造函数，例如 <a href="http://c.biancheng.net/view/vip_1741.html" target="_blank">iPhone 上的 C/C++ 编译器</a>。但是在现代编译器上，只会调用一次拷贝构造函数，或者一次也不调用，例如在 VS2010 下会调用一次拷贝构造函数，在 GCC、Xcode 下一次也不会调用。这是因为，现代编译器都支持返回值优化技术，会尽量避免拷贝对象，以提高程序运行效率。关于编译器如何实现返回值优化的我们不再展开讨论，有兴趣的读者请猛击：
+<ul>
+	<li>
+		<a href="http://blog.csdn.net/sad_sugar/article/details/50569434" target="_blank">http://blog.csdn.net/sad_sugar/article/details/50569434</a></li>
+	<li>
+		<a href="http://www.jianshu.com/p/f3b8c3e4f2ad" target="_blank">http://www.jianshu.com/p/f3b8c3e4f2ad</a></li>
+</ul>
+</div>
+			<div id="arc-append">
+	<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+	<p style="margin-top:12px; text-align:center;">
+		<img width="180" src="./9.2到底什么时候会调用拷贝构造函数？_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+		<span class="col-green">微信扫描二维码关注公众号</span>
+	</p>
+</div>
+<!-- <p>关注微信公众号「魏雪原」，跟着<a class="col-link" href="/view/8092.html" target="_blank">站长</a>一起学习，拒绝躺平，跳出内卷，用知识完成阶级跃升：</p>
+	<ul>
+		<li>每日更新，坚持原创，敢说真话，凡事有态度。</li>
+		<li>编程+求职+创业+营销，既有硬知识，也有软技能。</li>
+		<li>手机端阅读教程，随时随地都能学习。</li>
+		<li>即将绑定网站部分功能，包括注册登录、找回密码、获取下载链接等。</li>
+	</ul> -->
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2334.html">C++拷贝构造函数（复制构造函数）</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/2336.html">C++深拷贝和浅拷贝</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-bottom"></div>
+
+<!-- <div id="ad-bottom-weixin" class="clearfix">
+	<div class="left" style="width: 535px;">
+		<p><span class="col-red">编程帮</span>，一个分享编程知识的公众号。跟着<a class="col-link" href="/cpp/about/author/" target="_blank">站长</a>一起学习，每天都有进步。</p>
+		<p>通俗易懂，深入浅出，一篇文章只讲一个知识点。</p>
+		<p>文章不深奥，不需要钻研，在公交、在地铁、在厕所都可以阅读，随时随地涨姿势。</p>
+		<p>文章不涉及代码，不烧脑细胞，人人都可以学习。</p>
+		<p>当你决定关注「编程帮」，你已然超越了90%的程序员！</p>
+	</div>
+	<div class="right" style="width: 150px;">
+		<img width="150" src="/templets/new/images/erweima_biancheng.gif?v=1.6.72" alt="编程帮二维码" /><br />
+		<span class="col-green">微信扫描二维码关注</span>
+	</div>
+</div> -->
+
+<div id="nice-arcs" class="box-bottom">
+	<h4>优秀文章</h4>
+	<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/165.html" title="C++静态成员变量和静态成员函数详解">C++静态成员变量和静态成员函数详解</a></li>
+<li><a href="http://c.biancheng.net/view/631.html" title="C语言日期函数，日期处理函数">C语言日期函数，日期处理函数</a></li>
+<li><a href="http://c.biancheng.net/view/1008.html" title="Java接口：接口的定义和接口的实现，定义接口，实现接口">Java接口：接口的定义和接口的实现，定义接口，实现接口</a></li>
+<li><a href="http://c.biancheng.net/view/2977.html" title="C# MDI窗体">C# MDI窗体</a></li>
+<li><a href="http://c.biancheng.net/view/3617.html" title="汇编语言AAM（乘法后的ASCII调整）和AAD（除法之前的ASCII调整）指令">汇编语言AAM（乘法后的ASCII调整）和AAD（除法之前的ASCII调整）指令</a></li>
+<li><a href="http://c.biancheng.net/view/4353.html" title="Mybatis select标签以及使用Map接口和Java Bean传递多个参数">Mybatis select标签以及使用Map接口和Java Bean传递多个参数</a></li>
+<li><a href="http://c.biancheng.net/view/4910.html" title="JSP Request.getMethod()方法：获取客户端向服务器传送数据的方法">JSP Request.getMethod()方法：获取客户端向服务器传送数据的方法</a></li>
+<li><a href="http://c.biancheng.net/view/5324.html" title="使用Eureka编写服务消费者">使用Eureka编写服务消费者</a></li>
+<li><a href="http://c.biancheng.net/view/5363.html" title="JavaScript的变量">JavaScript的变量</a></li>
+<li><a href="http://c.biancheng.net/view/vip_8513.html" title="GDB print命令更高级的用法！">GDB print命令更高级的用法！</a></li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 2335;
+window.arcId = "606cOnCHydgb6eTEJuZren5YG9dxPWLc9uTd23drX4CVQmSKY5f44b82Z58";
+window.typeidChain = "158|19";
+</script>
+<div id="footer" class="clearfix">
+	<div class="info left">
+	<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+	<p>
+		<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+		<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+	</p>
+	<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+	</div>
+	<img class="right" src="./9.2到底什么时候会调用拷贝构造函数？_files/logo_bottom.gif" alt="底部Logo">
+	<span id="return-top"><b>↑</b></span>
+</div>
+
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.72";
+</script>
+
+<script src="./9.2到底什么时候会调用拷贝构造函数？_files/jquery1.12.4.min.js.下载"></script>
+<script src="./9.2到底什么时候会调用拷贝构造函数？_files/common.js.下载"></script>
+<span style="display:none;"><script src="./9.2到底什么时候会调用拷贝构造函数？_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>

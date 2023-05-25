@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://c.biancheng.net/view/vip_2338.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./9.5C++拷贝控制操作（三_五法则）_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<!-- 启用Chromium高速渲染模式 -->
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<!-- 禁止百度转码 -->
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!-- 禁止识别电话号码 -->
+<meta name="format-detection" content="telephone=no">
+
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.72">
+<link href="./9.5C++拷贝控制操作（三_五法则）_files/common.css" rel="stylesheet">
+<title>C++拷贝控制操作（三/五法则）</title>
+<meta name="description" content="当定义一个类时，我们显式地或隐式地指定了此类型的对象在拷贝、赋值和销毁时做什么。一个类通过定义三种特殊的成员函数来控制这些操作，分别是 拷贝构造函数 、 赋值运算符 和">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+	<ul id="product-type" class="left">
+		<li>
+			<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+		</li>
+		<li class="active">
+			<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+		</li>
+		<li>
+			<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+		</li>
+	</ul>
+</div>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="http://c.biancheng.net/">
+		<img height="26" src="./9.5C++拷贝控制操作（三_五法则）_files/logo.png" alt="C语言中文网">
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+		<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+		<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+		<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+		<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+		<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+		<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/cplus/">C++</a></dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href="http://c.biancheng.net/cplus/c2cpp/">从C到C++</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href="http://c.biancheng.net/cplus/class/">类和对象</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href="http://c.biancheng.net/cplus/25/">C++引用</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href="http://c.biancheng.net/cplus/polymorphism/">C++多态与虚函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href="http://c.biancheng.net/cplus/operator/">运算符重载</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href="http://c.biancheng.net/cplus/70/">模板</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href="http://c.biancheng.net/cplus/exception/">C++异常</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">9</span> <a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a> </dd><dl class="dl-sub"><dd>9.1 <a href="http://c.biancheng.net/view/2334.html">C++拷贝构造函数（复制构造函数）</a></dd><dd>9.2 <a href="http://c.biancheng.net/view/vip_2335.html">到底什么时候会调用拷贝构造函数？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.3 <a href="http://c.biancheng.net/view/2336.html">C++深拷贝和浅拷贝</a></dd><dd>9.4 <a href="http://c.biancheng.net/view/2337.html">C++重载=（赋值运算符）</a></dd><dd class="active">9.5 <a href="http://c.biancheng.net/view/vip_2338.html">C++拷贝控制操作（三/五法则）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.6 <a href="http://c.biancheng.net/view/2339.html">C++转换构造函数</a></dd><dd>9.7 <a href="http://c.biancheng.net/view/2340.html">C++类型转换函数</a></dd><dd>9.8 <a href="http://c.biancheng.net/view/vip_2341.html">再谈C++转换构造函数和类型转换函数（进阶）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.9 <a href="http://c.biancheng.net/view/vip_2342.html">C/C++类型转换的本质（经典之作）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>9.10 <a href="http://c.biancheng.net/view/2343.html">C++四种类型转换运算符</a></dd></dl>
+			<dd>
+				<span class="channel-num">10</span>
+				<a href="http://c.biancheng.net/cplus/50/">输入输出流</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href="http://c.biancheng.net/cplus/60/">文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div class="arc-info">
+	<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/cplus/">C++</a> &gt; <a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a></span>
+	<span class="read-num">阅读：7,147</span>
+</div>
+
+<div id="ad-position-bottom"></div>
+			<h1>C++拷贝控制操作（三/五法则）</h1>
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2337.html">C++重载=（赋值运算符）</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/2339.html">C++转换构造函数</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="default"><a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank" style="color:#D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+			<div id="arc-body">当定义一个类时，我们显式地或隐式地指定了此类型的对象在拷贝、赋值和销毁时做什么。一个类通过定义三种特殊的成员函数来控制这些操作，分别是<strong>拷贝构造函数</strong>、<strong>赋值运算符</strong>和<strong>析构函数</strong>。<br>
+<br>
+拷贝构造函数定义了当用同类型的另一个对象初始化新对象时做什么，赋值运算符定义了将一个对象赋予同类型的另一个对象时做什么，析构函数定义了此类型的对象销毁时做什么。我们将这些操作称为<strong><span style="color: #008000">拷贝控制操作</span></strong>。
+<blockquote>
+	由于拷贝控制操作是由三个特殊的成员函数来完成的，所以我们称此为“C++三法则”。在较新的 C++11 标准中，为了支持移动语义，又增加了移动构造函数和移动赋值运算符，这样共有五个特殊的成员函数，所以又称为“C++五法则”。也就是说，“三法则”是针对较旧的 C++89 标准说的，“五法则”是针对较新的 C++11 标准说的。为了统一称呼，后来人们干把它叫做“C++ 三/五法则”。</blockquote>
+如果一个类没有定义所有这些拷贝控制成员，编译器会自动为它定义默认的操作，因此很多类会忽略这些拷贝控制操作。但是，对于一些持有其他资源（例如动态分配的内存、打开的文件、指向其他数据的指针、网络连接等）的类来说，依赖这些默认的操作会导致灾难，我们必须显式的定义这些操作。<br>
+<br>
+C++ 并不要求我们定义所有的这些操作，你可以只定义其中的一个或两个。但是，这些操作通常应该被看做一个整体，只需要定义其中一个操作，而不需要定义其他操作的情况很少见。
+<h2>
+	需要析构函数的类也需要拷贝和赋值操作</h2>
+当我们决定是否要为一个类显式地定义拷贝构造函数和赋值运算符时，一个基本原则是首先确定这个类是否需要一个析构函数。通常，对析构函数的需求要比拷贝构造函数和赋值运算符的需求更加明显。如果一个类需要定义析构函数，那么几乎可以肯定这个类也需要一个拷贝构造函数和一个赋值运算符。<br>
+<br>
+我们在前面几节中使用过的 Array 类就是一个典型的例子。这个类在构造函数中动态地分配了一块内存，并用一个成员变量（指针变量）指向它，默认的析构函数不会释放这块内存，所以我们需要显式地定义一个析构函数来释放内存。<br>
+<br>
+「应该怎么做」可能还是有点不清晰，但基本原则告诉我们，Array 类也需要一个拷贝构造函数和一个赋值运算符。<br>
+<br>
+如果我们为 Array 定义了一个析构函数，但却使用默认的拷贝构造函数和赋值运算符，那么将导致不同对象之间相互干扰，修改一个对象的数据会影响另外的对象。此外还可能会导致内存操作错误，请看下面的代码：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2338.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2338.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2338.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">Array</span><span class="sh_normal"> </span><span class="sh_function">func</span><span class="sh_symbol">(</span><span class="sh_usertype">Array</span><span class="sh_normal"> </span>arr<span class="sh_symbol">)</span><span class="sh_cbracket">{</span>  <span class="sh_comment">//按值传递，将发生拷贝</span></li><li>    <span class="sh_usertype">Array</span><span class="sh_normal"> </span>ret <span class="sh_symbol">=</span> arr<span class="sh_symbol">;</span>  <span class="sh_comment">//发生拷贝</span></li><li>    <span class="sh_keyword">return</span> ret<span class="sh_symbol">;</span>  <span class="sh_comment">//ret和arr将被销毁</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">Array func(Array arr){  //按值传递，将发生拷贝
+    Array ret = arr;  //发生拷贝
+    return ret;  //ret和arr将被销毁
+}</pre></div></div>
+当 func() 返回时，arr 和 ret 都会被销毁，在两个对象上都会调用析构函数，此析构函数会 free() 掉 m_p 成员所指向的动态内存。但是，这两个对象的 m_p 成员指向的是同一块内存，所以该内存会被 free() 两次，这显然是一个错误，将要发生什么是未知的。<br>
+<br>
+此外，func() 的调用者还会继续使用传递给 func() 的对象：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2338.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2338.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2338.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_usertype">Array</span><span class="sh_normal"> </span><span class="sh_function">arr1</span><span class="sh_symbol">(</span><span class="sh_number">10</span><span class="sh_symbol">);</span></li><li><span class="sh_function">func</span><span class="sh_symbol">(</span>arr1<span class="sh_symbol">);</span>  <span class="sh_comment">//当 func() 调用结束时，arr1.m_p 指向的内存被释放</span></li><li><span class="sh_usertype">Array</span><span class="sh_normal"> </span>arr2 <span class="sh_symbol">=</span> arr1<span class="sh_symbol">;</span>  <span class="sh_comment">//现在 arr2 和 arr1 都指向无效内存</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">Array arr1(10);
+func(arr1);  //当 func() 调用结束时，arr1.m_p 指向的内存被释放
+Array arr2 = arr1;  //现在 arr2 和 arr1 都指向无效内存</pre></div></div>
+arr2（以及 arr1）指向的内存不再有效，在 arr（以及 ret）被销毁时系统已经归还给操作系统了。<br>
+<br>
+总之，如果一个类需要定义析构函数，那么几乎可以肯定它也需要定义拷贝构造函数和赋值运算符。
+<h2>
+	需要拷贝操作的类也需要赋值操作，反之亦然</h2>
+虽然很多类需要定义所有（或是不需要定义任何）拷贝控制成员，但某些类所要完成的工作，只需要拷贝或者赋值操作，不需要析构操作。<br>
+<br>
+作为一个例子，考虑一个类为每个对象分配一个独有的、唯一的编号。这个类除了需要一个拷贝构造函数为每个新创建的对象生成一个新的编号，还需要一个赋值运算符来避免将一个对象的编号赋值给另外一个对象。但是，这个类并不需要析构函数。<br>
+<br>
+这个例子引出了第二个基本原则：如果一个类需要一个拷贝构造函数，几乎可以肯定它也需要一个赋值运算符；反之亦然。然而，无论需要拷贝构造函数还是需要复制运算符，都不必然意味着也需要析构函数。<br>
+</div>
+			<div id="arc-append">
+	<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+	<p style="margin-top:12px; text-align:center;">
+		<img width="180" src="./9.5C++拷贝控制操作（三_五法则）_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+		<span class="col-green">微信扫描二维码关注公众号</span>
+	</p>
+</div>
+<!-- <p>关注微信公众号「魏雪原」，跟着<a class="col-link" href="/view/8092.html" target="_blank">站长</a>一起学习，拒绝躺平，跳出内卷，用知识完成阶级跃升：</p>
+	<ul>
+		<li>每日更新，坚持原创，敢说真话，凡事有态度。</li>
+		<li>编程+求职+创业+营销，既有硬知识，也有软技能。</li>
+		<li>手机端阅读教程，随时随地都能学习。</li>
+		<li>即将绑定网站部分功能，包括注册登录、找回密码、获取下载链接等。</li>
+	</ul> -->
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2337.html">C++重载=（赋值运算符）</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/2339.html">C++转换构造函数</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-bottom"></div>
+
+<!-- <div id="ad-bottom-weixin" class="clearfix">
+	<div class="left" style="width: 535px;">
+		<p><span class="col-red">编程帮</span>，一个分享编程知识的公众号。跟着<a class="col-link" href="/cpp/about/author/" target="_blank">站长</a>一起学习，每天都有进步。</p>
+		<p>通俗易懂，深入浅出，一篇文章只讲一个知识点。</p>
+		<p>文章不深奥，不需要钻研，在公交、在地铁、在厕所都可以阅读，随时随地涨姿势。</p>
+		<p>文章不涉及代码，不烧脑细胞，人人都可以学习。</p>
+		<p>当你决定关注「编程帮」，你已然超越了90%的程序员！</p>
+	</div>
+	<div class="right" style="width: 150px;">
+		<img width="150" src="/templets/new/images/erweima_biancheng.gif?v=1.6.72" alt="编程帮二维码" /><br />
+		<span class="col-green">微信扫描二维码关注</span>
+	</div>
+</div> -->
+
+<div id="nice-arcs" class="box-bottom">
+	<h4>优秀文章</h4>
+	<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/451.html" title="与编译器相关的几个知识点">与编译器相关的几个知识点</a></li>
+<li><a href="http://c.biancheng.net/view/vip_2108.html" title="C语言内存泄露（内存丢失）">C语言内存泄露（内存丢失）</a></li>
+<li><a href="http://c.biancheng.net/view/vip_2253.html" title="C++引用不能绑定到临时数据">C++引用不能绑定到临时数据</a></li>
+<li><a href="http://c.biancheng.net/view/2311.html" title="C++重载&gt;&gt;和&lt;&lt;（输入和输出运算符）详解">C++重载&gt;&gt;和&lt;&lt;（输入和输出运算符）详解</a></li>
+<li><a href="http://c.biancheng.net/view/3177.html" title="Android蓝牙通信开发实例演示">Android蓝牙通信开发实例演示</a></li>
+<li><a href="http://c.biancheng.net/view/5124.html" title="Go语言正则表达式：regexp包">Go语言正则表达式：regexp包</a></li>
+<li><a href="http://c.biancheng.net/view/5804.html" title="PyCharm下载和安装教程（包含配置Python解释器）">PyCharm下载和安装教程（包含配置Python解释器）</a></li>
+<li><a href="http://c.biancheng.net/view/vip_6074.html" title="利用面向对象思想实现搜索引擎">利用面向对象思想实现搜索引擎</a></li>
+<li><a href="http://c.biancheng.net/view/6446.html" title="使用UDP协议进行路由跟踪">使用UDP协议进行路由跟踪</a></li>
+<li><a href="http://c.biancheng.net/view/7907.html" title="jQuery常用鼠标事件汇总">jQuery常用鼠标事件汇总</a></li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 2338;
+window.arcId = "5ec73CbBGmf3EY0SiFnl7hkKYmYEvKAFoqBYpI2SkV7RETwYZXxl1BK98Lo";
+window.typeidChain = "158|19";
+</script>
+<div id="footer" class="clearfix">
+	<div class="info left">
+	<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+	<p>
+		<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+		<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+	</p>
+	<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+	</div>
+	<img class="right" src="./9.5C++拷贝控制操作（三_五法则）_files/logo_bottom.gif" alt="底部Logo">
+	<span id="return-top"><b>↑</b></span>
+</div>
+
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.72";
+</script>
+
+<script src="./9.5C++拷贝控制操作（三_五法则）_files/jquery1.12.4.min.js.下载"></script>
+<script src="./9.5C++拷贝控制操作（三_五法则）_files/common.js.下载"></script>
+<span style="display:none;"><script src="./9.5C++拷贝控制操作（三_五法则）_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>

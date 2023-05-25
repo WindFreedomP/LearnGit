@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://c.biancheng.net/view/vip_7678.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./12.4C++ const常量如何在多文件编程中使用？_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<!-- 启用Chromium高速渲染模式 -->
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<!-- 禁止百度转码 -->
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!-- 禁止识别电话号码 -->
+<meta name="format-detection" content="telephone=no">
+
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.72">
+<link href="./12.4C++ const常量如何在多文件编程中使用？_files/common.css" rel="stylesheet">
+<title>C++ const常量如何在多文件编程中使用？</title>
+<meta name="description" content="《 C++多文件编程是什么 》一节提到，多文件编程中代码的划分原则是：将变量、函数或者类的声明部分存放在 .h 文件，对应的实现部分放在 .cpp 文件中。值得一提得是，此规律适用于">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+	<ul id="product-type" class="left">
+		<li>
+			<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+		</li>
+		<li class="active">
+			<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+		</li>
+		<li>
+			<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+		</li>
+	</ul>
+</div>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="http://c.biancheng.net/">
+		<img height="26" src="./12.4C++ const常量如何在多文件编程中使用？_files/logo.png" alt="C语言中文网">
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+		<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+		<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+		<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+		<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+		<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+		<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/cplus/">C++</a></dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href="http://c.biancheng.net/cplus/c2cpp/">从C到C++</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href="http://c.biancheng.net/cplus/class/">类和对象</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href="http://c.biancheng.net/cplus/25/">C++引用</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href="http://c.biancheng.net/cplus/polymorphism/">C++多态与虚函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href="http://c.biancheng.net/cplus/operator/">运算符重载</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href="http://c.biancheng.net/cplus/70/">模板</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href="http://c.biancheng.net/cplus/exception/">C++异常</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href="http://c.biancheng.net/cplus/50/">输入输出流</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href="http://c.biancheng.net/cplus/60/">文件操作</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">12</span> <a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a> </dd><dl class="dl-sub"><dd>12.1 <a href="http://c.biancheng.net/view/vip_7675.html">C++多文件编程是什么</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.2 <a href="http://c.biancheng.net/view/vip_7676.html">C++如何防止头文件被重复引入（3种方法）？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.3 <a href="http://c.biancheng.net/view/vip_7677.html">C++命名空间如何应用在多文件编程中？</a><span class="glyphicon glyphicon-usd"></span></dd><dd class="active">12.4 <a href="http://c.biancheng.net/view/vip_7678.html">C++ const常量如何在多文件编程中使用？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.5 <a href="http://c.biancheng.net/view/vip_7679.html">C++多文件项目如何用g++命令执行？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>12.6 <a href="http://c.biancheng.net/view/vip_7680.html">读完本文，你就能彻底明白C++多文件编程！</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div class="arc-info">
+	<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/cplus/">C++</a> &gt; <a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a></span>
+	<span class="read-num">阅读：3,573</span>
+</div>
+
+<div id="ad-position-bottom"></div>
+			<h1>C++ const常量如何在多文件编程中使用？</h1>
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/vip_7677.html">C++命名空间如何应用在多文件编程中？</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_7679.html">C++多文件项目如何用g++命令执行？</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="default"><a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank" style="color:#D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+			<div id="arc-body">《<a href="http://c.biancheng.net/view/7630.html" target="_blank">C++多文件编程是什么</a>》一节提到，多文件编程中代码的划分原则是：将变量、函数或者类的声明部分存放在 .h 文件，对应的实现部分放在 .cpp 文件中。值得一提得是，此规律适用于大部分场景，但本节要讲的 const 常量是一个例外。<br>
+<br>
+我们知道，用 const 修饰的变量必须在定义的同时进行初始化操作（除非用 extern 修饰，本节后续会讲解）。与此同时，C++ 中 const 关键字的功能有 2 个，除了表明其修饰的变量为常量外，还将所修饰变量的可见范围限制为当前文件。这意味着，除非 const 常量的定义和 main 主函数位于同一个 .cpp 文件，否则该 const 常量只能在其所在的 .cpp 文件中使用。<br>
+<br>
+那么，如何定义 const 常量，才能在其他文件中使用呢？接下来给读者介绍 3 种在 C++ 多文件编程中定义 const 常量的方法。<br>
+<h4>
+	1) 将const常量定义在.h头文件中</h4>
+首先介绍一种最常用也最简单的方法，就是将 const 常量定义在 .h 文件中。<br>
+<blockquote>
+	<p>
+		显然此方式违背了“声明位于 .h 文件，定义（实现）位于 .cpp 文件”的规律。在 C++ 多文件编程中，还有 2 种特殊情况是违背此规律的，分别是类的定义和内联函数的定义，通常情况下它们也都定义在 .h 文件中。</p>
+</blockquote>
+举个例子（实例一）：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_7678.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_7678.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_7678.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_comment">//demo.h</span></li><li><span class="sh_preproc">#ifndef</span> _DEMO_H</li><li><span class="sh_preproc">#define</span> _DEMO_H</li><li><span class="sh_keyword">const</span> <span class="sh_type">int</span> num <span class="sh_symbol">=</span> <span class="sh_number">10</span><span class="sh_symbol">;</span></li><li><span class="sh_preproc">#endif</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//main.cpp</span></li><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;iostream&gt;</span></li><li><span class="sh_preproc">#include</span><span class="sh_string">"demo.h"</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span> <span class="sh_cbracket">{</span></li><li>    std<span class="sh_symbol">::</span>cout <span class="sh_symbol">&lt;&lt;</span> num <span class="sh_symbol">&lt;&lt;</span> std<span class="sh_symbol">::</span>endl<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">//demo.h
+#ifndef _DEMO_H
+#define _DEMO_H
+const int num = 10;
+#endif
+
+//main.cpp
+#include &lt;iostream&gt;
+#include"demo.h"
+int main() {
+    std::cout &lt;&lt; num &lt;&lt; std::endl;
+    return 0;
+}</pre></div></div>
+项目执行结果为：
+<p class="info-box">
+	10</p>
+<blockquote>
+	<p>
+		注意，将 const 常量定义在 .h 文件中，为了避免头文件被重复引入，推荐使用 #ifndef/#define/#endif 结构。除此之外，还有 2 中方式可以避免头文件被重复引入，读者可阅读《<a href="http://c.biancheng.net/view/7636.html" target="_blank">C++防止头文件被重复引入的3种方法</a>》一文做详细了解。</p>
+</blockquote>
+可以看到，使用此方式定义的 const 常量，只需引入其头文件（比如这里的 demo.h），就可以使用它。<br>
+<h4>
+	2) 借助extern先声明再定义const常量</h4>
+当然，const 常量的定义也可以遵循“声明在 .h 文件，定义在 .cpp 文件”，借助 extern 关键字即可。例如（实例二）：<br>
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_7678.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_7678.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_7678.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_comment">//demo.h</span></li><li><span class="sh_preproc">#ifndef</span> _DEMO_H</li><li><span class="sh_preproc">#define</span> _DEMO_H</li><li><span class="sh_keyword">extern</span> <span class="sh_keyword">const</span> <span class="sh_type">int</span> num<span class="sh_symbol">;</span>  <span class="sh_comment">//声明 const 常量</span></li><li><span class="sh_preproc">#endif</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//demo.cpp</span></li><li><span class="sh_preproc">#include</span> <span class="sh_string">"demo.h"</span>   <span class="sh_comment">//一定要引入该头文件</span></li><li><span class="sh_keyword">const</span> <span class="sh_type">int</span> num <span class="sh_symbol">=</span><span class="sh_number">10</span><span class="sh_symbol">;</span>  <span class="sh_comment">//定义 .h 文件中声明的 num 常量</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//main.cpp</span></li><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;iostream&gt;</span></li><li><span class="sh_preproc">#include</span> <span class="sh_string">"demo.h"</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span> <span class="sh_cbracket">{</span></li><li>    std<span class="sh_symbol">::</span>cout <span class="sh_symbol">&lt;&lt;</span> num <span class="sh_symbol">&lt;&lt;</span> std<span class="sh_symbol">::</span>endl<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">//demo.h
+#ifndef _DEMO_H
+#define _DEMO_H
+extern const int num;  //声明 const 常量
+#endif
+
+//demo.cpp
+#include "demo.h"   //一定要引入该头文件
+const int num =10;  //定义 .h 文件中声明的 num 常量
+
+//main.cpp
+#include &lt;iostream&gt;
+#include "demo.h"
+int main() {
+    std::cout &lt;&lt; num &lt;&lt; std::endl;
+    return 0;
+}</pre></div></div>
+项目执行结果为：
+<p class="info-box">
+	10</p>
+前面讲过，C++ const 关键字会限定变量的可见范围为当前文件，即无法在其它文件中使用该常量。而 extern 关键字会 const 限定可见范围的功能，它可以使 const 常量的可见范围恢复至整个项目。<br>
+<h4>
+	3) 借助extern直接定义const常量</h4>
+值得一提的是，第 2 种使用 extern 定义 const 常量的方式，还可以做进一步优化。<br>
+<br>
+以实例二为例，demo.cpp 和 main.cpp 中都引入了 demo.h，而 demo.h 文件中只包含对 const num 常量的声明。要知道 C++ 编译器在运行项目时，会在预处理阶段直接将 #include 引入的头文件替换成该头文件中的内容（就可以理解为傻瓜式的复制粘贴）。<br>
+<br>
+因此，我们可以将实例二中的项目做如下修改：<br>
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_7678.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_7678.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_7678.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_comment">//demo.cpp</span></li><li><span class="sh_keyword">extern</span> <span class="sh_keyword">const</span> <span class="sh_type">int</span> num <span class="sh_symbol">=</span><span class="sh_number">10</span><span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//main.cpp</span></li><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;iostream&gt;</span></li><li><span class="sh_keyword">extern</span> <span class="sh_keyword">const</span> <span class="sh_type">int</span> num<span class="sh_symbol">;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span> <span class="sh_cbracket">{</span></li><li>    std<span class="sh_symbol">::</span>cout <span class="sh_symbol">&lt;&lt;</span> num <span class="sh_symbol">&lt;&lt;</span> std<span class="sh_symbol">::</span>endl<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">//demo.cpp
+extern const int num =10;
+
+//main.cpp
+#include &lt;iostream&gt;
+extern const int num;
+int main() {
+    std::cout &lt;&lt; num &lt;&lt; std::endl;
+    return 0;
+}</pre></div></div>
+项目执行结果为：
+<p class="info-box">
+	10</p>
+显然相比实例二，此项目中省略了 demo.h 头文件的创建，一定程序上提高了项目的编译效率。<br>
+<blockquote>
+	<p>
+		本节介绍了 3 种在多文件编程中使用 const 常量的方法，相比后 2 种借助 extern 修饰 const 常量的方式，第一种方式更简单、更常用，推荐读者使用。</p>
+</blockquote>
+</div>
+			<div id="arc-append">
+	<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+	<p style="margin-top:12px; text-align:center;">
+		<img width="180" src="./12.4C++ const常量如何在多文件编程中使用？_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+		<span class="col-green">微信扫描二维码关注公众号</span>
+	</p>
+</div>
+<!-- <p>关注微信公众号「魏雪原」，跟着<a class="col-link" href="/view/8092.html" target="_blank">站长</a>一起学习，拒绝躺平，跳出内卷，用知识完成阶级跃升：</p>
+	<ul>
+		<li>每日更新，坚持原创，敢说真话，凡事有态度。</li>
+		<li>编程+求职+创业+营销，既有硬知识，也有软技能。</li>
+		<li>手机端阅读教程，随时随地都能学习。</li>
+		<li>即将绑定网站部分功能，包括注册登录、找回密码、获取下载链接等。</li>
+	</ul> -->
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/vip_7677.html">C++命名空间如何应用在多文件编程中？</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_7679.html">C++多文件项目如何用g++命令执行？</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-bottom"></div>
+
+<!-- <div id="ad-bottom-weixin" class="clearfix">
+	<div class="left" style="width: 535px;">
+		<p><span class="col-red">编程帮</span>，一个分享编程知识的公众号。跟着<a class="col-link" href="/cpp/about/author/" target="_blank">站长</a>一起学习，每天都有进步。</p>
+		<p>通俗易懂，深入浅出，一篇文章只讲一个知识点。</p>
+		<p>文章不深奥，不需要钻研，在公交、在地铁、在厕所都可以阅读，随时随地涨姿势。</p>
+		<p>文章不涉及代码，不烧脑细胞，人人都可以学习。</p>
+		<p>当你决定关注「编程帮」，你已然超越了90%的程序员！</p>
+	</div>
+	<div class="right" style="width: 150px;">
+		<img width="150" src="/templets/new/images/erweima_biancheng.gif?v=1.6.72" alt="编程帮二维码" /><br />
+		<span class="col-green">微信扫描二维码关注</span>
+	</div>
+</div> -->
+
+<div id="nice-arcs" class="box-bottom">
+	<h4>优秀文章</h4>
+	<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/566.html" title="C++ nth_element(STL nth_element)排序算法详解">C++ nth_element(STL nth_element)排序算法详解</a></li>
+<li><a href="http://c.biancheng.net/view/1971.html" title="什么是强化学习算法">什么是强化学习算法</a></li>
+<li><a href="http://c.biancheng.net/view/2178.html" title="Python截取字符串（字符串切片）方法详解">Python截取字符串（字符串切片）方法详解</a></li>
+<li><a href="http://c.biancheng.net/view/2187.html" title="Python三目运算符（三元运算符）用法详解">Python三目运算符（三元运算符）用法详解</a></li>
+<li><a href="http://c.biancheng.net/view/3200.html" title="NFC（近场通信）是什么？">NFC（近场通信）是什么？</a></li>
+<li><a href="http://c.biancheng.net/view/4022.html" title="JSP是什么？JSP优点有哪些？">JSP是什么？JSP优点有哪些？</a></li>
+<li><a href="http://c.biancheng.net/view/4231.html" title="Hibernate二级缓存详解">Hibernate二级缓存详解</a></li>
+<li><a href="http://c.biancheng.net/view/4836.html" title="JSP application.setAttribute()方法：设置属性">JSP application.setAttribute()方法：设置属性</a></li>
+<li><a href="http://c.biancheng.net/view/6441.html" title="TCP报文格式解析">TCP报文格式解析</a></li>
+<li><a href="http://c.biancheng.net/pygame/display.html" title="Pygame Display显示模块详解">Pygame Display显示模块详解</a></li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 7678;
+window.arcId = "92c2ywRsqOwKA9zS0IyFxGaGwfS7HAQ0m4Pchxv6YdID6SbbUBTMBMr8m0U";
+window.typeidChain = "358|19";
+</script>
+<div id="footer" class="clearfix">
+	<div class="info left">
+	<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+	<p>
+		<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+		<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+	</p>
+	<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+	</div>
+	<img class="right" src="./12.4C++ const常量如何在多文件编程中使用？_files/logo_bottom.gif" alt="底部Logo">
+	<span id="return-top"><b>↑</b></span>
+</div>
+
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.72";
+</script>
+
+<script src="./12.4C++ const常量如何在多文件编程中使用？_files/jquery1.12.4.min.js.下载"></script>
+<script src="./12.4C++ const常量如何在多文件编程中使用？_files/common.js.下载"></script>
+<span style="display:none;"><script src="./12.4C++ const常量如何在多文件编程中使用？_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://c.biancheng.net/view/vip_3774.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./2.20C++ string的内部究竟是什么样的？_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<!-- 启用Chromium高速渲染模式 -->
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<!-- 禁止百度转码 -->
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!-- 禁止识别电话号码 -->
+<meta name="format-detection" content="telephone=no">
+
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.72">
+<link href="./2.20C++ string的内部究竟是什么样的？_files/common.css" rel="stylesheet">
+<title>C++ string的内部究竟是什么样的？</title>
+<meta name="description" content="在C语言中，有两种方式表示字符串： 一种是用字符数组来容纳字符串，例如 char str[10] = abc ，这样的字符串是可读写的； 一种是使用字符串常量，例如 char *str = abc ，这样的字符串只能">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+	<ul id="product-type" class="left">
+		<li>
+			<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+		</li>
+		<li class="active">
+			<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+		</li>
+		<li>
+			<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+		</li>
+	</ul>
+</div>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="http://c.biancheng.net/">
+		<img height="26" src="./2.20C++ string的内部究竟是什么样的？_files/logo.png" alt="C语言中文网">
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+		<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+		<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+		<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+		<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+		<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+		<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/cplus/">C++</a></dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href="http://c.biancheng.net/cplus/c2cpp/">从C到C++</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">2</span> <a href="http://c.biancheng.net/cplus/class/">类和对象</a> </dd><dl class="dl-sub"><dd>2.1 <a href="http://c.biancheng.net/view/2213.html">C++类的定义和对象的创建</a></dd><dd>2.2 <a href="http://c.biancheng.net/view/2214.html">C++类的成员变量和成员函数</a></dd><dd>2.3 <a href="http://c.biancheng.net/view/2217.html">类成员的访问权限以及类的封装</a></dd><dd>2.4 <a href="http://c.biancheng.net/view/vip_2218.html">C++对象的内存模型</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.5 <a href="http://c.biancheng.net/view/vip_2220.html">C++函数编译原理和成员函数的实现</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.6 <a href="http://c.biancheng.net/view/2221.html">C++构造函数</a></dd><dd>2.7 <a href="http://c.biancheng.net/view/2223.html">C++构造函数初始化列表</a></dd><dd>2.8 <a href="http://c.biancheng.net/view/2224.html">C++析构函数</a></dd><dd>2.9 <a href="http://c.biancheng.net/view/vip_2240.html">C++对象数组（数组的每个元素都是对象）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.10 <a href="http://c.biancheng.net/view/vip_2242.html">C++成员对象和封闭类</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.11 <a href="http://c.biancheng.net/view/2226.html">C++ this指针</a></dd><dd>2.12 <a href="http://c.biancheng.net/view/2227.html">C++静态成员变量</a></dd><dd>2.13 <a href="http://c.biancheng.net/view/2228.html">C++静态成员函数</a></dd><dd>2.14 <a href="http://c.biancheng.net/view/2230.html">C++ const成员变量和成员函数</a></dd><dd>2.15 <a href="http://c.biancheng.net/view/2232.html">C++ const对象</a></dd><dd>2.16 <a href="http://c.biancheng.net/view/2233.html">C++友元函数和友元类</a></dd><dd>2.17 <a href="http://c.biancheng.net/view/vip_2234.html">类其实也是一种作用域</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.18 <a href="http://c.biancheng.net/view/2235.html">C++ class和struct的区别</a></dd><dd>2.19 <a href="http://c.biancheng.net/view/2236.html">C++ string（C++字符串）</a></dd><dd class="active">2.20 <a href="http://c.biancheng.net/view/vip_3774.html">C++ string的内部究竟是什么样的</a><span class="glyphicon glyphicon-usd"></span></dd><dd>2.21 <a href="http://c.biancheng.net/view/221.html">本章小结，拿去做笔记吧</a></dd></dl>
+			<dd>
+				<span class="channel-num">3</span>
+				<a href="http://c.biancheng.net/cplus/25/">C++引用</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href="http://c.biancheng.net/cplus/polymorphism/">C++多态与虚函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href="http://c.biancheng.net/cplus/operator/">运算符重载</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href="http://c.biancheng.net/cplus/70/">模板</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href="http://c.biancheng.net/cplus/exception/">C++异常</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href="http://c.biancheng.net/cplus/50/">输入输出流</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href="http://c.biancheng.net/cplus/60/">文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div class="arc-info">
+	<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/cplus/">C++</a> &gt; <a href="http://c.biancheng.net/cplus/class/">类和对象</a></span>
+	<span class="read-num">阅读：17,473</span>
+</div>
+
+<div id="ad-position-bottom"></div>
+			<h1>C++ string的内部究竟是什么样的？</h1>
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2236.html">C++ string（C++字符串）</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/221.html">本章小结，拿去做笔记吧</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="default"><a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank" style="color:#D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+			<div id="arc-body">在C语言中，有两种方式表示字符串：
+<ul>
+	<li>
+		一种是用字符数组来容纳字符串，例如<code>char str[10] = "abc"</code>，这样的字符串是可读写的；</li>
+	<li>
+		一种是使用字符串常量，例如<code>char *str = "abc"</code>，这样的字符串只能读，不能写。</li>
+</ul>
+<br>
+两种形式总是以<code style="font-size: 14px;">\0</code>作为结束标志。<br>
+<br>
+C++ string 与它们在C语言中的前身截然不同。首先，也是最重要的不同点，C++ string 隐藏了它所包含的字符序列的物理表示。程序设计人员不必关心数组的维数或<code>\0</code>方面的问题。<br>
+<br>
+string 在内部封装了与内存和容量有关的信息。具体地说，C++ string 对象知道自己在内存中的开始位置、包含的字符序列以及字符序列长度；当内存空间不足时，string 还会自动调整，让内存空间增长到足以容纳下所有字符序列的大小。<br>
+<br>
+C++ string 的这种做法，极大地减少了C语言编程中三种最常见且最具破坏性的错误：
+<ul>
+	<li>
+		数组越界；</li>
+	<li>
+		通过未被初始化或者被赋以错误值的指针来访问数组元紊；</li>
+	<li>
+		释放了数组所占内存，但是仍然保留了“悬空”指针。</li>
+</ul>
+<br>
+C++ 标准没有定义 string 类的内存布局，各个编译器厂商可以提供不同的实现，但必须保证 string 的行为一致。采用这种做法是为了获得足够的灵活性。<br>
+<br>
+特別是，C++ 标准没有定义在哪种确切的情况下应该为 string 对象分配内存空间来存储字符序列。string 内存分配规则明确规定：允许但不要求以引用计数（reference counting）的方式实现。但无论是否采用引用计数，其语义都必须一致。<br>
+<br>
+C++ 的这种做法和C语言不同，在C语言中，每个字符型数组都占据各自的物理存储区。在 C++ 中，独立的几个 string 对象可以占据也可以不占据各自特定的物理存储区，但是，如果采用引用计数避免了保存同一数据的拷贝副本，那么各个独立的对象（在处理上）必须看起来并表现得就像独占地拥有各自的存储区一样。例如：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_3774.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_3774.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_3774.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;iostream&gt;</span></li><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;string&gt;</span></li><li><span class="sh_keyword">using</span> <span class="sh_keyword">namespace</span> std<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span> <span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">string</span><span class="sh_normal"> </span><span class="sh_function">s1</span><span class="sh_symbol">(</span><span class="sh_string">"12345"</span><span class="sh_symbol">);</span></li><li>    <span class="sh_usertype">string</span><span class="sh_normal"> </span>s2 <span class="sh_symbol">=</span> s1<span class="sh_symbol">;</span></li><li>    cout <span class="sh_symbol">&lt;&lt;</span> <span class="sh_symbol">(</span>s1 <span class="sh_symbol">==</span> s2<span class="sh_symbol">)</span> <span class="sh_symbol">&lt;&lt;</span> endl<span class="sh_symbol">;</span></li><li>    s1<span class="sh_symbol">[</span><span class="sh_number">0</span><span class="sh_symbol">]</span> <span class="sh_symbol">=</span> <span class="sh_string">'6'</span><span class="sh_symbol">;</span></li><li>    cout <span class="sh_symbol">&lt;&lt;</span> <span class="sh_string">"s1 = "</span> <span class="sh_symbol">&lt;&lt;</span> s1 <span class="sh_symbol">&lt;&lt;</span> endl<span class="sh_symbol">;</span>  <span class="sh_comment">//62345</span></li><li>    cout <span class="sh_symbol">&lt;&lt;</span> <span class="sh_string">"s2 = "</span> <span class="sh_symbol">&lt;&lt;</span> s2 <span class="sh_symbol">&lt;&lt;</span> endl<span class="sh_symbol">;</span>  <span class="sh_comment">//12345</span></li><li>    cout <span class="sh_symbol">&lt;&lt;</span> <span class="sh_symbol">(</span>s1 <span class="sh_symbol">==</span> s2<span class="sh_symbol">)</span> <span class="sh_symbol">&lt;&lt;</span> endl<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    string s1("12345");
+    string s2 = s1;
+    cout &lt;&lt; (s1 == s2) &lt;&lt; endl;
+    s1[0] = '6';
+    cout &lt;&lt; "s1 = " &lt;&lt; s1 &lt;&lt; endl;  //62345
+    cout &lt;&lt; "s2 = " &lt;&lt; s2 &lt;&lt; endl;  //12345
+    cout &lt;&lt; (s1 == s2) &lt;&lt; endl;
+
+    return 0;
+}</pre></div></div>
+在 GCC 下的运行结果：<br>
+1<br>
+s1 = 62345<br>
+s2 = 12345<br>
+0<br>
+<br>
+只有当字符串被修改的时候才创建各自的拷贝，这种实现方式称为写时复制（copy-on-write）策略。当字符串只是作为值参数（value parameter）或在其他只读情形下使用，这种方法能够节省时间和空间。<br>
+<br>
+不论一个库的实现是不是采用引用计数，它对 string 类的使用者来说都应该是透明的。遗憾的是，情况并不总是这样。在多线程程序中，几乎不可能安全地使用引用计数来实现。</div>
+			<div id="arc-append">
+	<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+	<p style="margin-top:12px; text-align:center;">
+		<img width="180" src="./2.20C++ string的内部究竟是什么样的？_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+		<span class="col-green">微信扫描二维码关注公众号</span>
+	</p>
+</div>
+<!-- <p>关注微信公众号「魏雪原」，跟着<a class="col-link" href="/view/8092.html" target="_blank">站长</a>一起学习，拒绝躺平，跳出内卷，用知识完成阶级跃升：</p>
+	<ul>
+		<li>每日更新，坚持原创，敢说真话，凡事有态度。</li>
+		<li>编程+求职+创业+营销，既有硬知识，也有软技能。</li>
+		<li>手机端阅读教程，随时随地都能学习。</li>
+		<li>即将绑定网站部分功能，包括注册登录、找回密码、获取下载链接等。</li>
+	</ul> -->
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2236.html">C++ string（C++字符串）</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/221.html">本章小结，拿去做笔记吧</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-bottom"></div>
+
+<!-- <div id="ad-bottom-weixin" class="clearfix">
+	<div class="left" style="width: 535px;">
+		<p><span class="col-red">编程帮</span>，一个分享编程知识的公众号。跟着<a class="col-link" href="/cpp/about/author/" target="_blank">站长</a>一起学习，每天都有进步。</p>
+		<p>通俗易懂，深入浅出，一篇文章只讲一个知识点。</p>
+		<p>文章不深奥，不需要钻研，在公交、在地铁、在厕所都可以阅读，随时随地涨姿势。</p>
+		<p>文章不涉及代码，不烧脑细胞，人人都可以学习。</p>
+		<p>当你决定关注「编程帮」，你已然超越了90%的程序员！</p>
+	</div>
+	<div class="right" style="width: 150px;">
+		<img width="150" src="/templets/new/images/erweima_biancheng.gif?v=1.6.72" alt="编程帮二维码" /><br />
+		<span class="col-green">微信扫描二维码关注</span>
+	</div>
+</div> -->
+
+<div id="nice-arcs" class="box-bottom">
+	<h4>优秀文章</h4>
+	<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/816.html" title="Linux rpm命令管理（安装、升级和卸载）RPM包方法详解">Linux rpm命令管理（安装、升级和卸载）RPM包方法详解</a></li>
+<li><a href="http://c.biancheng.net/view/4244.html" title="Spring目录结构和基础JAR包介绍">Spring目录结构和基础JAR包介绍</a></li>
+<li><a href="http://c.biancheng.net/view/4767.html" title="Java Connection.prepareCall()方法：调用数据库存储过程">Java Connection.prepareCall()方法：调用数据库存储过程</a></li>
+<li><a href="http://c.biancheng.net/view/5956.html" title="Linux重定向（输入输出重定向）详解">Linux重定向（输入输出重定向）详解</a></li>
+<li><a href="http://c.biancheng.net/view/6185.html" title="PHP $_SERVER详解">PHP $_SERVER详解</a></li>
+<li><a href="http://c.biancheng.net/view/6365.html" title="服务器是什么？">服务器是什么？</a></li>
+<li><a href="http://c.biancheng.net/view/6538.html" title="C++ STL的发展历程是怎样的？">C++ STL的发展历程是怎样的？</a></li>
+<li><a href="http://c.biancheng.net/view/7286.html" title="C++ STL流迭代器（stream_iterator）用法详解">C++ STL流迭代器（stream_iterator）用法详解</a></li>
+<li><a href="http://c.biancheng.net/jsp2/include_command.html" title="JSP include指令">JSP include指令</a></li>
+<li><a href="http://c.biancheng.net/mybatis/sql-dynamic.html" title="MyBatis动态SQL">MyBatis动态SQL</a></li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 3774;
+window.arcId = "7dccPYereG1tXw0aGMFxnOuuvFNx2Hjtb0h3tCedP1+tJEs2Z8WDenTFays";
+window.typeidChain = "27|19";
+</script>
+<div id="footer" class="clearfix">
+	<div class="info left">
+	<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+	<p>
+		<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+		<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+	</p>
+	<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+	</div>
+	<img class="right" src="./2.20C++ string的内部究竟是什么样的？_files/logo_bottom.gif" alt="底部Logo">
+	<span id="return-top"><b>↑</b></span>
+</div>
+
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.72";
+</script>
+
+<script src="./2.20C++ string的内部究竟是什么样的？_files/jquery1.12.4.min.js.下载"></script>
+<script src="./2.20C++ string的内部究竟是什么样的？_files/common.js.下载"></script>
+<span style="display:none;"><script src="./2.20C++ string的内部究竟是什么样的？_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>

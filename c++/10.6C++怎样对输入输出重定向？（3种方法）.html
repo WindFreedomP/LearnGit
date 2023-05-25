@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://c.biancheng.net/view/vip_7683.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./10.6C++怎样对输入输出重定向？（3种方法）_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<!-- 启用Chromium高速渲染模式 -->
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<!-- 禁止百度转码 -->
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!-- 禁止识别电话号码 -->
+<meta name="format-detection" content="telephone=no">
+
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.72">
+<link href="./10.6C++怎样对输入输出重定向？（3种方法）_files/common.css" rel="stylesheet">
+<title>C++怎样对输入输出重定向？（3种方法）</title>
+<meta name="description" content="《 C++输入流和输出流 》一节提到，cout 和 cerr、clog 的一个区别是，cout 允许被重定向，而 cerr 和 clog 都不支持。值得一提的是，cin 也允许被重定向。 那么，什么是重定向呢？在默认情">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+	<ul id="product-type" class="left">
+		<li>
+			<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+		</li>
+		<li class="active">
+			<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+		</li>
+		<li>
+			<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+		</li>
+	</ul>
+</div>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="http://c.biancheng.net/">
+		<img height="26" src="./10.6C++怎样对输入输出重定向？（3种方法）_files/logo.png" alt="C语言中文网">
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+		<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+		<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+		<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+		<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+		<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+		<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/cplus/">C++</a></dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href="http://c.biancheng.net/cplus/c2cpp/">从C到C++</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href="http://c.biancheng.net/cplus/class/">类和对象</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href="http://c.biancheng.net/cplus/25/">C++引用</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href="http://c.biancheng.net/cplus/polymorphism/">C++多态与虚函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href="http://c.biancheng.net/cplus/operator/">运算符重载</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">7</span>
+				<a href="http://c.biancheng.net/cplus/70/">模板</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">8</span>
+				<a href="http://c.biancheng.net/cplus/exception/">C++异常</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">10</span> <a href="http://c.biancheng.net/cplus/50/">输入输出流</a> </dd><dl class="dl-sub"><dd>10.1 <a href="http://c.biancheng.net/view/7559.html">什么是流，C++输入流和输出流</a></dd><dd>10.2 <a href="http://c.biancheng.net/view/3750.html">C++输出单个字符</a></dd><dd>10.3 <a href="http://c.biancheng.net/view/7585.html">C++输出字符串</a></dd><dd>10.4 <a href="http://c.biancheng.net/view/7587.html">C++ cout.tellp()和cout.seekp()方法</a></dd><dd>10.5 <a href="http://c.biancheng.net/view/7578.html">C++ cout格式化输出</a></dd><dd class="active">10.6 <a href="http://c.biancheng.net/view/vip_7683.html">C++怎样对输入输出重定向？（3种方法）</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.7 <a href="http://c.biancheng.net/view/vip_7684.html">C++如何管理输出缓冲区？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.8 <a href="http://c.biancheng.net/view/278.html">C++读取单个字符</a></dd><dd>10.9 <a href="http://c.biancheng.net/view/279.html">C++读入一行字符串</a></dd><dd>10.10 <a href="http://c.biancheng.net/view/vip_7686.html">C++如何跳过（忽略）指定字符？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.11 <a href="http://c.biancheng.net/view/vip_7688.html">C++怎样查看输入流中的下一个字符？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.12 <a href="http://c.biancheng.net/view/vip_7687.html">C++ cin是如何判断输入结束（读取结束）的？</a><span class="glyphicon glyphicon-usd"></span></dd><dd>10.13 <a href="http://c.biancheng.net/view/vip_7685.html">C++处理输入输出错误</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">11</span>
+				<a href="http://c.biancheng.net/cplus/60/">文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div class="arc-info">
+	<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/cplus/">C++</a> &gt; <a href="http://c.biancheng.net/cplus/50/">输入输出流</a></span>
+	<span class="read-num">阅读：4,103</span>
+</div>
+
+<div id="ad-position-bottom"></div>
+			<h1>C++怎样对输入输出重定向？（3种方法）</h1>
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/7578.html">C++ cout格式化输出</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_7684.html">C++如何管理输出缓冲区？</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="default"><a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank" style="color:#D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+			<div id="arc-body">《<a href="http://c.biancheng.net/view/7559.html" target="_blank">C++输入流和输出流</a>》一节提到，cout 和 cerr、clog 的一个区别是，cout 允许被重定向，而 cerr 和 clog 都不支持。值得一提的是，cin 也允许被重定向。<br>
+<br>
+那么，什么是重定向呢？在默认情况下，cin 只能接收从键盘输入的数据，cout 也只能将数据输出到屏幕上。但通过重定向，cin 可以将指定文件作为输入源，即接收文件中早已准备好的数据，同样 cout 可以将原本要输出到屏幕上的数据转而写到指定文件中。<br>
+<br>
+C++ 中，实现重定向的常用方式有 3 种，本节将一一做详细讲解。
+<h2>
+	C++ freopen()函数实现重定向</h2>
+freopen() 定义在<code>&lt;stdio.h&gt;</code>头文件中，是 C 语言标准库中的函数，专门用于重定向输入流（包括 scanf()、gets() 等）和输出流（包括 printf()、puts() 等）。值得一提的是，该函数也可以对 C++ 中的 cin 和 cout 进行重定向。<br>
+<br>
+举个例子：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_7683.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_7683.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_7683.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;iostream&gt;</span>    <span class="sh_comment">//cin、cout</span></li><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;string&gt;</span>      <span class="sh_comment">//string</span></li><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;stdio.h&gt;</span>     <span class="sh_comment">//freopen</span></li><li><span class="sh_keyword">using</span> <span class="sh_keyword">namespace</span> std<span class="sh_symbol">;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span>  </li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">string</span><span class="sh_normal"> </span>name<span class="sh_symbol">,</span> url<span class="sh_symbol">;</span></li><li>    <span class="sh_comment">//将标准输入流重定向到 in.txt 文件</span></li><li>    <span class="sh_function">freopen</span><span class="sh_symbol">(</span><span class="sh_string">"in.txt"</span><span class="sh_symbol">,</span> <span class="sh_string">"r"</span><span class="sh_symbol">,</span> stdin<span class="sh_symbol">);</span></li><li>    cin <span class="sh_symbol">&gt;&gt;</span> name <span class="sh_symbol">&gt;&gt;</span> url<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li>    <span class="sh_comment">//将标准输出重定向到 out.txt文件</span></li><li>    <span class="sh_function">freopen</span><span class="sh_symbol">(</span><span class="sh_string">"out.txt"</span><span class="sh_symbol">,</span> <span class="sh_string">"w"</span><span class="sh_symbol">,</span> stdout<span class="sh_symbol">);</span> </li><li>    cout <span class="sh_symbol">&lt;&lt;</span> name <span class="sh_symbol">&lt;&lt;</span> <span class="sh_string">"</span><span class="sh_specialchar">\n</span><span class="sh_string">"</span> <span class="sh_symbol">&lt;&lt;</span> url<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">#include &lt;iostream&gt;    //cin、cout
+#include &lt;string&gt;      //string
+#include &lt;stdio.h&gt;     //freopen
+using namespace std;
+int main()  
+{
+    string name, url;
+    //将标准输入流重定向到 in.txt 文件
+    freopen("in.txt", "r", stdin);
+    cin &gt;&gt; name &gt;&gt; url;
+
+    //将标准输出重定向到 out.txt文件
+    freopen("out.txt", "w", stdout); 
+    cout &lt;&lt; name &lt;&lt; "\n" &lt;&lt; url;
+    return 0;
+}</pre></div></div>
+执行此程序之前，我们需要找到当前程序文件所在的目录，并手动创建一个 in.txt 文件，其包含的内容如下：
+<p class="info-box">
+	C++<br>
+	http://c.biancheng.net/cplus/</p>
+创建好 in.txt 文件之后，可以执行此程序，其执行结果为：
+<p class="info-box">
+	&nbsp;&nbsp;&nbsp; &lt;--控制台中，既不需要手动输入，也没有任何输出</p>
+与此同时，in.txt 文件所在目录下会自动生成一个 out.txt 文件，其包含的内容和 in.txt 文件相同：
+<p class="info-box">
+	C++<br>
+	http://c.biancheng.net/cplus/</p>
+显然，通过 2 次调用 freopen() 函数，分别对输入流和输出流重定向，使得 cin 不再接收由键盘输入的数据，而是直接从 in.txt 文件中获取数据；同样，cout 也不再将数据输出到屏幕上，而是写入到 out.txt 文件中。<br>
+<h2>
+	C++ rdbuf()函数实现重定向</h2>
+rdbuf() 函数定义在<code>&lt;ios&gt;</code>头文件中，专门用于实现 C++ 输入输出流的重定向。<br>
+<br>
+值得一提的是，ios 作为 istream 和 ostream 类的基类，rdbuf() 函数也被继承，因此 cin 和 cout 可以直接调用该函数实现重定向。<br>
+<br>
+rdbuf() 函数的语法格式有 2 种，分别为：
+<pre class="info-box">streambuf * rdbuf() const;
+streambuf * rdbuf(streambuf * sb);</pre>
+<blockquote>
+	<p>
+		streambuf 是 C++ 标准库中用于表示缓冲区的类，该类的指针对象用于代指某个具体的流缓冲区。</p>
+</blockquote>
+其中，第一种语法格式仅是返回一个指向当前流缓冲区的指针；第二种语法格式用于将 sb 指向的缓冲区设置为当前流的新缓冲区，并返回一个指向旧缓冲区的对象。<br>
+<br>
+举个例子：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_7683.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_7683.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_7683.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;iostream&gt;</span></li><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;fstream&gt;</span></li><li><span class="sh_keyword">using</span> <span class="sh_keyword">namespace</span> std<span class="sh_symbol">;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span></li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_comment">//打开 in.txt 文件，等待读取</span></li><li>    <span class="sh_usertype">ifstream</span><span class="sh_normal"> </span><span class="sh_function">fin</span><span class="sh_symbol">(</span><span class="sh_string">"in.txt"</span><span class="sh_symbol">);</span></li><li>    <span class="sh_comment">//打开 out.txt 文件，等待写入</span></li><li>    <span class="sh_usertype">ofstream</span><span class="sh_normal"> </span><span class="sh_function">fout</span><span class="sh_symbol">(</span><span class="sh_string">"out.txt"</span><span class="sh_symbol">);</span></li><li>    <span class="sh_usertype">streambuf</span><span class="sh_normal"> </span><span class="sh_symbol">*</span>oldcin<span class="sh_symbol">;</span></li><li>    <span class="sh_usertype">streambuf</span><span class="sh_normal"> </span><span class="sh_symbol">*</span>oldcout<span class="sh_symbol">;</span></li><li>    <span class="sh_type">char</span> a<span class="sh_symbol">[</span><span class="sh_number">100</span><span class="sh_symbol">];</span></li><li>    <span class="sh_comment">//用 rdbuf() 重新定向，返回旧输入流缓冲区指针</span></li><li>    oldcin <span class="sh_symbol">=</span> cin<span class="sh_symbol">.</span><span class="sh_function">rdbuf</span><span class="sh_symbol">(</span>fin<span class="sh_symbol">.</span><span class="sh_function">rdbuf</span><span class="sh_symbol">());</span></li><li>    <span class="sh_comment">//从input.txt文件读入</span></li><li>    cin <span class="sh_symbol">&gt;&gt;</span> a<span class="sh_symbol">;</span></li><li>    <span class="sh_comment">//用 rdbuf() 重新定向，返回旧输出流缓冲区指针</span></li><li>    oldcout <span class="sh_symbol">=</span> cout<span class="sh_symbol">.</span><span class="sh_function">rdbuf</span><span class="sh_symbol">(</span>fout<span class="sh_symbol">.</span><span class="sh_function">rdbuf</span><span class="sh_symbol">());</span></li><li>    <span class="sh_comment">//写入 out.txt</span></li><li>    cout <span class="sh_symbol">&lt;&lt;</span> a <span class="sh_symbol">&lt;&lt;</span> endl<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li>    <span class="sh_comment">//还原标准输入输出流</span></li><li>    cin<span class="sh_symbol">.</span><span class="sh_function">rdbuf</span><span class="sh_symbol">(</span>oldcin<span class="sh_symbol">);</span> <span class="sh_comment">// 恢复键盘输入</span></li><li>    cout<span class="sh_symbol">.</span><span class="sh_function">rdbuf</span><span class="sh_symbol">(</span>oldcout<span class="sh_symbol">);</span> <span class="sh_comment">//恢复屏幕输出</span></li><li>    <span class="sh_comment">//打开的文件，最终需要手动关闭</span></li><li>    fin<span class="sh_symbol">.</span><span class="sh_function">close</span><span class="sh_symbol">();</span></li><li>    fout<span class="sh_symbol">.</span><span class="sh_function">close</span><span class="sh_symbol">();</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+using namespace std;
+int main()
+{
+    //打开 in.txt 文件，等待读取
+    ifstream fin("in.txt");
+    //打开 out.txt 文件，等待写入
+    ofstream fout("out.txt");
+    streambuf *oldcin;
+    streambuf *oldcout;
+    char a[100];
+    //用 rdbuf() 重新定向，返回旧输入流缓冲区指针
+    oldcin = cin.rdbuf(fin.rdbuf());
+    //从input.txt文件读入
+    cin &gt;&gt; a;
+    //用 rdbuf() 重新定向，返回旧输出流缓冲区指针
+    oldcout = cout.rdbuf(fout.rdbuf());
+    //写入 out.txt
+    cout &lt;&lt; a &lt;&lt; endl;
+
+    //还原标准输入输出流
+    cin.rdbuf(oldcin); // 恢复键盘输入
+    cout.rdbuf(oldcout); //恢复屏幕输出
+    //打开的文件，最终需要手动关闭
+    fin.close();
+    fout.close();
+    return 0;
+}</pre></div></div>
+<blockquote>
+	<p>
+		程序中涉及到的文件操作，后续章节会做详细讲解，读者只需领悟 rdbuf() 函数的用法即可。</p>
+</blockquote>
+仍以前面创建好的 in.txt 文件为例，执行此程序后，控制台不会输出任何数据，而是会在该项目的目录下生成一个 out.txt 文件，其中就存有该程序的执行结果：
+<p class="info-box">
+	C++<br>
+	http://c.biancheng.net/cplus/</p>
+<h2>
+	C++通过控制台实现重定向</h2>
+以上 2 种方法，都是从代码层面实现输入输出流的重定向。除此之外，我们还可以通过控制台实现输入输出的重定向。<br>
+<br>
+举个例子，假设有如下代码（文件名为 demo.cpp）：<br>
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_7683.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_7683.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_7683.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;iostream&gt;</span></li><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;string&gt;</span></li><li><span class="sh_keyword">using</span> <span class="sh_keyword">namespace</span> std<span class="sh_symbol">;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span></li><li><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">string</span><span class="sh_normal"> </span>name<span class="sh_symbol">,</span> url<span class="sh_symbol">;</span></li><li>    cin <span class="sh_symbol">&gt;&gt;</span> name <span class="sh_symbol">&gt;&gt;</span> url<span class="sh_symbol">;</span></li><li>    cout <span class="sh_symbol">&lt;&lt;</span> name <span class="sh_symbol">&lt;&lt;</span> <span class="sh_string">'</span><span class="sh_specialchar">\n</span><span class="sh_string">'</span> <span class="sh_symbol">&lt;&lt;</span> url<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+int main()
+{
+    string name, url;
+    cin &gt;&gt; name &gt;&gt; url;
+    cout &lt;&lt; name &lt;&lt; '\n' &lt;&lt; url;
+    return 0;
+}</pre></div></div>
+通过编译、链接后，会生成一个 demo.exe 可执行文件，该执行文件可以双击执行，也可以在控制台上执行。例如，打开控制台（Windows 系统下指的是 CMD命令行窗口，Linux 系统下指的是 Shell 终端），并输入如下指令：
+<p class="info-box">
+	C:\Users\mengma&gt;D:\demo.exe<br>
+	C++ http://c.biancheng.net/cplus/<br>
+	C++<br>
+	http://c.biancheng.net/cplus/</p>
+可以看到，demo.ext 成功被执行，但程序中的 cin 和 cout 并没有被重定向，因此这里仍需要我们手动输入测试数据。<br>
+<br>
+在此基础上，继续在控制台执行如下指令：
+<p class="info-box">
+	C:\Users\mengma&gt;D:\demo.exe &lt;in.txt &gt;out.txt</p>
+<blockquote>
+	<p>
+		需要注意的是，执行此命令前，需保证 C:\Users\mengma 目录下有 in.txt 文件。</p>
+</blockquote>
+执行后会发现，控制台没有任何输出。这是因为，我们使用了"&lt;in.txt"对程序中的 cin 输入流做了重定向，同时还用 "&gt;out.txt"对程序中的 cout 输出流做了重定向。<br>
+<br>
+如果此时读者进入 C:\Users\mengma 目录就会发现，当前目录生成了一个 out.txt 文件，其中就存储了 demo.ext 的执行结果。<br>
+<blockquote>
+	<p>
+		在控制台中使用 &gt; 或者 &lt; 实现重定向的方式，DOS、windows、Linux 以及 UNIX 都能自动识别。</p>
+</blockquote>
+</div>
+			<div id="arc-append">
+	<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+	<p style="margin-top:12px; text-align:center;">
+		<img width="180" src="./10.6C++怎样对输入输出重定向？（3种方法）_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+		<span class="col-green">微信扫描二维码关注公众号</span>
+	</p>
+</div>
+<!-- <p>关注微信公众号「魏雪原」，跟着<a class="col-link" href="/view/8092.html" target="_blank">站长</a>一起学习，拒绝躺平，跳出内卷，用知识完成阶级跃升：</p>
+	<ul>
+		<li>每日更新，坚持原创，敢说真话，凡事有态度。</li>
+		<li>编程+求职+创业+营销，既有硬知识，也有软技能。</li>
+		<li>手机端阅读教程，随时随地都能学习。</li>
+		<li>即将绑定网站部分功能，包括注册登录、找回密码、获取下载链接等。</li>
+	</ul> -->
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/7578.html">C++ cout格式化输出</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_7684.html">C++如何管理输出缓冲区？</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-bottom"></div>
+
+<!-- <div id="ad-bottom-weixin" class="clearfix">
+	<div class="left" style="width: 535px;">
+		<p><span class="col-red">编程帮</span>，一个分享编程知识的公众号。跟着<a class="col-link" href="/cpp/about/author/" target="_blank">站长</a>一起学习，每天都有进步。</p>
+		<p>通俗易懂，深入浅出，一篇文章只讲一个知识点。</p>
+		<p>文章不深奥，不需要钻研，在公交、在地铁、在厕所都可以阅读，随时随地涨姿势。</p>
+		<p>文章不涉及代码，不烧脑细胞，人人都可以学习。</p>
+		<p>当你决定关注「编程帮」，你已然超越了90%的程序员！</p>
+	</div>
+	<div class="right" style="width: 150px;">
+		<img width="150" src="/templets/new/images/erweima_biancheng.gif?v=1.6.72" alt="编程帮二维码" /><br />
+		<span class="col-green">微信扫描二维码关注</span>
+	</div>
+</div> -->
+
+<div id="nice-arcs" class="box-bottom">
+	<h4>优秀文章</h4>
+	<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/10.html" title="Go语言变量的初始化">Go语言变量的初始化</a></li>
+<li><a href="http://c.biancheng.net/view/1518.html" title="C++聚合和组合详解">C++聚合和组合详解</a></li>
+<li><a href="http://c.biancheng.net/view/3619.html" title="汇编语言压缩十进制运算简介">汇编语言压缩十进制运算简介</a></li>
+<li><a href="http://c.biancheng.net/view/3803.html" title="汇编语言ErrorHandler过程：获取错误信息">汇编语言ErrorHandler过程：获取错误信息</a></li>
+<li><a href="http://c.biancheng.net/view/3815.html" title="汇编语言页转换：线性地址转换位物理地址">汇编语言页转换：线性地址转换位物理地址</a></li>
+<li><a href="http://c.biancheng.net/view/5742.html" title="Java while和do while循环详解">Java while和do while循环详解</a></li>
+<li><a href="http://c.biancheng.net/view/5958.html" title="JS mousemove事件：鼠标移动事件">JS mousemove事件：鼠标移动事件</a></li>
+<li><a href="http://c.biancheng.net/view/6665.html" title="MATLAB文件的打开与关闭">MATLAB文件的打开与关闭</a></li>
+<li><a href="http://c.biancheng.net/jsp2/declaration.html" title="JSP声明语句">JSP声明语句</a></li>
+<li><a href="http://c.biancheng.net/dll/vip_8705.html" title="Linux下静态链接库的创建和使用">Linux下静态链接库的创建和使用</a></li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 7683;
+window.arcId = "126dXcsy1rr/1+fJ3e9N9UN+1zEcBSURLlz1UGztOWpDDNxtC520MkfCXAE";
+window.typeidChain = "43|19";
+</script>
+<div id="footer" class="clearfix">
+	<div class="info left">
+	<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+	<p>
+		<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+		<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+	</p>
+	<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+	</div>
+	<img class="right" src="./10.6C++怎样对输入输出重定向？（3种方法）_files/logo_bottom.gif" alt="底部Logo">
+	<span id="return-top"><b>↑</b></span>
+</div>
+
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.72";
+</script>
+
+<script src="./10.6C++怎样对输入输出重定向？（3种方法）_files/jquery1.12.4.min.js.下载"></script>
+<script src="./10.6C++怎样对输入输出重定向？（3种方法）_files/common.js.下载"></script>
+<span style="display:none;"><script src="./10.6C++怎样对输入输出重定向？（3种方法）_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>

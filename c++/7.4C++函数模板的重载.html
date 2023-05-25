@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://c.biancheng.net/view/vip_2320.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="./7.4C++函数模板的重载_files/core.php"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<!-- 启用Chromium高速渲染模式 -->
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<!-- 禁止百度转码 -->
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!-- 禁止识别电话号码 -->
+<meta name="format-detection" content="telephone=no">
+
+<link rel="shortcut icon" href="http://c.biancheng.net/favicon.ico?v=1.6.72">
+<link href="./7.4C++函数模板的重载_files/common.css" rel="stylesheet">
+<title>C++函数模板的重载</title>
+<meta name="description" content="当需要对不同的类型使用同一种算法（同一个函数体）时，为了避免定义多个功能重复的函数，可以使用模板。然而，并非所有的类型都使用同一种算法，有些特定的类型需要单独处理">
+</head>
+<body>
+<div id="topbar" class="clearfix">
+	<ul id="product-type" class="left">
+		<li>
+			<a href="http://c.biancheng.net/"><span class="iconfont iconfont-home"></span>首页</a>
+		</li>
+		<li class="active">
+			<a href="http://c.biancheng.net/sitemap/" rel="nofollow"><span class="iconfont iconfont-book"></span>教程</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/vip/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-vip"></span>VIP会员</a>
+		</li>
+		<li>
+			<a href="http://vip.biancheng.net/p/q2a/show.php" rel="nofollow" target="_blank"><span class="iconfont iconfont-q2a"></span>一对一答疑</a>
+		</li>
+		<li>
+			<a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank"><span class="iconfont iconfont-fudao"></span>辅导班</a>
+		</li>
+	</ul>
+</div>
+<div id="header" class="clearfix">
+	<a id="logo" class="left" href="http://c.biancheng.net/">
+		<img height="26" src="./7.4C++函数模板的重载_files/logo.png" alt="C语言中文网">
+	</a>
+	<ul id="nav-main" class="hover-none left clearfix">
+		<li class="wap-yes"><a href="http://c.biancheng.net/">首页</a></li>
+		<li><a href="http://c.biancheng.net/c/">C语言教程</a></li>
+		<li><a href="http://c.biancheng.net/cplus/">C++教程</a></li>
+		<li><a href="http://c.biancheng.net/python/">Python教程</a></li>
+		<li><a href="http://c.biancheng.net/java/">Java教程</a></li>
+		<li><a href="http://c.biancheng.net/linux_tutorial/">Linux入门</a></li>
+		<li><a href="http://c.biancheng.net/sitemap/" title="网站地图">更多&gt;&gt;</a></li>
+	</ul>
+	<span id="sidebar-toggle" class="toggle-btn" toggle-target="#sidebar">目录 <span class="glyphicon"></span></span>
+
+	<a href="http://vip.biancheng.net/?from=topbar" class="user-info glyphicon glyphicon-user hover-none" target="_blank" rel="nofollow" title="用户中心"></a>
+</div>
+<div id="main" class="clearfix">
+	<div id="sidebar" class="toggle-target">
+	<div id="contents">
+		<dt><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><a href="http://c.biancheng.net/cplus/">C++</a></dt>
+		
+			<dd>
+				<span class="channel-num">1</span>
+				<a href="http://c.biancheng.net/cplus/c2cpp/">从C到C++</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">2</span>
+				<a href="http://c.biancheng.net/cplus/class/">类和对象</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">3</span>
+				<a href="http://c.biancheng.net/cplus/25/">C++引用</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">4</span>
+				<a href="http://c.biancheng.net/cplus/inherit/">继承与派生</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">5</span>
+				<a href="http://c.biancheng.net/cplus/polymorphism/">C++多态与虚函数</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">6</span>
+				<a href="http://c.biancheng.net/cplus/operator/">运算符重载</a>
+			</dd>
+		<dd class="this"> <span class="channel-num">7</span> <a href="http://c.biancheng.net/cplus/70/">模板</a> </dd><dl class="dl-sub"><dd>7.1 <a href="http://c.biancheng.net/view/2317.html">C++函数模板入门教程</a></dd><dd>7.2 <a href="http://c.biancheng.net/view/2318.html">C++类模板入门教程</a></dd><dd>7.3 <a href="http://c.biancheng.net/view/2319.html">大话C++模板编程的来龙去脉</a></dd><dd class="active">7.4 <a href="http://c.biancheng.net/view/vip_2320.html">C++函数模板的重载</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.5 <a href="http://c.biancheng.net/view/vip_2321.html">C++函数模板的实参推断</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.6 <a href="http://c.biancheng.net/view/vip_2322.html">C++模板的显式具体化</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.7 <a href="http://c.biancheng.net/view/vip_2323.html">C++模板中的非类型参数</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.8 <a href="http://c.biancheng.net/view/vip_2324.html">C++模板的实例化</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.9 <a href="http://c.biancheng.net/view/vip_2325.html">将C++模板应用于多文件编程</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.10 <a href="http://c.biancheng.net/view/vip_2326.html">C++模板的显式实例化</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.11 <a href="http://c.biancheng.net/view/vip_2327.html">C++类模板与继承</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.12 <a href="http://c.biancheng.net/view/vip_2328.html">C++类模板与友元</a><span class="glyphicon glyphicon-usd"></span></dd><dd>7.13 <a href="http://c.biancheng.net/view/vip_2329.html">C++类模板中的静态成员</a><span class="glyphicon glyphicon-usd"></span></dd></dl>
+			<dd>
+				<span class="channel-num">8</span>
+				<a href="http://c.biancheng.net/cplus/exception/">C++异常</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">9</span>
+				<a href="http://c.biancheng.net/cplus/100/">面向对象进阶</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">10</span>
+				<a href="http://c.biancheng.net/cplus/50/">输入输出流</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">11</span>
+				<a href="http://c.biancheng.net/cplus/60/">文件操作</a>
+			</dd>
+		
+			<dd>
+				<span class="channel-num">12</span>
+				<a href="http://c.biancheng.net/cplus/more_file/">C++多文件编程</a>
+			</dd>
+		
+	</div>
+</div>
+	<div id="article-wrap">
+		<div id="article">
+			<div class="arc-info">
+	<span class="position"><span class="glyphicon glyphicon-map-marker"></span> <a href="http://c.biancheng.net/">首页</a> &gt; <a href="http://c.biancheng.net/cplus/">C++</a> &gt; <a href="http://c.biancheng.net/cplus/70/">模板</a></span>
+	<span class="read-num">阅读：15,758</span>
+</div>
+
+<div id="ad-position-bottom"></div>
+			<h1>C++函数模板的重载</h1>
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2319.html">大话C++模板编程的来龙去脉</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_2321.html">C++函数模板的实参推断</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-top"><p class="pic"></p><p class="text" adid="default"><a href="http://fudao.biancheng.net/" rel="nofollow" target="_blank" style="color:#D33428;">C语言中文网推出辅导班啦，包括<span style="color: #008000;">「C语言辅导班、C++辅导班、算法/数据结构辅导班」</span>，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！</a></p></div>
+			<div id="arc-body">当需要对不同的类型使用同一种算法（同一个函数体）时，为了避免定义多个功能重复的函数，可以使用模板。然而，并非所有的类型都使用同一种算法，有些特定的类型需要单独处理，为了满足这种需求，<span style="color: #b22222">C++ 允许对函数模板进行重载</span>，程序员可以像重载常规函数那样重载模板定义。<br>
+<br>
+在《<a href="http://c.biancheng.net/view/2317.html" target="_blank">C++函数模板</a>》一节中我们定义了 Swap() 函数用来交换两个变量的值，一种方案是使用指针，另外一种方案是使用引用，请看下面的代码：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display: none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2320.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2320.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2320.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_comment">//方案①：使用指针</span></li><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">Swap</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">*</span>a<span class="sh_symbol">,</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">*</span>b<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">T</span><span class="sh_normal"> </span>temp <span class="sh_symbol">=</span> <span class="sh_symbol">*</span>a<span class="sh_symbol">;</span></li><li>    <span class="sh_symbol">*</span>a <span class="sh_symbol">=</span> <span class="sh_symbol">*</span>b<span class="sh_symbol">;</span></li><li>    <span class="sh_symbol">*</span>b <span class="sh_symbol">=</span> temp<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_comment">//方案②：使用引用</span></li><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">Swap</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>a<span class="sh_symbol">,</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>b<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">T</span><span class="sh_normal"> </span>temp <span class="sh_symbol">=</span> a<span class="sh_symbol">;</span></li><li>    a <span class="sh_symbol">=</span> b<span class="sh_symbol">;</span></li><li>    b <span class="sh_symbol">=</span> temp<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">//方案①：使用指针
+template&lt;typename T&gt; void Swap(T *a, T *b){
+    T temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+//方案②：使用引用
+template&lt;class T&gt; void Swap(T &amp;a, T &amp;b){
+    T temp = a;
+    a = b;
+    b = temp;
+}</pre></div></div>
+这两种方案都可以交换 int、float、char、bool 等基本类型变量的值，但是却不能交换两个数组。<br>
+<br>
+对于方案①，调用函数时传入的是数组指针，或者说是指向第 0 &nbsp;个元素的指针，这样交换的仅仅是数组的第 0 个元素，而不是整个数组。数组和指针本来是不等价的，只是当函数的形参为指针时，传递的数组也会隐式地转换为指针，这在《<a href="http://c.biancheng.net/c/" target="_blank">C语言入门教程</a>》中的《<a href="http://c.biancheng.net/view/vip_2018.html" target="_blank">数组和指针绝不等价，数组是另外一种类型</a>》《<a href="http://c.biancheng.net/view/vip_2019.html" target="_blank">数组到底在什么时候会转换为指针</a>》两节中做了详细讲解，不了解的读者请猛击链接深入学习。<br>
+<br>
+对于方案②，假设传入的是一个长度为 5 的 int 类型数组（该数组的类型是 int [5]），那么 T 的真实类型为<code>int [5]</code>，<code>T temp</code>会被替换为<code>int [5] temp</code>，这显然是错误的。另外一方面，语句<code>a=b;</code>尝试对数组 a 赋值，而数组名是常量，它的值不允许被修改，所以也会产生错误。总起来说，方案②会有两处语法错误。<br>
+<br>
+<span style="color: #b22222">交换两个数组唯一的办法就是逐个交换所有的数组元素</span>，请看下面的代码：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2320.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2320.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2320.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">Swap</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span>a<span class="sh_symbol">[],</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span>b<span class="sh_symbol">[],</span> <span class="sh_type">int</span> len<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">T</span><span class="sh_normal"> </span>temp<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">for</span><span class="sh_symbol">(</span><span class="sh_type">int</span> i<span class="sh_symbol">=</span><span class="sh_number">0</span><span class="sh_symbol">;</span> i<span class="sh_symbol">&lt;</span>len<span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span><span class="sh_cbracket">{</span></li><li>        temp <span class="sh_symbol">=</span> a<span class="sh_symbol">[</span>i<span class="sh_symbol">];</span></li><li>        a<span class="sh_symbol">[</span>i<span class="sh_symbol">]</span> <span class="sh_symbol">=</span> b<span class="sh_symbol">[</span>i<span class="sh_symbol">];</span></li><li>        b<span class="sh_symbol">[</span>i<span class="sh_symbol">]</span> <span class="sh_symbol">=</span> temp<span class="sh_symbol">;</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">template&lt;typename T&gt; void Swap(T a[], T b[], int len){
+    T temp;
+    for(int i=0; i&lt;len; i++){
+        temp = a[i];
+        a[i] = b[i];
+        b[i] = temp;
+    }
+}</pre></div></div>
+在该函数模板中，最后一个参数的类型为具体类型（int），而不是泛型。并不是所有的模板参数都必须被泛型化。<br>
+<br>
+下面是一个重载函数模板的完整示例：
+<div class="snippet-container" style="undefined;"><div class="sh_bright snippet-wrap"><div class="snippet-menu sh_sourceCode" style="display:none;"><pre><a class="snippet-copy sh_url" href="http://c.biancheng.net/view/vip_2320.html#" style="display: none;">复制</a><a class="snippet-text sh_url" href="http://c.biancheng.net/view/vip_2320.html#">纯文本</a><a class="snippet-window sh_url" href="http://c.biancheng.net/view/vip_2320.html#">复制</a></pre></div><pre class="cpp sh_cpp snippet-formatted sh_sourceCode"><ol class="snippet-num"><li><span class="sh_preproc">#include</span> <span class="sh_string">&lt;iostream&gt;</span></li><li><span class="sh_keyword">using</span> <span class="sh_keyword">namespace</span> std<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">Swap</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>a<span class="sh_symbol">,</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>b<span class="sh_symbol">);</span>  <span class="sh_comment">//模板①：交换基本类型的值</span></li><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">Swap</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span>a<span class="sh_symbol">[],</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span>b<span class="sh_symbol">[],</span> <span class="sh_type">int</span> len<span class="sh_symbol">);</span>  <span class="sh_comment">//模板②：交换两个数组</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">void</span> <span class="sh_function">printArray</span><span class="sh_symbol">(</span><span class="sh_type">int</span> arr<span class="sh_symbol">[],</span> <span class="sh_type">int</span> len<span class="sh_symbol">);</span>  <span class="sh_comment">//打印数组元素</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_comment">//交换基本类型的值</span></li><li>    <span class="sh_type">int</span> m <span class="sh_symbol">=</span> <span class="sh_number">10</span><span class="sh_symbol">,</span> n <span class="sh_symbol">=</span> <span class="sh_number">99</span><span class="sh_symbol">;</span></li><li>    <span class="sh_function">Swap</span><span class="sh_symbol">(</span>m<span class="sh_symbol">,</span> n<span class="sh_symbol">);</span>  <span class="sh_comment">//匹配模板①</span></li><li>    cout<span class="sh_symbol">&lt;&lt;</span>m<span class="sh_symbol">&lt;&lt;</span><span class="sh_string">", "</span><span class="sh_symbol">&lt;&lt;</span>n<span class="sh_symbol">&lt;&lt;</span>endl<span class="sh_symbol">;</span></li><li><span style="display:none;">&nbsp;</span></li><li>    <span class="sh_comment">//交换两个数组</span></li><li>    <span class="sh_type">int</span> a<span class="sh_symbol">[</span><span class="sh_number">5</span><span class="sh_symbol">]</span> <span class="sh_symbol">=</span> <span class="sh_cbracket">{</span> <span class="sh_number">1</span><span class="sh_symbol">,</span> <span class="sh_number">2</span><span class="sh_symbol">,</span> <span class="sh_number">3</span><span class="sh_symbol">,</span> <span class="sh_number">4</span><span class="sh_symbol">,</span> <span class="sh_number">5</span> <span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> b<span class="sh_symbol">[</span><span class="sh_number">5</span><span class="sh_symbol">]</span> <span class="sh_symbol">=</span> <span class="sh_cbracket">{</span> <span class="sh_number">10</span><span class="sh_symbol">,</span> <span class="sh_number">20</span><span class="sh_symbol">,</span> <span class="sh_number">30</span><span class="sh_symbol">,</span> <span class="sh_number">40</span><span class="sh_symbol">,</span> <span class="sh_number">50</span> <span class="sh_cbracket">}</span><span class="sh_symbol">;</span></li><li>    <span class="sh_type">int</span> len <span class="sh_symbol">=</span> <span class="sh_keyword">sizeof</span><span class="sh_symbol">(</span>a<span class="sh_symbol">)</span> <span class="sh_symbol">/</span> <span class="sh_keyword">sizeof</span><span class="sh_symbol">(</span><span class="sh_type">int</span><span class="sh_symbol">);</span>  <span class="sh_comment">//数组长度</span></li><li>    <span class="sh_function">Swap</span><span class="sh_symbol">(</span>a<span class="sh_symbol">,</span> b<span class="sh_symbol">,</span> len<span class="sh_symbol">);</span>  <span class="sh_comment">//匹配模板②</span></li><li>    <span class="sh_function">printArray</span><span class="sh_symbol">(</span>a<span class="sh_symbol">,</span> len<span class="sh_symbol">);</span></li><li>    <span class="sh_function">printArray</span><span class="sh_symbol">(</span>b<span class="sh_symbol">,</span> len<span class="sh_symbol">);</span></li><li><span style="display:none;">&nbsp;</span></li><li>    <span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">class</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">Swap</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>a<span class="sh_symbol">,</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span><span class="sh_symbol">&amp;</span>b<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">T</span><span class="sh_normal"> </span>temp <span class="sh_symbol">=</span> a<span class="sh_symbol">;</span></li><li>    a <span class="sh_symbol">=</span> b<span class="sh_symbol">;</span></li><li>    b <span class="sh_symbol">=</span> temp<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_keyword">template</span><span class="sh_symbol">&lt;</span><span class="sh_keyword">typename</span><span class="sh_normal"> </span><span class="sh_classname">T</span><span class="sh_symbol">&gt;</span> <span class="sh_type">void</span> <span class="sh_function">Swap</span><span class="sh_symbol">(</span><span class="sh_usertype">T</span><span class="sh_normal"> </span>a<span class="sh_symbol">[],</span> <span class="sh_usertype">T</span><span class="sh_normal"> </span>b<span class="sh_symbol">[],</span> <span class="sh_type">int</span> len<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_usertype">T</span><span class="sh_normal"> </span>temp<span class="sh_symbol">;</span></li><li>    <span class="sh_keyword">for</span><span class="sh_symbol">(</span><span class="sh_type">int</span> i<span class="sh_symbol">=</span><span class="sh_number">0</span><span class="sh_symbol">;</span> i<span class="sh_symbol">&lt;</span>len<span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span><span class="sh_cbracket">{</span></li><li>        temp <span class="sh_symbol">=</span> a<span class="sh_symbol">[</span>i<span class="sh_symbol">];</span></li><li>        a<span class="sh_symbol">[</span>i<span class="sh_symbol">]</span> <span class="sh_symbol">=</span> b<span class="sh_symbol">[</span>i<span class="sh_symbol">];</span></li><li>        b<span class="sh_symbol">[</span>i<span class="sh_symbol">]</span> <span class="sh_symbol">=</span> temp<span class="sh_symbol">;</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li><li><span style="display:none;">&nbsp;</span></li><li><span class="sh_type">void</span> <span class="sh_function">printArray</span><span class="sh_symbol">(</span><span class="sh_type">int</span> arr<span class="sh_symbol">[],</span> <span class="sh_type">int</span> len<span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>    <span class="sh_keyword">for</span><span class="sh_symbol">(</span><span class="sh_type">int</span> i<span class="sh_symbol">=</span><span class="sh_number">0</span><span class="sh_symbol">;</span> i<span class="sh_symbol">&lt;</span>len<span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span><span class="sh_cbracket">{</span></li><li>        <span class="sh_keyword">if</span><span class="sh_symbol">(</span>i <span class="sh_symbol">==</span> len<span class="sh_number">-1</span><span class="sh_symbol">)</span><span class="sh_cbracket">{</span></li><li>            cout<span class="sh_symbol">&lt;&lt;</span>arr<span class="sh_symbol">[</span>i<span class="sh_symbol">]&lt;&lt;</span>endl<span class="sh_symbol">;</span></li><li>        <span class="sh_cbracket">}</span><span class="sh_keyword">else</span><span class="sh_cbracket">{</span></li><li>            cout<span class="sh_symbol">&lt;&lt;</span>arr<span class="sh_symbol">[</span>i<span class="sh_symbol">]&lt;&lt;</span><span class="sh_string">", "</span><span class="sh_symbol">;</span></li><li>        <span class="sh_cbracket">}</span></li><li>    <span class="sh_cbracket">}</span></li><li><span class="sh_cbracket">}</span></li></ol></pre><pre class="snippet-textonly sh_sourceCode" style="display:none;">#include &lt;iostream&gt;
+using namespace std;
+
+template&lt;class T&gt; void Swap(T &amp;a, T &amp;b);  //模板①：交换基本类型的值
+template&lt;typename T&gt; void Swap(T a[], T b[], int len);  //模板②：交换两个数组
+
+void printArray(int arr[], int len);  //打印数组元素
+
+int main(){
+    //交换基本类型的值
+    int m = 10, n = 99;
+    Swap(m, n);  //匹配模板①
+    cout&lt;&lt;m&lt;&lt;", "&lt;&lt;n&lt;&lt;endl;
+
+    //交换两个数组
+    int a[5] = { 1, 2, 3, 4, 5 };
+    int b[5] = { 10, 20, 30, 40, 50 };
+    int len = sizeof(a) / sizeof(int);  //数组长度
+    Swap(a, b, len);  //匹配模板②
+    printArray(a, len);
+    printArray(b, len);
+
+    return 0;
+}
+
+template&lt;class T&gt; void Swap(T &amp;a, T &amp;b){
+    T temp = a;
+    a = b;
+    b = temp;
+}
+
+template&lt;typename T&gt; void Swap(T a[], T b[], int len){
+    T temp;
+    for(int i=0; i&lt;len; i++){
+        temp = a[i];
+        a[i] = b[i];
+        b[i] = temp;
+    }
+}
+
+void printArray(int arr[], int len){
+    for(int i=0; i&lt;len; i++){
+        if(i == len-1){
+            cout&lt;&lt;arr[i]&lt;&lt;endl;
+        }else{
+            cout&lt;&lt;arr[i]&lt;&lt;", ";
+        }
+    }
+}</pre></div></div>
+运行结果：<br>
+99, 10<br>
+10, 20, 30, 40, 50<br>
+1, 2, 3, 4, 5<br>
+</div>
+			<div id="arc-append">
+	<p>关注微信公众号「站长严长生」，在手机上阅读所有教程，随时随地都能学习。本公众号由<a class="col-link" href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">C语言中文网站长</a>运营，每日更新，坚持原创，敢说真话，凡事有态度。</p>
+	<p style="margin-top:12px; text-align:center;">
+		<img width="180" src="./7.4C++函数模板的重载_files/qrcode_weixueyuan_original.png" alt="魏雪原二维码"><br>
+		<span class="col-green">微信扫描二维码关注公众号</span>
+	</p>
+</div>
+<!-- <p>关注微信公众号「魏雪原」，跟着<a class="col-link" href="/view/8092.html" target="_blank">站长</a>一起学习，拒绝躺平，跳出内卷，用知识完成阶级跃升：</p>
+	<ul>
+		<li>每日更新，坚持原创，敢说真话，凡事有态度。</li>
+		<li>编程+求职+创业+营销，既有硬知识，也有软技能。</li>
+		<li>手机端阅读教程，随时随地都能学习。</li>
+		<li>即将绑定网站部分功能，包括注册登录、找回密码、获取下载链接等。</li>
+	</ul> -->
+			<div class="pre-next-page clearfix">
+                    <span class="pre left"><span class="icon">&lt;</span> <span class="text-brief text-brief-pre">上一页</span><a href="http://c.biancheng.net/view/2319.html">大话C++模板编程的来龙去脉</a></span>
+                    <span class="next right"><a href="http://c.biancheng.net/view/vip_2321.html">C++函数模板的实参推断</a><span class="text-brief text-brief-next">下一页</span> <span class="icon">&gt;</span></span>
+                </div>
+			<div id="ad-arc-bottom"></div>
+
+<!-- <div id="ad-bottom-weixin" class="clearfix">
+	<div class="left" style="width: 535px;">
+		<p><span class="col-red">编程帮</span>，一个分享编程知识的公众号。跟着<a class="col-link" href="/cpp/about/author/" target="_blank">站长</a>一起学习，每天都有进步。</p>
+		<p>通俗易懂，深入浅出，一篇文章只讲一个知识点。</p>
+		<p>文章不深奥，不需要钻研，在公交、在地铁、在厕所都可以阅读，随时随地涨姿势。</p>
+		<p>文章不涉及代码，不烧脑细胞，人人都可以学习。</p>
+		<p>当你决定关注「编程帮」，你已然超越了90%的程序员！</p>
+	</div>
+	<div class="right" style="width: 150px;">
+		<img width="150" src="/templets/new/images/erweima_biancheng.gif?v=1.6.72" alt="编程帮二维码" /><br />
+		<span class="col-green">微信扫描二维码关注</span>
+	</div>
+</div> -->
+
+<div id="nice-arcs" class="box-bottom">
+	<h4>优秀文章</h4>
+	<ul class="clearfix">
+<li><a href="http://c.biancheng.net/view/2001.html" title="TensorFlow分布式详解">TensorFlow分布式详解</a></li>
+<li><a href="http://c.biancheng.net/view/2971.html" title="C#日历控件（MonthCalendar）">C#日历控件（MonthCalendar）</a></li>
+<li><a href="http://c.biancheng.net/view/3081.html" title="C#装箱和拆箱">C#装箱和拆箱</a></li>
+<li><a href="http://c.biancheng.net/view/vip_3381.html" title="广义表的深度和长度（C语言）详解">广义表的深度和长度（C语言）详解</a></li>
+<li><a href="http://c.biancheng.net/view/3458.html" title="32位x86处理器架构">32位x86处理器架构</a></li>
+<li><a href="http://c.biancheng.net/view/4752.html" title="Java Map.putAll()方法：追加另一个Map对象到当前Map集合">Java Map.putAll()方法：追加另一个Map对象到当前Map集合</a></li>
+<li><a href="http://c.biancheng.net/view/5575.html" title="Go语言进制与转换">Go语言进制与转换</a></li>
+<li><a href="http://c.biancheng.net/view/6475.html" title="WHOIS协议是什么？">WHOIS协议是什么？</a></li>
+<li><a href="http://c.biancheng.net/view/7207.html" title="NumPy的算术运算">NumPy的算术运算</a></li>
+<li><a href="http://c.biancheng.net/ml_alg/naive-bayes.html" title="朴素贝叶斯分类算法原理">朴素贝叶斯分类算法原理</a></li>
+</ul>
+</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+// 当前文章ID
+window.arcIdRaw = 'a_' + 2320;
+window.arcId = "865b0bIesyyY75X+A2XBIHtISN9IusCIBk3hyWCBxW7bdsDC6uNrXn2oFPk";
+window.typeidChain = "49|19";
+</script>
+<div id="footer" class="clearfix">
+	<div class="info left">
+	<p>精美而实用的网站，分享优质编程教程，帮助有志青年。千锤百炼，只为大作；精益求精，处处斟酌；这种教程，看一眼就倾心。</p>
+	<p>
+		<a href="http://c.biancheng.net/view/8066.html" target="_blank" rel="nofollow">关于网站</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8092.html" target="_blank" rel="nofollow">关于站长</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8097.html" target="_blank" rel="nofollow">如何完成一部教程</a> <span>|</span>
+		<a href="http://c.biancheng.net/view/8093.html" target="_blank" rel="nofollow">联系我们</a> <span>|</span>
+		<a href="http://c.biancheng.net/sitemap/" target="_blank" rel="nofollow">网站地图</a>
+	</p>
+	<p>Copyright ©2012-2021 biancheng.net, <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow" style="color:#666;">陕ICP备15000209号</a></p>
+	</div>
+	<img class="right" src="./7.4C++函数模板的重载_files/logo_bottom.gif" alt="底部Logo">
+	<span id="return-top"><b>↑</b></span>
+</div>
+
+<script type="text/javascript">
+window.siteId = 4;
+window.cmsTemplets = "/templets/new";
+window.cmsTempletsVer = "1.6.72";
+</script>
+
+<script src="./7.4C++函数模板的重载_files/jquery1.12.4.min.js.下载"></script>
+<script src="./7.4C++函数模板的重载_files/common.js.下载"></script>
+<span style="display:none;"><script src="./7.4C++函数模板的重载_files/z_stat.php" type="text/javascript" defer="defer" async="async"></script></span>
+
+</body></html>
